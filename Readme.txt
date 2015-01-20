@@ -1,1 +1,5 @@
 This repository holds all the builders for save the system.  Right now the quest builder and the conversation builder are the only ones completed and are in the same application-- called STSQuestBuilder for now.
+
+The Protocol Buffers folder contains the definitions for the protocol buffers used in the save the system project to interface between the builders and the unity engine.  Changes in the backend architecture may need to be reflected here and any changes in the information we want to move between the two will necessitate a change here as well.
+
+The distributeProtocol.sh file in the protobuf folder will only work on my computer, since it relies on my particular organizational structure between the two projects, but if you are interested in how to compile and distribute the protos yourself, the file might be useful in getting you started.  Of course, you can also just ask me to show you how to use them, but its there just in case anyone is curious or feels like modifying it to work on their computer.
