@@ -1,0 +1,21 @@
+option java_package = "stsquestbuilder.protocolbuffers";
+
+message ConversationPackage {
+    repeated Conversation conversations = 1;
+}
+
+message Conversation {
+    required ConversationNode root = 1;
+	optional string name = 2;
+	optional string creator = 3;
+}
+
+message ConversationNode {
+    required string text = 1;
+    repeated Connection connections = 2;
+}
+
+message Connection {
+    required ConversationNode node = 1;
+    required string text = 2;
+}

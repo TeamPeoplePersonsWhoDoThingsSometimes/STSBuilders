@@ -1,0 +1,42 @@
+option java_package = "stsquestbuilder.protocolbuffers";
+
+enum ActionType {
+	KILL = 0;
+	MOVE_AREA = 1;
+	APPROACHED_OBJECT = 2;
+}
+
+message QuestPackage {
+    repeated QuestProtocol quests = 1;
+}
+
+message BuilderPackage {
+    repeated DirectObjectProtocol actions = 1;
+}
+
+message QuestProtocol {
+    required string name = 1;
+	optional string creator = 3;
+	repeated StatusStepProtocol steps = 2;
+}
+
+message StatusStepProtocol {
+    required string name = 1;
+	required string description = 2;
+    repeated StatusCheckableProtocol statusesInStep = 3;
+}
+
+message StatusCheckableProtocol {
+	optional ActionProtocol action = 1;
+	optional int32 amount = 2;
+}
+
+message ActionProtocol {
+	required ActionType type = 1;
+	optional DirectObjectProtocol target = 2;
+}
+
+message DirectObjectProtocol {
+	optional string type = 1;
+	required string name = 2;
+}
