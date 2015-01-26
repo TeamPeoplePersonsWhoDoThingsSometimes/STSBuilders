@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="206.0" prefWidth="246.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="stsquestbuilder.view.ItemComponentController">
+   <children>
+      <ChoiceBox layoutX="83.0" layoutY="2.0" prefWidth="150.0" />
+      <Label layoutX="8.0" layoutY="6.0" text="Item Type:" />
+      <Pane fx:id="weaponPane" layoutY="35.0" prefHeight="172.0" prefWidth="246.0">
+         <children>
+            <TextField layoutX="96.0" layoutY="14.0" prefHeight="25.0" prefWidth="136.0" />
+            <Label layoutX="7.0" layoutY="18.0" text="Weapon Name: " />
+            <ChoiceBox layoutX="110.0" layoutY="55.0" prefHeight="25.0" prefWidth="116.0" />
+            <Label layoutX="7.0" layoutY="59.0" text="Level Specification: " />
+            <Pane fx:id="SpecificLevel" layoutY="83.0" prefHeight="47.0" prefWidth="246.0" visible="false">
+               <children>
+                  <Label layoutX="8.0" layoutY="15.0" text="Level: " />
+                  <TextField layoutX="49.0" layoutY="11.0" prefHeight="25.0" prefWidth="183.0" />
+               </children>
+            </Pane>
+            <Pane fx:id="atLeastLevelPane" layoutY="83.0" prefHeight="47.0" prefWidth="246.0">
+               <children>
+                  <Label layoutX="8.0" layoutY="15.0" text="At Least Level: " />
+                  <TextField layoutX="89.0" layoutY="11.0" prefHeight="25.0" prefWidth="143.0" />
+               </children>
+            </Pane>
+            <Label layoutX="7.0" layoutY="137.0" text="Amount: " />
+            <TextField layoutX="60.0" layoutY="133.0" prefHeight="25.0" prefWidth="172.0" />
+         </children>
+      </Pane>
+      <Pane fx:id="hackPane" layoutY="36.0" prefHeight="57.0" prefWidth="246.0" visible="false">
+         <children>
+            <Label layoutX="7.0" layoutY="18.0" text="Hack:" />
+            <ChoiceBox layoutX="82.0" layoutY="14.0" prefWidth="150.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

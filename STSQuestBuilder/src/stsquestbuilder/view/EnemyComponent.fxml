@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="84.0" prefWidth="146.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="stsquestbuilder.view.EnemyComponentController">
+   <children>
+      <Pane prefHeight="109.0" prefWidth="249.0" styleClass="killPane">
+         <children>
+            <ChoiceBox layoutX="76.0" layoutY="2.0" prefWidth="150.0" styleClass="enemySelection" />
+            <ChoiceBox layoutX="76.0" layoutY="39.0" prefWidth="150.0" styleClass="typeSelection" />
+            <TextField layoutX="77.0" layoutY="77.0" styleClass="quantity" />
+            <Label layoutX="31.0" layoutY="6.0" text="Enemy:" />
+            <Label layoutX="35.0" layoutY="43.0" text="Type:" />
+            <Label layoutX="22.0" layoutY="81.0" text="Number:" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

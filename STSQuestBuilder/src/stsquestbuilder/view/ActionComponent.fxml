@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="156.0" prefWidth="243.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="stsquestbuilder.view.ActionComponentController">
+   <children>
+      <Label layoutX="6.0" layoutY="13.0" text="Action Type:" />
+      <ChoiceBox layoutX="79.0" layoutY="9.0" prefWidth="150.0" styleClass="actionTypeDropdown" />
+   </children>
+</AnchorPane>

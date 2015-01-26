@@ -4,9 +4,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stsquestbuilder.view.ConversationBuilderScreenController">
+<AnchorPane id="AnchorPane" prefHeight="396.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stsquestbuilder.view.ConversationBuilderScreenController">
    <children>
-      <Pane layoutY="371.0" prefHeight="31.0" prefWidth="600.0" style="-fx-background-color: #ddd;">
+      <Pane layoutY="203.0" prefHeight="31.0" prefWidth="600.0" style="-fx-background-color: #ddd;">
          <children>
             <Button layoutX="533.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#saveConversation" text="Save" />
             <TextField fx:id="ConversationNameBox" layoutX="94.0" layoutY="3.0" />
@@ -14,9 +14,21 @@
             <Button layoutX="357.0" layoutY="3.0" mnemonicParsing="false" onMousePressed="#addConversationNode" text="Add Conversation Block" />
          </children>
       </Pane>
-      <ScrollPane prefHeight="371.0" prefWidth="600.0">
+      <ScrollPane prefHeight="203.0" prefWidth="600.0">
          <content>
-            <Pane fx:id="builderRoot" onMouseClicked="#clearSelections" prefHeight="369.0" prefWidth="598.0" />
+            <Pane fx:id="builderRoot" onMouseClicked="#clearSelections" prefHeight="201.0" prefWidth="598.0" />
          </content></ScrollPane>
+      <Pane layoutY="234.0" prefHeight="162.0" prefWidth="600.0">
+         <children>
+            <TextArea layoutX="67.0" layoutY="36.0" prefHeight="116.0" prefWidth="149.0" />
+            <Label layoutX="14.0" layoutY="36.0" text="Message: " />
+            <TextField layoutX="67.0" layoutY="7.0" />
+            <Label layoutX="14.0" layoutY="11.0" text="ID: " />
+            <ListView layoutX="386.0" layoutY="36.0" prefHeight="116.0" prefWidth="200.0" />
+            <Label layoutX="386.0" layoutY="11.0" text="Player Status Commands: " />
+            <Label layoutX="227.0" layoutY="11.0" text="Defined Player Statuses:" />
+            <ListView layoutX="227.0" layoutY="36.0" prefHeight="116.0" prefWidth="127.0" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
