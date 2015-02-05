@@ -15,8 +15,7 @@ import stsquestbuilder.protocolbuffers.ConversationProtobuf;
  */
 public class Conversation {
     
-    private ConversationNode root;
-    private ArrayList<ConversationNode> nodeList;//sortof useless, but used in tracking newly added nodes...
+    private ArrayList<ConversationNode> nodeList;
     private final IntegerProperty nodes;
     private final StringProperty name;
     private final StringProperty creator;
@@ -47,35 +46,36 @@ public class Conversation {
             name.set(proto.getName());
         if(proto.hasCreator())
             creator.set(proto.getCreator());
-        root = new ConversationNode(proto.getRoot());
-        justifyNodeList();
+        
+        for(ConversationProtobuf.ConversationNode c : proto.getAllNodesList()) {
+            addNode(new ConversationNode(c));
+        }
+    }
+    
+    public ArrayList<ConversationNode> getNodeList() {
+        return nodeList;
     }
     
     /**
-     * gets the root node of this conversation, if one has been set up yet
-     */
-    public ConversationNode getRoot() {
-        return root;
-    }
-    
-    /**
-     * Set a new root of this conversation, used by the conversation builder to simplify
-     * saving
-     * @param newRoot the new root of this conversation
-     */
-    public void setRoot(ConversationNode newRoot) {
-        root = newRoot;
-        justifyNodeList();
-    }
-    
-    /**
-     * Add a conversation node to this conversation.  If no nodes are in the conversation,
-     * then node is set as the conversation root as well
+     * Add a conversation node to this conversation and connects it to nodes
+     * based on uids if a connection doesn't already exist
      * @param node the node to add to the conversation
      */
     public void addNode(ConversationNode node) {
-        if(nodeList.size() == 0) {
-            root = node;
+        for(ConversationNode c : nodeList) {
+            for(Long uid : c.getAlternatives().keySet()) {
+                ConversationNode.Alternative a = c.getAlternatives().get(uid);
+                if(a.getUID() == node.getUID()) {
+                    a.setTarget(node);
+                }
+            }
+            
+            for(Long uid : node.getAlternatives().keySet()) {
+                ConversationNode.Alternative a = node.getAlternatives().get(uid);
+                if(a.getUID() == c.getUID()) {
+                    a.setTarget(c);
+                }
+            }
         }
         
         nodeList.add(node);
@@ -124,27 +124,11 @@ public class Conversation {
         builder.setName(name.get());
         if(creator.get() != null)
             builder.setCreator(creator.get());
-        builder.setRoot(root.getConversationNodeAsProtobuf());
-        return builder.build();
-    }
-    
-    /**
-     * Traverse all conversation nodes to add all nodes to the node list and get a
-     * good node count
-     */
-    private void justifyNodeList() {
-        //count the number of nodes in this conversation
-        ArrayDeque<ConversationNode> bfsQueue = new ArrayDeque();
-        ArrayList<ConversationNode> traversed = new ArrayList<>();
-        ConversationNode curr;
-        int count = 0;
-        bfsQueue.add(root);
-        while(!bfsQueue.isEmpty()) {
-            curr = bfsQueue.removeFirst();
-            count++;
-            traversed.add(curr);
-            bfsQueue.addAll(curr.getAlternatives().values());
+        
+        for(ConversationNode n : nodeList) {
+            builder.addAllNodes(n.getConversationNodeAsProtobuf());
         }
-        nodes.set(count);
+        
+        return builder.build();
     }
 }

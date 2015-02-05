@@ -9,6 +9,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 
+import stsquestbuilder.model.Item;
+
 /**
  * FXML Controller class
  *
@@ -16,6 +18,8 @@ import javafx.fxml.Initializable;
  */
 public class ItemComponentController implements Initializable {
 
+    private Item item;
+    
     /**
      * Initializes the controller class.
      */

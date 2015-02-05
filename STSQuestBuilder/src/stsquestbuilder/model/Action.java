@@ -3,9 +3,12 @@ package stsquestbuilder.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.property.SimpleStringProperty;
 import stsquestbuilder.protocolbuffers.QuestProtobuf;
+import stsquestbuilder.protocolbuffers.QuestProtobuf.ActionType;
 
 
 /**
@@ -23,12 +26,9 @@ public class Action {
     
     private DirectObject directObject;
     
-    private int occurrence;
-    
     public Action() {
-        actionType = null;
-        directObject = null;
-        occurrence = -1;
+        actionType = ActionType.KILL;
+        directObject = new Enemy();
         
         actionDescriptor = new SimpleStringProperty("New Action");
     }
@@ -36,7 +36,6 @@ public class Action {
     public Action(ActionType type, DirectObject object, int times) {
         actionType = type;
         directObject = object;
-        occurrence = times;
         
         actionDescriptor = new SimpleStringProperty();
         updateDescriptor();
@@ -49,8 +48,20 @@ public class Action {
      */
     public Action(QuestProtobuf.ActionProtocol action, int times) {
         actionType = ActionType.valueOf(action.getType().toString());
-        directObject = new DirectObject(action.getTarget());
-        occurrence = times;
+        
+        switch(actionType) {
+            case KILL:
+            case ATTACK:
+                directObject = new Enemy(action.getTarget());
+                break;
+            case MOVE_AREA:
+                directObject = new Area(action.getTarget());
+                break;
+            default:
+                directObject = new DirectObject(action.getTarget());
+                break;
+        }
+        
         actionDescriptor = new SimpleStringProperty();
         updateDescriptor();
     }
@@ -66,7 +77,6 @@ public class Action {
     public void setAction(Action action) {
         this.actionType = action.actionType;
         this.directObject = action.directObject;
-        this.occurrence = action.occurrence;
         updateDescriptor();
     }
     
@@ -87,15 +97,6 @@ public class Action {
         this.directObject = directObject;
         updateDescriptor();
     }
- 
-    public int getOccurrence() {
-        return occurrence;
-    }  
-    
-    public void setOccurrence(int occurrence) {
-        this.occurrence = occurrence;
-        updateDescriptor();
-    }
     
     public StringProperty getDescriptorProperty() {
         return actionDescriptor;
@@ -105,24 +106,23 @@ public class Action {
         return actionDescriptor.getValue();
     }
     
+    public int getAmount() {
+        return directObject.getAmount();
+    }
+    
     private void updateDescriptor() {
-        actionDescriptor.set(actionType.toString() + directObject.getIdentifier() + ":" + occurrence);
+        actionDescriptor.set(actionType.toString() + directObject.getIdentifier() + ":" + directObject.getAmount());
     }
     
     /**
      * Builds a status checkable protobuf from this action
      * @return a protobuf with the information from this object
      */
-    public QuestProtobuf.StatusCheckableProtocol getStatusCheckableAsProtobuf() {
-        QuestProtobuf.StatusCheckableProtocol.Builder statusBuilder = QuestProtobuf.StatusCheckableProtocol.newBuilder();
+    public QuestProtobuf.ActionProtocol getActionAsProtobuf() {
         QuestProtobuf.ActionProtocol.Builder actionBuilder = QuestProtobuf.ActionProtocol.newBuilder();
         actionBuilder.setType(QuestProtobuf.ActionType.valueOf(this.getActionType().toString()));
         actionBuilder.setTarget(directObject.getDirectObjectAsProtobuf());
-        statusBuilder.setAction(actionBuilder.build());
-        statusBuilder.setAmount(occurrence);
-        ArrayList<QuestProtobuf.StatusCheckableProtocol> protocols = new ArrayList<>();
-        QuestProtobuf.StatusCheckableProtocol protocol = statusBuilder.build();
-        return protocol;
+        return actionBuilder.build();
     }
     
     /*

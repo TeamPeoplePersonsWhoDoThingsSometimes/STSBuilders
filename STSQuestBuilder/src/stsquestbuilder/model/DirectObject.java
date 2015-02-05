@@ -13,12 +13,28 @@ import stsquestbuilder.protocolbuffers.QuestProtobuf;
  * @author William
  */
 public class DirectObject {
+    
+    public enum ObjectType {
+        AREA,
+        ITEM,
+        ENEMY,
+        NPC
+    }
+    
     private String name;
     private String type;
+    private int amount;
 
     public DirectObject(String id, String typeId) {
         name = id;
         type = typeId;
+        amount = 1;
+    }
+    
+    public DirectObject(String id, String typeId, int a) {
+        name = id;
+        type = typeId;
+        amount = a;
     }
     
     /**
@@ -29,6 +45,7 @@ public class DirectObject {
     public DirectObject(QuestProtobuf.DirectObjectProtocol directObject) {
         name = directObject.getName();
         type = directObject.getType();
+        amount = directObject.getAmount();
     }
 
     /**
@@ -36,15 +53,31 @@ public class DirectObject {
      * direct object.  Used in serialization
      */
     public String getIdentifier() {
-            return name;
+        return name;
     }
 
+    public void setIdentifier(String Id) {
+        name = Id;
+    }
+    
     /**
      * Returns a string identifier corresponding to the type of this
      * direct object.  Used in serialization
      */
     public String getTypeIdentifier() {
-            return type;
+        return type;
+    }
+    
+    public void setTypeId(String typeId) {
+        type = typeId;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
     
     /**
@@ -74,5 +107,10 @@ public class DirectObject {
             return o.name.equals(name) && o.type.equals(type);
         }
         return false;
+    }
+    
+    @Override
+    public String toString() {
+        return getIdentifier() + ":" + getTypeIdentifier();
     }
 }

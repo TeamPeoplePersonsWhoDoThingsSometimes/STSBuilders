@@ -82,7 +82,7 @@ public class Step {
         
         //get status checkable protobufs
         for(Action a : actions) {
-            builder.addStatusesInStep(a.getStatusCheckableAsProtobuf());
+            builder.addStatusesInStep(new ActionCheckable(a).getStatusCheckableAsProtobuf());
         }
         
         return builder.build();    

@@ -4,30 +4,49 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="396.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stsquestbuilder.view.ConversationBuilderScreenController">
+<AnchorPane id="AnchorPane" prefHeight="454.0" prefWidth="804.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stsquestbuilder.view.ConversationBuilderScreenController">
    <children>
-      <Pane layoutY="203.0" prefHeight="31.0" prefWidth="600.0" style="-fx-background-color: #ddd;">
+      <Pane fx:id="bottomBar" layoutY="425.0" prefHeight="31.0" prefWidth="804.0" style="-fx-background-color: #ddd;">
          <children>
-            <Button layoutX="533.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#saveConversation" text="Save" />
+            <Button layoutX="749.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#saveConversation" text="Save" />
             <TextField fx:id="ConversationNameBox" layoutX="94.0" layoutY="3.0" />
             <Label layoutX="48.0" layoutY="7.0" text="Name: " />
-            <Button layoutX="357.0" layoutY="3.0" mnemonicParsing="false" onMousePressed="#addConversationNode" text="Add Conversation Block" />
+            <Button layoutX="583.0" layoutY="3.0" mnemonicParsing="false" onMousePressed="#addConversationNode" text="Add Conversation Block" />
          </children>
       </Pane>
-      <ScrollPane prefHeight="203.0" prefWidth="600.0">
+      <ScrollPane fx:id="scrollPanel" prefHeight="426.0" prefWidth="804.0">
          <content>
-            <Pane fx:id="builderRoot" onMouseClicked="#clearSelections" prefHeight="201.0" prefWidth="598.0" />
+            <Pane fx:id="builderRoot" onMouseClicked="#clearSelections" prefHeight="424.0" prefWidth="800.0" />
          </content></ScrollPane>
-      <Pane layoutY="234.0" prefHeight="162.0" prefWidth="600.0">
+      <Pane fx:id="nodePanel" layoutY="291.0" prefHeight="157.0" prefWidth="804.0" visible="false">
          <children>
-            <TextArea layoutX="67.0" layoutY="36.0" prefHeight="116.0" prefWidth="149.0" />
+            <TextArea fx:id="nodeMessage" layoutX="67.0" layoutY="36.0" prefHeight="116.0" prefWidth="149.0" />
             <Label layoutX="14.0" layoutY="36.0" text="Message: " />
-            <TextField layoutX="67.0" layoutY="7.0" />
+            <TextField fx:id="nodeID" layoutX="67.0" layoutY="7.0" style="-fx-border-color: ;" />
             <Label layoutX="14.0" layoutY="11.0" text="ID: " />
-            <ListView layoutX="386.0" layoutY="36.0" prefHeight="116.0" prefWidth="200.0" />
-            <Label layoutX="386.0" layoutY="11.0" text="Player Status Commands: " />
-            <Label layoutX="227.0" layoutY="11.0" text="Defined Player Statuses:" />
-            <ListView layoutX="227.0" layoutY="36.0" prefHeight="116.0" prefWidth="127.0" />
+            <ListView fx:id="nodeCommands" layoutX="590.0" layoutY="36.0" prefHeight="84.0" prefWidth="200.0" />
+            <Label layoutX="590.0" layoutY="11.0" text="Player Status Events:" />
+            <Label layoutX="227.0" layoutY="11.0" text="Status Blocks" />
+            <ListView fx:id="nodeStatusBlocks" layoutX="227.0" layoutY="36.0" prefHeight="84.0" prefWidth="127.0" />
+            <ListView fx:id="nodeStatusBlock" layoutX="374.0" layoutY="36.0" prefHeight="84.0" prefWidth="200.0" />
+            <Label layoutX="374.0" layoutY="11.0" text="Statuses in Block: " />
+            <Label fx:id="idErrorMessage" layoutX="95.0" layoutY="36.0" text="ID already in use!" textFill="RED" visible="false" />
+            <Button layoutX="235.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#addStatusBlock" text="Add" />
+            <Button layoutX="291.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#removeStatusBlock" text="Remove" />
+            <Button layoutX="402.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#addStatus" text="Add" />
+            <Button layoutX="474.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#removeStatus" text="Remove" />
+            <Button layoutX="606.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#addCommand" text="Add" />
+            <Button layoutX="690.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#removeCommand" text="Remove" />
+         </children>
+      </Pane>
+      <Pane fx:id="alternativePanel" layoutY="291.0" prefHeight="157.0" prefWidth="804.0" visible="false">
+         <children>
+            <TextArea fx:id="alternativeText" layoutX="67.0" layoutY="5.0" prefHeight="147.0" prefWidth="149.0" />
+            <Label layoutX="14.0" layoutY="11.0" text="Text: " />
+            <Label layoutX="227.0" layoutY="11.0" text="Requirement Options:" />
+            <ListView fx:id="alternativeOptions" layoutX="350.0" layoutY="9.0" prefHeight="140.0" prefWidth="149.0" />
+            <ListView fx:id="alternativeSet" layoutX="602.0" layoutY="11.0" prefHeight="140.0" prefWidth="185.0" />
+            <Label layoutX="508.0" layoutY="11.0" text="Requirement Set: " />
          </children>
       </Pane>
    </children>

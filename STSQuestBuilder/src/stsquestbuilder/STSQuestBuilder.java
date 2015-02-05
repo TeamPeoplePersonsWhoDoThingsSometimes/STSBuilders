@@ -50,8 +50,8 @@ public class STSQuestBuilder extends Application {
     public void start(Stage primaryStage) {
         conversations = FXCollections.observableArrayList();
         quests = FXCollections.observableArrayList();
-        loadQuests();
         loadTypes();
+        loadQuests();
         loadConversations();
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/stsquestbuilder/view/PrimaryScreen.fxml"));

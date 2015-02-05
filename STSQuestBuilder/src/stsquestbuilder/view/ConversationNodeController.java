@@ -17,8 +17,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.Parent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.TransferMode;
+import javafx.scene.input.Dragboard;
+import javafx.scene.layout.BorderStroke;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
@@ -43,13 +47,22 @@ public class ConversationNodeController implements Initializable {
         controller = loader.getController();
         
         controller.conversationText.setText(node.getText());
+        controller.conversationText.textProperty().addListener(event -> {
+            node.setText(controller.conversationText.getText());
+        });
         controller.setApp(root);
+        controller.node = node;
         
         controller.baseNode = parent;
+        controller.postOpSetup();
+        
         return controller;
     }
     
     public static double ARROW_HEAD_LENGTH = 5;
+    public static double LINE_WIDTH = 7;
+    
+    private ConversationNode node;//model
     
     @FXML
     private TextArea conversationText;
@@ -71,9 +84,9 @@ public class ConversationNodeController implements Initializable {
     
     private class Connection {
         
-        Connection(Line l, Line lf, Line lr, TextField t) {
+        Connection(Line l, Line lf, Line lr, ConversationNode.Alternative alt) {
             line = l;
-            text = t;
+            alternative = alt;
             left = lf;
             right = lr;
         } 
@@ -81,7 +94,7 @@ public class ConversationNodeController implements Initializable {
         Line line;
         Line left;
         Line right;
-        TextField text;
+        ConversationNode.Alternative alternative;
     }
     
     /**
@@ -92,6 +105,25 @@ public class ConversationNodeController implements Initializable {
         alternatives = new HashMap<>();
         connectionsToHere = new ArrayList<>();
         isBeingDragged = false;
+    }
+    
+    /**
+     * Takes care of any instance-specific setup operations following
+     * static setup- in particular, handles node positioning
+     */
+    private void postOpSetup() {
+        //setup layout with backend model
+        baseNode.setLayoutX(node.getX());
+        baseNode.setLayoutY(node.getY());
+        
+        encompass();
+        
+        baseNode.layoutXProperty().addListener(event -> {
+            node.setX((int)baseNode.getLayoutX());
+        });
+        baseNode.layoutYProperty().addListener(event -> {
+            node.setY((int)baseNode.getLayoutY());
+        });
     }
     
     /**
@@ -110,9 +142,22 @@ public class ConversationNodeController implements Initializable {
     private void removeConnection(ConversationNodeController node) {
         if(alternatives.containsKey(node)) {
             Connection connection = alternatives.get(node);
-            root.removeConnectionLine(connection.line, connection.text);
+            root.removeConnectionLine(connection.line, connection.left, connection.right);
             alternatives.remove(node);
+            this.node.removeAlternative(node.getConversationNode().getUID());
         }
+    }
+    
+    /**
+     * Add the alternative to the alternatives list, difference b/w this and setup is
+     * that this does not modify the model, thus this may be used to pull informatio
+     * from the model into the controller
+     * 
+     * @param target
+     * @param connector 
+     */
+    public void addAlternative(ConversationNodeController target, Connection connector) {
+        alternatives.put(target, connector);
     }
     
     /**
@@ -120,10 +165,8 @@ public class ConversationNodeController implements Initializable {
      * connected
      * @param target the target to add
      */
-    private void setupAlternative(ConversationNodeController target, Connection connector) {
-        if(!alternatives.containsKey(target)) {
-            alternatives.put(target, connector);
-        }
+    private ConversationNode.Alternative setupAlternative(ConversationNodeController target) {     
+        return node.newAlternative(target.getConversationNode());
     }
     
     /**
@@ -182,9 +225,19 @@ public class ConversationNodeController implements Initializable {
             initialXOffset = event.getX();
             initialYOffset = event.getY();
         } else {
-            root.setCurrentConversation(this);
+            root.setCurrentConversationNode(this);
             root.setDraggingForConnection(true);
+            backPane.startFullDrag();
         }
+    }
+    
+    /**
+     * Display the editor on mouse up
+     * @param event 
+     */
+    public void handleDisplayConversation(MouseEvent event) {
+        root.setCurrentConversationNode(this);//should potentially have this somewhere else?
+        root.displayConversationNodeEditor();
     }
     
     /**
@@ -197,14 +250,12 @@ public class ConversationNodeController implements Initializable {
             double y = baseNode.getLayoutY() + event.getY() - initialYOffset;
             baseNode.setLayoutX(x);
             baseNode.setLayoutY(y);
-            root.expand(x + backPane.getWidth(), y + backPane.getHeight());
+            encompass();
             
             for(Connection c : connectionsToHere) {
                 Point lineEnd = getPointForConnection(new Point((int)c.line.getStartX(), (int)c.line.getStartY()));
                 c.line.setEndX(lineEnd.x);
                 c.line.setEndY(lineEnd.y);
-                c.text.setLayoutX((c.line.getStartX() + c.line.getEndX()) / 2);
-                c.text.setLayoutY((c.line.getStartY() + c.line.getEndY()) / 2);
                 
                 //TODO last second changes! Copy copy copy, remove this later
                 //rotate outer sections of the marks
@@ -252,8 +303,6 @@ public class ConversationNodeController implements Initializable {
                 Point lineStart = getPointForConnection(new Point((int)c.line.getEndX(), (int)c.line.getEndY()));
                 c.line.setStartX(lineStart.x);
                 c.line.setStartY(lineStart.y);
-                c.text.setLayoutX((c.line.getStartX() + c.line.getEndX()) / 2);
-                c.text.setLayoutY((c.line.getStartY() + c.line.getEndY()) / 2);
                 
                 //TODO last second changes! Copy copy copy, remove this later
                 //rotate outer sections of the marks
@@ -300,11 +349,22 @@ public class ConversationNodeController implements Initializable {
      * to the current active conversation of the app
      * @param event the event that triggered this handler
      */
-    public void handleConversationConnectionDrag(MouseEvent event) {
-        //don't connect a conversation to itself
-        if(this.equals(root.getCurrentConversation()) || !root.getDraggingForConnection()) return;
+    public void handleConversationConnectionDrag(MouseDragEvent event) {
+        System.out.println("Drag End");
+        //don't connect a conversation to itself, instead, open an editor
+        if(this.equals(root.getCurrentConversationNode())) {
+            root.displayConversationNodeEditor();
+            return;
+        }
+        
+        if(!root.getDraggingForConnection())
+            return;
 
-        drawConnection(root.getCurrentConversation());
+
+        System.out.println("Establish Connection- from target");
+        ConversationNode.Alternative alt = root.getCurrentConversationNode().setupAlternative(this);
+        Connection data = drawConnection(root.getCurrentConversationNode(), alt);
+        root.getCurrentConversationNode().addAlternative(this, data);
         root.setDraggingForConnection(false);
     }
     
@@ -313,12 +373,14 @@ public class ConversationNodeController implements Initializable {
      * @param source the node to connect from 
      * @return the text field on the connection to provide for external setup
      */
-    public TextField drawConnection(ConversationNodeController source) {
+    public Connection drawConnection(ConversationNodeController source, ConversationNode.Alternative alternative) {
         //set up connecting line
         Line connection = new Line();
         Line leftMark = new Line();
         Line rightMark = new Line();
-        connection.strokeWidthProperty().set(2);
+        connection.strokeWidthProperty().set(LINE_WIDTH);
+        leftMark.strokeWidthProperty().set(LINE_WIDTH);
+        rightMark.strokeWidthProperty().set(LINE_WIDTH);
         Point hookToThis = new Point((int)backPane.getLayoutX(), (int)backPane.getLayoutY());
         Point hook = source.getPointForConnection(hookToThis);
         hookToThis = getPointForConnection(hook);
@@ -370,20 +432,22 @@ public class ConversationNodeController implements Initializable {
         //place text field on line
         double x = (hookToThis.x + hook.x) / 2;
         double y = (hookToThis.y + hook.y) / 2;
-        TextField text = new TextField();
-        text.setLayoutX(x);
-        text.setLayoutY(y);
         
         //actually place the components in the application window and make the connection
-        root.addConnectionLine(connection, leftMark, rightMark, text);
-        Connection data = new Connection(connection, leftMark, rightMark, text);
-        source.setupAlternative(this, data);
+        root.addConnectionLine(connection, leftMark, rightMark);
+        Connection data = new Connection(connection, leftMark, rightMark, alternative);
         connectionsToHere.add(data);
         
         //TODO hook up line and text events
         connection.setOnMouseClicked(event -> {
+            root.clearSelectionColors();
+            root.setActiveAlternative(alternative);
             connection.getStyleClass().add("selected");
+            leftMark.getStyleClass().add("selected");
+            rightMark.getStyleClass().add("selected");
             connection.setStroke(Color.RED);
+            leftMark.setStroke(Color.RED);
+            rightMark.setStroke(Color.RED);
             connection.setFocusTraversable(true);
             connection.requestFocus();
             event.consume();
@@ -391,29 +455,25 @@ public class ConversationNodeController implements Initializable {
         
         connection.setOnKeyPressed(event -> {
             if(event.getCode().equals(KeyCode.DELETE) && connection.isFocused()) {
-                root.removeConnectionLine(connection, text);
+                root.removeConnectionLine(connection, leftMark, rightMark);
                 connectionsToHere.remove(data);
                 source.removeConnection(this);
             }
         });
         
-        return text;
+        return data;
     }
     
     public ConversationNode getConversationNode() {
-        ConversationNode node = new ConversationNode(conversationText.getText());
-        
-        for(ConversationNodeController c : alternatives.keySet()) {
-            ConversationNode n = c.getConversationNode();
-            if(node.getAlternatives().containsKey(alternatives.get(c).text.getText())) {
-                return null;
-            }
-            node.addAlternative(alternatives.get(c).text.getText(), n);
-        }
-        
         return node;
     }
     
+    /**
+     * Expand the root to encompass this node
+     */
+    public void encompass() {
+        root.expand(baseNode.getLayoutX() + backPane.getPrefWidth(), baseNode.getLayoutY() + backPane.getPrefHeight());
+    }
     
     /****************
      * Accessors (only one, its very lonely :(  )

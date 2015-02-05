@@ -8,14 +8,21 @@ import java.util.logging.Logger;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ListView;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.shape.Line;
 import javafx.scene.layout.Pane;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -23,6 +30,10 @@ import javafx.stage.Stage;
 import stsquestbuilder.STSQuestBuilder;
 import stsquestbuilder.model.Conversation;
 import stsquestbuilder.model.ConversationNode;
+import stsquestbuilder.model.StatusCheckable;
+import stsquestbuilder.model.StatusReference;
+import stsquestbuilder.model.StatusBlock;
+import stsquestbuilder.model.SpawnCommand;
 
 /**
  * FXML Controller class
@@ -61,18 +72,65 @@ public class ConversationBuilderScreenController implements Initializable {
     private static double DEFAULT_SPACING = 200.0;//the default spacing between the top left of a node and the next one below it
     private static double HSPACING = 200.0;//the default spacing between the top left of a node and the next one next to it
 
-    
-    private ConversationNodeController activeConversation;
+    private ConversationNode.Alternative activeAlternative;
+    private ConversationNodeController activeConversationNode;
+    private ConversationNodeController targetConversationNode;
+    private StatusBlock selectedStatusBlock;
+    private SpawnCommand selectedCommand;
+    private StatusReference selectedStatus;
     
     @FXML
     private Pane builderRoot;
     
     @FXML
+    private ScrollPane scrollPanel;
+    
+    @FXML
+    private Pane bottomBar;
+    
+    @FXML
     private TextField ConversationNameBox;
+    
+    @FXML
+    private Pane nodePanel;
+    
+    @FXML
+    private TextField nodeID;
+    
+    @FXML
+    private Label idErrorMessage;
+    
+    @FXML
+    private TextArea nodeMessage;
+    
+    @FXML
+    private ListView<StatusBlock> nodeStatusBlocks;
+    
+    @FXML
+    private ListView<StatusReference> nodeStatusBlock;
+    
+    @FXML
+    private ListView<SpawnCommand> nodeCommands;
+    
+    @FXML
+    private Pane alternativePanel;
+    
+    @FXML
+    private TextArea alternativeText;
+    
+    @FXML
+    private ListView<ArrayList<StatusCheckable>> alternativeOptions;
+    
+    @FXML
+    private ListView<StatusCheckable> alternativeSet;
     
     private Conversation conversation;
     
     private boolean isDraggingForConnection;
+    private boolean isNodeEditorOpened;
+    private boolean isAlternativeEditorOpened;
+    private boolean setupData;//used in order to prevent editor listeners firing on data initialzation for the editor 
+
     
     /**
      * Initializes the controller class.
@@ -80,6 +138,9 @@ public class ConversationBuilderScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         isDraggingForConnection = false;
+        isNodeEditorOpened = false;
+        isAlternativeEditorOpened = false;
+        setupData = false;
     }
     
     /**
@@ -90,48 +151,52 @@ public class ConversationBuilderScreenController implements Initializable {
         //traverse the conversation and to add all the conversation nodes to the builder
         ConversationNode curr;
         ArrayDeque<ConversationNode> bfsQueue = new ArrayDeque();
-        ArrayList<ConversationNode> traversed = new ArrayList<>();
+        ArrayList<ConversationNode> remaining = new ArrayList<>();
         HashMap<ConversationNode, ConversationNodeController> nodeRoots = new HashMap<>();//used to draw child nodes at offsets from parent
         
         //if we have an already initialized convo, then draw what we have,
         //otherwise, do some basic setup for the root node
-        if(conversation.getRoot() != null) {
-            ConversationNodeController control = ConversationNodeController.openConversationNodeComponentForConversationNode(conversation.getRoot(), this);
-            activeConversation = control;
-            builderRoot.getChildren().add(control.getBase());
-            Parent currRoot = control.getBase();
-            nodeRoots.put(conversation.getRoot(), control);
-            bfsQueue.push(conversation.getRoot());
-            while(!bfsQueue.isEmpty()) {
-                curr = bfsQueue.removeFirst();
-                HashMap<String, ConversationNode> targets = curr.getAlternatives();
-                currRoot = nodeRoots.get(curr).getBase();
-                //compute root offset
-                double x, y;
-                if(currRoot == null) {
-                    x = builderRoot.getLayoutX();
-                    y = builderRoot.getLayoutY();
-                } else {
-                    x = currRoot.getLayoutX();
-                    y = currRoot.getLayoutY() + DEFAULT_SPACING;
-                }
+        if(conversation.getAmountOfNodes() != 0) {
+            remaining.addAll(conversation.getNodeList());
+            
+            while(!remaining.isEmpty()) {
+                ConversationNodeController control = ConversationNodeController.openConversationNodeComponentForConversationNode(remaining.get(0), this);
+                builderRoot.getChildren().add(control.getBase());
+                Parent currRoot = control.getBase();
+                nodeRoots.put(remaining.get(0), control);
+                bfsQueue.push(remaining.get(0));
+                remaining.remove(remaining.get(0));
+                while(!bfsQueue.isEmpty()) {
+                    curr = bfsQueue.removeFirst();
+                    HashMap<Long, ConversationNode.Alternative> targets = curr.getAlternatives();
+                    currRoot = nodeRoots.get(curr).getBase();
+                    
+                    //draw each of the targets here
+                    for(Long uid : targets.keySet()) {
+                        ConversationNode.Alternative a = targets.get(uid);
+                        ConversationNode node = a.getNode();
+                        ConversationNodeController nodeController;
+                        if(remaining.contains(node)) {//need to draw the node
+                            //build component
+                            nodeController = ConversationNodeController.openConversationNodeComponentForConversationNode(node, this);
+                            
+                            //add component to screen
+                            Parent root = (Parent)nodeController.getBase();
+                            nodeRoots.put(node, nodeController);
+                            builderRoot.getChildren().add(root);
 
-                double xOffset = 0.0d;
-                //draw each of the targets here
-                for(String s : targets.keySet()) {
-                    ConversationNode node = targets.get(s);
-                    ConversationNodeController nodeController = ConversationNodeController.openConversationNodeComponentForConversationNode(node, this);
-                    Parent root = (Parent)nodeController.getBase();
-                    nodeRoots.put(node, nodeController);
-                    root.setLayoutX(x + xOffset);
-                    root.setLayoutY(y);
-                    builderRoot.getChildren().add(root);
-                    nodeController.drawConnection(nodeRoots.get(curr)).setText(s);
-                    bfsQueue.addLast(node);
-                    xOffset += HSPACING;
-                }
+                            //no longer remaining to be drawn
+                            remaining.remove(a.getNode());
+                            bfsQueue.addLast(node);
+                        } else {//its already drawn
+                            nodeController = nodeRoots.get(a.getNode());
+                        }
+                        
+                        //draw line connections
+                        nodeRoots.get(curr).addAlternative(nodeController, nodeController.drawConnection(nodeRoots.get(curr), a));
+                    }
 
-                traversed.add(curr);
+                }
             }
         } else {
             ConversationNode node = new ConversationNode();
@@ -139,18 +204,32 @@ public class ConversationBuilderScreenController implements Initializable {
             conversation.addNode(node);
             Parent root = controller.getBase();
             builderRoot.getChildren().add(root);
-            activeConversation = controller;
+            activeConversationNode = controller;
         }
         
         ConversationNameBox.setText(conversation.getName());
     }
     
     /**
+     * Since active alternatives are only used for the editors, automatically opens
+     * an editor as well
+     * @param alternative 
+     */
+    public void setActiveAlternative(ConversationNode.Alternative alternative) {
+        activeAlternative = alternative;
+        displayAlternativeEditor();
+    }
+    
+    /**
      * Set the root conversation node controller
      * @param conversation the root conversation node controller
      */
-    public void setCurrentConversation(ConversationNodeController conversation) {
-        activeConversation = conversation;
+    public void setCurrentConversationNode(ConversationNodeController conversation) {
+        activeConversationNode = conversation;
+    }
+    
+    public void setTargetConversationNode(ConversationNodeController node) {
+        targetConversationNode = node;
     }
     
     /**
@@ -161,8 +240,12 @@ public class ConversationBuilderScreenController implements Initializable {
         conversation = convo;
     }
     
-    public ConversationNodeController getCurrentConversation() {
-        return activeConversation;
+    public ConversationNodeController getCurrentConversationNode() {
+        return activeConversationNode;
+    }
+    
+    public ConversationNodeController getTargetConversationNode() {
+        return targetConversationNode;
     }
     
     /**
@@ -171,11 +254,10 @@ public class ConversationBuilderScreenController implements Initializable {
      * @param line the line to add
      * @param field the field to add
      */
-    public void addConnectionLine(Line line, Line lf, Line lr, TextField field) {
+    public void addConnectionLine(Line line, Line lf, Line lr) {
         builderRoot.getChildren().add(line);
         builderRoot.getChildren().add(lf);
         builderRoot.getChildren().add(lr);
-        builderRoot.getChildren().add(field);
     }
     
     /**
@@ -183,9 +265,10 @@ public class ConversationBuilderScreenController implements Initializable {
      * @param line the line to remove
      * @param field the field to remove
      */
-    public void removeConnectionLine(Line line, TextField field) {
+    public void removeConnectionLine(Line line, Line left, Line right) {
         builderRoot.getChildren().remove(line);
-        builderRoot.getChildren().remove(field);
+        builderRoot.getChildren().remove(left);
+        builderRoot.getChildren().remove(right);
     }
     
     /**
@@ -194,9 +277,55 @@ public class ConversationBuilderScreenController implements Initializable {
      */
     public void addConversationNode(MouseEvent event) {
         ConversationNodeController controller = ConversationNodeController.openConversationNodeComponentForConversationNode(new ConversationNode(), this);
+        conversation.addNode(controller.getConversationNode());
         builderRoot.getChildren().add(controller.getBase());
         controller.setApp(this);
-
+    }
+    
+    /**
+     * Add a status block to the currently selected conversation node
+     * @param event 
+     */
+    public void addStatusBlock(MouseEvent event) {
+        if (activeConversationNode != null) {
+             activeConversationNode.getConversationNode().newStatusBlock();
+        }
+    }
+    
+    public void removeStatusBlock(MouseEvent event) {
+        if(activeConversationNode != null && selectedStatusBlock != null) {
+            activeConversationNode.getConversationNode().removeStatusBlock(selectedStatusBlock);
+            nodeStatusBlock.setItems(null);
+            nodeCommands.setItems(null);
+        }
+    }
+    
+    /**
+     * Add a status to the currently selected block
+     * @param event 
+     */
+    public void addStatus(MouseEvent event) {
+        if (selectedStatusBlock != null) {
+            selectedStatusBlock.newStatus();
+        }
+    }
+    
+    public void addCommand(MouseEvent event) {
+        if(selectedStatusBlock != null) {
+            selectedStatusBlock.newCommand();
+        }
+    }
+    
+    public void removeCommand(MouseEvent event) {
+        if(selectedStatusBlock != null && selectedCommand != null) {
+            selectedStatusBlock.removeCommand(selectedCommand);
+        }
+    }
+    
+    public void removeStatus(MouseEvent event) {
+        if(selectedStatusBlock != null && selectedStatus != null) {
+            selectedStatusBlock.removeStatus(selectedStatus);
+        }
     }
     
     /**
@@ -204,10 +333,21 @@ public class ConversationBuilderScreenController implements Initializable {
      * @param event the event that triggered this handler
      */
     public void saveConversation(MouseEvent event) {
-        ConversationNode newRoot = activeConversation.getConversationNode();
         conversation.setName(ConversationNameBox.getText());
-        conversation.setRoot(newRoot);
         app.save();
+    }
+    
+    /**
+     * Just clear selection colors
+     */
+    public void clearSelectionColors() {
+        Set<Node> lines = builderRoot.lookupAll(".selected");
+        for(Node n : lines) {
+            Line line = (Line)n;
+            if(line != null) {
+                line.setStroke(Color.BLACK);
+            }
+        }
     }
     
     /**
@@ -215,10 +355,13 @@ public class ConversationBuilderScreenController implements Initializable {
      * @param event the event that triggered this handler
      */
     public void clearSelections(MouseEvent event) {
-        Line line = (Line)builderRoot.lookup(".selected");
-        if(line != null) {
-            line.setStroke(Color.BLACK);
-        }
+        if(event != null && !event.getTarget().equals(builderRoot))
+            return;
+        
+        clearSelectionColors();
+        
+        closeConversationNodeEditor();
+        closeAlternativeEditor();
     }
     
     public void setDraggingForConnection(boolean dragging) {
@@ -227,6 +370,145 @@ public class ConversationBuilderScreenController implements Initializable {
     
     public boolean getDraggingForConnection() {
         return isDraggingForConnection;
+    }
+    
+    /**
+     * Opens the conversation node editor for the active conversation, also wires
+     * events for the list views
+     */
+    public void displayConversationNodeEditor() {
+        if (isAlternativeEditorOpened)
+            closeAlternativeEditor();
+        
+        clearSelectionColors();//this method assumes a selected conversation node, so we shouldn't color alternatives
+        
+        ConversationNode node = activeConversationNode.getConversationNode();
+        setupData = true;
+        nodeID.setText(node.getID());
+        nodeMessage.setText(node.getText());
+        
+        nodeStatusBlocks.setItems(node.getBlocks());
+        nodeStatusBlock.setItems(null);
+        nodeCommands.setItems(null);
+        
+        //wire up model to changes
+        setupData = false;
+        nodeID.textProperty().addListener(event -> {
+            if(setupData) return;//do not act on setup changes
+            double height = idErrorMessage.getPrefHeight();
+            if (!node.setID(nodeID.getText())) {
+                //display error message
+                nodeMessage.setLayoutY(nodeMessage.getLayoutY() + height);
+                nodeMessage.setPrefHeight(nodeMessage.getHeight() - height);
+                idErrorMessage.setVisible(true);
+            } else {
+                nodeMessage.setLayoutY(nodeMessage.getLayoutY() - height);
+                nodeMessage.setPrefHeight(nodeMessage.getHeight() + height);
+                idErrorMessage.setVisible(false);
+            }
+        });
+        
+        nodeMessage.textProperty().addListener(event -> {
+            if(setupData) return;
+            node.setText(nodeMessage.getText());
+        });
+        
+        nodeStatusBlocks.setCellFactory(list -> {
+            //I don't know why, but the default text setup functionality is removed
+            //when a factory is provided, so this is neccesary
+            ListCell<StatusBlock> cell = new ListCell<StatusBlock>() {
+                @Override
+                protected void updateItem(StatusBlock item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if(item != null) {
+                        this.setText(item.toString());
+                    }
+                }
+            };
+            
+            cell.setOnMouseClicked(event -> {
+                selectedStatusBlock = cell.getItem();
+                nodeStatusBlock.setItems(selectedStatusBlock.getStatuses());
+                nodeCommands.setItems(selectedStatusBlock.getCommands());
+            });
+            return cell;
+        });
+        
+        nodeStatusBlock.setOnMouseClicked(event -> {
+            selectedStatus = nodeStatusBlock.getSelectionModel().getSelectedItem();
+            if(event.getClickCount() >= 2) {
+                StatusCheckableScreenController.openScreenForStatusCheck(selectedStatus);
+            }
+        });
+        
+        nodeCommands.setOnMouseClicked(event -> {
+            selectedCommand = nodeCommands.getSelectionModel().getSelectedItem();
+            if(event.getClickCount() >= 2) {
+                CommandScreenController.openCommandScreenControllerForCommand(selectedCommand);
+            }
+        });
+        
+        
+        if (!isNodeEditorOpened) {
+            double height = nodePanel.getHeight();
+            scrollPanel.setMaxHeight(scrollPanel.getPrefHeight() - height - 3);
+            bottomBar.setTranslateY(-height - 3);
+            nodePanel.setVisible(true);
+            isNodeEditorOpened = true;
+        }
+    }
+    
+    /**
+     * Opens the alternative editor for the active alternative
+     */
+    public void displayAlternativeEditor() {
+        if(isNodeEditorOpened)
+            closeConversationNodeEditor();
+        
+        alternativeText.setText(activeAlternative.getText());
+        
+        //TODO add statuses and commands
+        
+        //wire model to changes
+        alternativeText.textProperty().addListener(event -> {
+            activeAlternative.setText(alternativeText.getText());
+        });
+        
+        if(!isAlternativeEditorOpened) {
+            double height = alternativePanel.getHeight();
+            scrollPanel.setMaxHeight(scrollPanel.getPrefHeight() - height - 3);
+            bottomBar.setTranslateY(-height - 3);
+            alternativePanel.setVisible(true);
+            isAlternativeEditorOpened = true;
+        }
+    }
+    
+    /**
+     * Closes the conversation node editor
+     */
+    public void closeConversationNodeEditor() {
+        if(isNodeEditorOpened) {
+            double height = nodePanel.getHeight();
+            scrollPanel.setMaxHeight(scrollPanel.getHeight() + height + 3);
+            bottomBar.setTranslateY(0);
+            nodePanel.setVisible(false);
+            isNodeEditorOpened = false;
+        }
+        
+        selectedStatusBlock = null;
+    }
+    
+    /**
+     * Closes the alternative editor
+     */
+    public void closeAlternativeEditor() {
+        if(isAlternativeEditorOpened) {
+            double height = nodePanel.getHeight();
+            scrollPanel.setMaxHeight(scrollPanel.getHeight() + height + 3);
+            bottomBar.setTranslateY(0);
+            alternativePanel.setVisible(false);
+            isAlternativeEditorOpened = false;
+        }
     }
     
     /**

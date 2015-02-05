@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package stsquestbuilder.view;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -32,6 +28,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
 
+import stsquestbuilder.protocolbuffers.QuestProtobuf.ActionType;
 import stsquestbuilder.STSQuestBuilder;
 import stsquestbuilder.model.*;
 
@@ -79,6 +76,9 @@ public class QuestBuilderScreenController implements Initializable {
         controller.setStage(questStage);
     }
     
+    private static double ACTION_OFFSET_X = 300;
+    private static double ACTION_OFFSET_Y = 10;
+    
     @FXML
     private Accordion StepAccordion;
     
@@ -96,6 +96,7 @@ public class QuestBuilderScreenController implements Initializable {
     
     //a list holding the nodes of the titled pane for each step
     private ObservableList<TitledPane> steps;
+    private HashMap<TitledPane, ActionComponentController> controllerMap;
     
     private Quest questForScreen;
     
@@ -111,6 +112,7 @@ public class QuestBuilderScreenController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        controllerMap = new HashMap<>();
         populateModelLists();
         
         steps = StepAccordion.getPanes();
@@ -180,7 +182,16 @@ public class QuestBuilderScreenController implements Initializable {
         //attach the component to a titled pane
         TitledPane stepPane = new TitledPane();
         stepPane.setContent(parent);
+        
+        Pane pane = (Pane) parent;
+        
+        ActionComponentController controller = ActionComponentController.openComponentForAction(currentAction);
+        controllerMap.put(stepPane, controller);
 
+        pane.getChildren().add(controller.getRoot());
+        controller.getRoot().setLayoutX(ACTION_OFFSET_X);
+        controller.getRoot().setLayoutY(ACTION_OFFSET_Y);
+        
         setupStepPane(stepPane);
 
         //add the TitledPane to the step accordion
@@ -253,7 +264,7 @@ public class QuestBuilderScreenController implements Initializable {
      * Save the action per the user's request
      * @param event event that triggered this handler
      */
-    public void saveAction(MouseEvent event) {
+    /*public void saveAction(MouseEvent event) {
         Node button = (Node)event.getSource();
         TableView actionTable = (TableView)button.parentProperty().getValue().lookup(".actionTable");
         
@@ -267,7 +278,7 @@ public class QuestBuilderScreenController implements Initializable {
         Action actionFromUI = new Action(actionType, new DirectObject(enemy.getName(), type), Integer.parseInt(amount));
         
         currentAction.setAction(actionFromUI);
-    }
+    }*/
     
     /**
      * Save the current steps
@@ -333,12 +344,11 @@ public class QuestBuilderScreenController implements Initializable {
      */
     private void setupStepPane(TitledPane pane) {
         //setup the action dropdown and table
-        getActionTypeForTitledPane(pane).setItems(actionTypes);
         TableView<Action> table = getTableViewForTitledPane(pane);
         ((TableColumn<Action, String>)table.getColumns().get(0)).setCellValueFactory(cellData -> cellData.getValue().getDescriptorProperty());
 
-        //get kill pane here since it is used in the row callback and the kill pane setup
-        Pane killPane = getKillPane(pane);
+        //load action component
+        ActionComponentController controller = controllerMap.get(pane);
         
         //setup the row listeners by changing the factory callback
         //since the API gives us no other direct row access
@@ -351,21 +361,14 @@ public class QuestBuilderScreenController implements Initializable {
                 currentAction =  selectedAction;
                 
                 //load the information from the selected action into the ui
-                getActionTypeForTitledPane(pane).setValue(currentAction.getActionType());
-                getEnemySelectionForKillPane(killPane).setValue(EnemyType.parse(currentAction.getDirectObject().getIdentifier()));
-                getEnemyTypeForKillPane(killPane).setValue(currentAction.getDirectObject().getTypeIdentifier());
-                getEnemyAmountForKillPane(killPane).setText("" + currentAction.getOccurrence());
+                controller.setAction(currentAction);
             });
 
             return row;
         });
 
-        //setup the fields for the kill action pane
-        getEnemySelectionForKillPane(killPane).setItems(enemies);
-        getEnemyTypeForKillPane(killPane).setItems(enemies.get(0).getTypeStrings());
-
         //setup the handlers for the action buttons and text boxesS
-        pane.getContent().lookup(".saveActionButton").setOnMouseClicked(event -> saveAction(event));            
+        //pane.getContent().lookup(".saveActionButton").setOnMouseClicked(event -> saveAction(event));            
         pane.getContent().lookup(".newActionButton").setOnMouseClicked(event -> newActionButtonPressed(event));            
         pane.getContent().lookup(".removeActionButton").setOnMouseClicked(event -> table.getItems().remove(currentAction));
         getStepNameForTitledPane(pane).setOnKeyPressed(event -> justifyStepName(pane));
@@ -383,9 +386,9 @@ public class QuestBuilderScreenController implements Initializable {
         return (TableView<Action>)pane.getContent().lookup(".actionTable");
     }
     
-    public ChoiceBox getActionTypeForTitledPane(TitledPane pane) {
-        return (ChoiceBox)pane.getContent().lookup(".actionTypeDropdown");
-    }
+    //public ChoiceBox getActionTypeForTitledPane(TitledPane pane) {
+    //    return (ChoiceBox)pane.getContent().lookup(".actionTypeDropdown");
+    //}
     
     public TextField getStepNameForTitledPane(TitledPane pane) {
         return (TextField)pane.getContent().lookup(".stepNameField");
@@ -395,7 +398,7 @@ public class QuestBuilderScreenController implements Initializable {
         return (TextArea)pane.getContent().lookup(".stepDescriptionField");
     }
     
-    public ChoiceBox getEnemySelectionForKillPane(Pane pane) {
+    /**public ChoiceBox getEnemySelectionForKillPane(Pane pane) {
         return (ChoiceBox)pane.lookup(".enemySelection");
     }
     
@@ -405,5 +408,5 @@ public class QuestBuilderScreenController implements Initializable {
     
     public TextField getEnemyAmountForKillPane(Pane pane) {
         return (TextField)pane.lookup(".quantity");
-    }
+    }*/
 }
