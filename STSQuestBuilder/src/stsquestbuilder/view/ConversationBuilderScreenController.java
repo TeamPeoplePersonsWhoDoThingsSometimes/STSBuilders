@@ -42,6 +42,9 @@ import stsquestbuilder.model.SpawnCommand;
  */
 public class ConversationBuilderScreenController implements Initializable {
     
+    public static double SCREEN_HEIGHT = 456;
+    public static double SCREEN_WIDTH = 800;
+    
     public static void openConversationBuilderScreenForConversation(Conversation convo, STSQuestBuilder app) {
         Parent parent;
         FXMLLoader loader = new FXMLLoader(ConversationNodeController.class.getResource("/stsquestbuilder/view/ConversationBuilderScreen.fxml"));
@@ -57,7 +60,7 @@ public class ConversationBuilderScreenController implements Initializable {
         controller.setApp(app);
         
         //actually create the new window
-        Scene scene = new Scene(parent, 800, 800);
+        Scene scene = new Scene(parent, SCREEN_WIDTH, SCREEN_HEIGHT);
         
         Stage convoStage = new Stage();
         convoStage.setTitle("STS Conversation Builder");

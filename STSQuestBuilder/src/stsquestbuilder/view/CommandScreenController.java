@@ -24,6 +24,7 @@ import stsquestbuilder.model.Area;
 import stsquestbuilder.model.Item;
 import stsquestbuilder.model.Enemy;
 import stsquestbuilder.model.DirectObject;
+import stsquestbuilder.STSQuestBuilder;
 
 /**
  * FXML Controller class
@@ -49,7 +50,7 @@ public class CommandScreenController implements Initializable {
         
         controller.postSetupOp();
         
-        Scene scene = new Scene(parent, 800, 800);
+        Scene scene = new Scene(parent, STSQuestBuilder.WINDOW_WIDTH, STSQuestBuilder.WINDOW_HEIGHT);
         
         Stage stage = new Stage();
         stage.setTitle("Spawn Command Builder");

@@ -41,6 +41,9 @@ public class STSQuestBuilder extends Application {
     public static final String Storage_File = "./out.quest";    
     public static final String Storage_File_Conversations = "./out.conv";
     public static final String Action_File = "./builder.data";
+    
+    public static final double WINDOW_WIDTH = 600;
+    public static final double WINDOW_HEIGHT = 400;
 
     
     private ObservableList<Quest> quests;
@@ -73,7 +76,7 @@ public class STSQuestBuilder extends Application {
         
         root.getChildren().add(parent);
         
-        Scene scene = new Scene(root, 800, 800);
+        Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
         
         primaryStage.setTitle("STS Content Builder");
         primaryStage.setScene(scene);

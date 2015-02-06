@@ -62,7 +62,7 @@ public class QuestBuilderScreenController implements Initializable {
         
         root.getChildren().add(parent);
         
-        Scene scene = new Scene(root, 800, 800);
+        Scene scene = new Scene(root, STSQuestBuilder.WINDOW_WIDTH, STSQuestBuilder.WINDOW_HEIGHT);
         
         Stage questStage = new Stage();
         if(quest != null) {

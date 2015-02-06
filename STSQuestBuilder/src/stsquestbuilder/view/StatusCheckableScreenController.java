@@ -22,6 +22,7 @@ import stsquestbuilder.model.ActionCheckable;
 import stsquestbuilder.model.StatusCheckable;
 import stsquestbuilder.model.StatusReference;
 import stsquestbuilder.model.StatusCheckableFactory;
+import stsquestbuilder.STSQuestBuilder;
 
 /**
  * FXML Controller class
@@ -47,7 +48,7 @@ public class StatusCheckableScreenController implements Initializable {
         
         controller.postSetupOp();
         
-        Scene scene = new Scene(parent, 800, 800);
+        Scene scene = new Scene(parent, STSQuestBuilder.WINDOW_WIDTH, STSQuestBuilder.WINDOW_HEIGHT);
         
         Stage stage = new Stage();
         stage.setTitle("Status Check Builder");
