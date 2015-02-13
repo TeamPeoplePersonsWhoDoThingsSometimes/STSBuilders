@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package stsquestbuilder;
 
 import java.io.IOException;
@@ -172,8 +167,16 @@ public class STSQuestBuilder extends Application {
         
         String[] types = {"Basic", "Badass"};
         EnemyType.enemyTypes = new ArrayList<>();
-        for(QuestProtobuf.DirectObjectProtocol DirObj : pack.getActionsList()) {
+        for(QuestProtobuf.DirectObjectProtocol DirObj : pack.getEnemiesList()) {
             EnemyType.enemyTypes.add(new EnemyType(DirObj.getName(), types));
+        }
+        
+        for(QuestProtobuf.DirectObjectProtocol DirObj : pack.getHacksList()) {
+            new ItemType(DirObj.getName(), ItemType.GeneralType.HACK);
+        }
+        
+        for (QuestProtobuf.DirectObjectProtocol DirObj : pack.getWeaponsList()) {
+            new ItemType(DirObj.getName(), ItemType.GeneralType.WEAPON);
         }
     }
     

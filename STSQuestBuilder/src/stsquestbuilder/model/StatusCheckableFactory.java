@@ -1,5 +1,8 @@
 package stsquestbuilder.model;
 
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 import stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol;
 
 /**
@@ -9,11 +12,26 @@ import stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol;
 public class StatusCheckableFactory {
     
     public enum StatusType {
-        ActionCheckable,
-        TEST;
+        ActionCheckable("Action Checkable"),
+        EMPTY("Empty Check");
+        
+        private StringProperty name;
+        
+        StatusType(String n) {
+            name = new SimpleStringProperty();
+            name.setValue(n);
+        }
+        
+        public StringProperty getNameProperty() {
+            return name;
+        }
     }
     
     public static StatusType getStatusTypeOfCheck(StatusCheckable status) {
+        if (status.getEmpty()) {
+            return StatusType.EMPTY;
+        }
+        
         if(status instanceof ActionCheckable) {
             return StatusType.ActionCheckable;
         }
@@ -22,10 +40,20 @@ public class StatusCheckableFactory {
     }
     
     public static StatusCheckable getStatusFromProtobuf(StatusCheckableProtocol proto) {
-        if(proto.hasAction()) {
-            return new ActionCheckable(proto);
+        StatusCheckable status = null;
+        if (proto.hasAction()) {
+            status = new ActionCheckable(proto);
         }
-        return null;
+        
+        if (status == null)
+            return null;
+         
+        if (proto.hasAmount()) {
+            status.setAmount(proto.getAmount());
+        }
+        
+        status.setNotEmpty();
+        return status;
     }
     
     /**
@@ -41,6 +69,8 @@ public class StatusCheckableFactory {
      * @return 
      */
     public static StatusCheckable getActionStatus() {
-        return new ActionCheckable();
+        StatusCheckable check = new ActionCheckable();
+        check.setNotEmpty();
+        return check;
     }
 }

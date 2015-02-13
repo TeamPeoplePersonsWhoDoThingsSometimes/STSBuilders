@@ -43,24 +43,13 @@ public class Action {
     
     /**
      * Constructor provides for simple conversion of ActionProtocol protobufs into
-     * Action objhects
+     * Action objects
      * @param action the protobuf to build from
      */
-    public Action(QuestProtobuf.ActionProtocol action, int times) {
+    public Action(QuestProtobuf.ActionProtocol action) {
         actionType = ActionType.valueOf(action.getType().toString());
         
-        switch(actionType) {
-            case KILL:
-            case ATTACK:
-                directObject = new Enemy(action.getTarget());
-                break;
-            case MOVE_AREA:
-                directObject = new Area(action.getTarget());
-                break;
-            default:
-                directObject = new DirectObject(action.getTarget());
-                break;
-        }
+        directObject = DirectObjectFactory.buildObjectByTypeWithProto(actionType, action.getTarget());
         
         actionDescriptor = new SimpleStringProperty();
         updateDescriptor();

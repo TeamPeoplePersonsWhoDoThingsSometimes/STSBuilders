@@ -12,6 +12,7 @@ import java.util.Set;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -34,10 +35,14 @@ import stsquestbuilder.model.StatusCheckable;
 import stsquestbuilder.model.StatusReference;
 import stsquestbuilder.model.StatusBlock;
 import stsquestbuilder.model.SpawnCommand;
+import stsquestbuilder.model.StatusCheckableFactory;
 
 /**
  * FXML Controller class
  *
+ * NOTE: as convention, "requirement" refers to statuses to be met in order to take an alternative,
+ * whereas "status" refers to statuses to be met in order to execute a node command
+ * 
  * @author William
  */
 public class ConversationBuilderScreenController implements Initializable {
@@ -81,6 +86,8 @@ public class ConversationBuilderScreenController implements Initializable {
     private StatusBlock selectedStatusBlock;
     private SpawnCommand selectedCommand;
     private StatusReference selectedStatus;
+    private ObservableList<StatusReference> selectedRequirementBlock;
+    private StatusReference selectedRequirement;
     
     @FXML
     private Pane builderRoot;
@@ -122,10 +129,10 @@ public class ConversationBuilderScreenController implements Initializable {
     private TextArea alternativeText;
     
     @FXML
-    private ListView<ArrayList<StatusCheckable>> alternativeOptions;
+    private ListView<ObservableList<StatusReference>> alternativeOptions;
     
     @FXML
-    private ListView<StatusCheckable> alternativeSet;
+    private ListView<StatusReference> alternativeSet;
     
     private Conversation conversation;
     
@@ -331,6 +338,28 @@ public class ConversationBuilderScreenController implements Initializable {
         }
     }
     
+            
+    public void addRequirementBlock(MouseEvent event) {
+        if (activeAlternative != null) {
+            activeAlternative.addRequirementBlock();
+        }
+    }
+    
+    public void removeRequirementBlock(MouseEvent event) {
+        if (activeAlternative != null) {
+            activeAlternative.removeRequirementBlock(selectedRequirementBlock);
+        }
+        
+    }
+    
+    public void addRequirement(MouseEvent event) {
+        selectedRequirementBlock.add(new StatusReference(StatusCheckableFactory.getEmptyStatus()));
+    }
+    
+    public void removeRequirement(MouseEvent event) {
+        selectedRequirementBlock.remove(selectedRequirement);
+    }
+    
     /**
      * Save the conversation
      * @param event the event that triggered this handler
@@ -469,12 +498,55 @@ public class ConversationBuilderScreenController implements Initializable {
             closeConversationNodeEditor();
         
         alternativeText.setText(activeAlternative.getText());
-        
-        //TODO add statuses and commands
+        alternativeOptions.setItems(activeAlternative.getRequirements());
         
         //wire model to changes
         alternativeText.textProperty().addListener(event -> {
             activeAlternative.setText(alternativeText.getText());
+        });
+                
+        alternativeOptions.setCellFactory(list -> {
+            //Note- copied from display conversation method because I don't want to create an entirely new class for this...
+            //I don't know why, but the default text setup functionality is removed
+            //when a factory is provided, so this is neccesary
+            ListCell<ObservableList<StatusReference>> cell = new ListCell<ObservableList<StatusReference>>() {
+                @Override
+                protected void updateItem(ObservableList<StatusReference> item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if(item != null) {
+                        this.setText("Set: " + list.getItems().indexOf(item));
+                    }
+                }
+            };
+            
+            cell.setOnMouseClicked(event -> {
+                selectedRequirementBlock = cell.getItem();
+                alternativeSet.setItems(selectedRequirementBlock);
+            });
+            return cell;
+        });
+        
+        alternativeSet.setCellFactory(list -> {
+            //Note- copied from display conversation method because I don't want to create an entirely new class for this...
+            //I don't know why, but the default text setup functionality is removed
+            //when a factory is provided, so this is neccesary
+            ListCell<StatusReference> cell = new ListCell<StatusReference>() {
+                @Override
+                protected void updateItem(StatusReference item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if(item != null) {
+                        this.setText(item.toString());
+                    }
+                }
+            };
+            
+            cell.setOnMouseClicked(event -> {
+                selectedRequirement = cell.getItem();
+                if(event.getClickCount() >= 2) {
+                    StatusCheckableScreenController.openScreenForStatusCheck(selectedRequirement);
+                }
+            });
+            return cell;
         });
         
         if(!isAlternativeEditorOpened) {

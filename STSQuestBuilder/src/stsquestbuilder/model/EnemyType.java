@@ -27,8 +27,8 @@ public class EnemyType {
     private StringProperty name;
     private ObservableList<String> types;
     
-    public EnemyType(String inst, String[] typeArr) {
-        name = new SimpleStringProperty(inst);
+    public EnemyType(String name, String[] typeArr) {
+        this.name = new SimpleStringProperty(name);
         types = FXCollections.observableArrayList();
         for(String a : typeArr) {
             types.add(a);

@@ -12,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import stsquestbuilder.protocolbuffers.ConversationProtobuf;
+import stsquestbuilder.protocolbuffers.QuestProtobuf;
 import stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol;
 
 
@@ -25,9 +26,10 @@ public class ConversationNode {
         String text;
         private ConversationNode target;
         private long uid;//the target uid, needed during instantiation when target is not yet built
-        HashMap<ArrayList<StatusCheckable>, String> onAlternativeEvents;
+        ObservableList<ObservableList<StatusReference>> requirements;
         
         public Alternative(Long uid) {
+            requirements = FXCollections.observableArrayList();
             this.uid = uid;
             text = uid.toString();
         }
@@ -51,6 +53,18 @@ public class ConversationNode {
         public void setTarget(ConversationNode node) {
             uid = node.uid;
             target = node;
+        }
+        
+        public ObservableList<ObservableList<StatusReference>> getRequirements() {
+            return requirements;
+        }
+        
+        public void addRequirementBlock() {
+            requirements.add(FXCollections.observableArrayList());
+        }
+        
+        public void removeRequirementBlock(ObservableList<StatusReference> block) {
+            requirements.remove(block);
         }
         
         @Override
@@ -134,6 +148,14 @@ public class ConversationNode {
             Alternative alt = new Alternative(c.getNodeId());
             alt.text = c.getText();
             alternatives.put(alt.getUID(), alt);
+            ObservableList<ObservableList<StatusReference>> requirementSets = alt.getRequirements();
+            for (ConversationProtobuf.RequirementSet set : c.getRequirementSetsList()) {
+                ObservableList<StatusReference> requirements = FXCollections.observableArrayList();
+                for (QuestProtobuf.StatusCheckableProtocol status : set.getRequirementsList()) {
+                    requirements.add(new StatusReference(StatusCheckableFactory.getStatusFromProtobuf(status)));
+                }
+                requirementSets.add(requirements);
+            }
         }
         
         for(StatusBlockProtocol s : proto.getBlocksList()) {
@@ -264,6 +286,15 @@ public class ConversationNode {
             ConversationProtobuf.Connection.Builder cBuilder = ConversationProtobuf.Connection.newBuilder();
             cBuilder.setText(a.text);
             cBuilder.setNodeId(a.target.uid);//break law of demeter due to encapsulated class
+            
+            for (ObservableList<StatusReference> block : a.getRequirements()) {
+                ConversationProtobuf.RequirementSet.Builder sBuilder = ConversationProtobuf.RequirementSet.newBuilder();
+                for (StatusReference ref : block) {
+                    sBuilder.addRequirements(ref.getStatus().getStatusCheckableAsProtobuf());
+                }
+                cBuilder.addRequirementSets(sBuilder.build());
+            }
+            
             builder.addConnections(cBuilder.build());
         }
         

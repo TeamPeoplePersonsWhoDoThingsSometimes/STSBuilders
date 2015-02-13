@@ -1,5 +1,7 @@
 package stsquestbuilder.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +17,12 @@ import stsquestbuilder.protocolbuffers.QuestProtobuf;
 public class Step {
     private String stepName;
     private String stepDescription;
-    private ArrayList<Action> actions;
+    private ObservableList<StatusReference> statuses;
     
-    public Step(String name, String description, ArrayList<Action> parts) {
+    public Step(String name, String description, ObservableList<StatusReference> parts) {
         stepName = name;
         stepDescription = description;
-        actions = parts;
+        statuses = parts;
     }
 
     /**
@@ -36,10 +38,9 @@ public class Step {
         //add the conversion to the actions arraylist if it is not already in it
         //else add 1 to the occurrence of the action already present
         List<QuestProtobuf.StatusCheckableProtocol> statusProtobufs = step.getStatusesInStepList();
-        actions = new ArrayList<>();
+        statuses = FXCollections.observableArrayList();
         for(QuestProtobuf.StatusCheckableProtocol s : statusProtobufs) {
-            Action a = new Action(s.getAction(), (s.hasAmount() ? s.getAmount() : 1));
-            actions.add(a);
+            statuses.add(new StatusReference(StatusCheckableFactory.getStatusFromProtobuf(s)));
         }
     }
     
@@ -63,12 +64,12 @@ public class Step {
         this.stepDescription = stepDescription;
     }
 
-    public ArrayList<Action> getActions() {
-        return actions;
+    public ObservableList<StatusReference> getActions() {
+        return statuses;
     }
 
-    public void setActions(ArrayList<Action> actions) {
-        this.actions = actions;
+    public void setActions(ObservableList<StatusReference> statuses) {
+        this.statuses = statuses;
     }
     
     /**
@@ -81,8 +82,8 @@ public class Step {
         builder.setDescription(this.getStepDescription());
         
         //get status checkable protobufs
-        for(Action a : actions) {
-            builder.addStatusesInStep(new ActionCheckable(a).getStatusCheckableAsProtobuf());
+        for(StatusReference ref : statuses) {
+            builder.addStatusesInStep(ref.getStatus().getStatusCheckableAsProtobuf());
         }
         
         return builder.build();    

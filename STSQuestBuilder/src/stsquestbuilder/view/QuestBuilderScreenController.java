@@ -100,7 +100,7 @@ public class QuestBuilderScreenController implements Initializable {
     
     private Quest questForScreen;
     
-    private Action currentAction;
+    private StatusReference currentReference;
     
     private STSQuestBuilder app;
     
@@ -130,7 +130,7 @@ public class QuestBuilderScreenController implements Initializable {
                 TitledPane stepPane = addStep(null);
                 
                 //populate the step pane
-                ObservableList<Action> observableActions = FXCollections.observableArrayList();
+                ObservableList<StatusReference> observableActions = FXCollections.observableArrayList();
                 observableActions.addAll(s.getActions());
 
                 getTableViewForTitledPane(stepPane).setItems(observableActions);
@@ -182,15 +182,6 @@ public class QuestBuilderScreenController implements Initializable {
         //attach the component to a titled pane
         TitledPane stepPane = new TitledPane();
         stepPane.setContent(parent);
-        
-        Pane pane = (Pane) parent;
-        
-        ActionComponentController controller = ActionComponentController.openComponentForAction(currentAction);
-        controllerMap.put(stepPane, controller);
-
-        pane.getChildren().add(controller.getRoot());
-        controller.getRoot().setLayoutX(ACTION_OFFSET_X);
-        controller.getRoot().setLayoutY(ACTION_OFFSET_Y);
         
         setupStepPane(stepPane);
 
@@ -256,8 +247,8 @@ public class QuestBuilderScreenController implements Initializable {
         Node button = (Node)event.getSource();
         TableView actionTable = (TableView)button.parentProperty().getValue().lookup(".actionTable");
 
-        currentAction = new Action();
-        actionTable.getItems().add(currentAction);
+        currentReference = new StatusReference(StatusCheckableFactory.getEmptyStatus());
+        actionTable.getItems().add(currentReference);
     }
     
     /**
@@ -292,11 +283,9 @@ public class QuestBuilderScreenController implements Initializable {
             String stepDescription = getStepDescriptionForTitledPane(n).getText();
             
             //get step actions
-            TableView<Action> table = getTableViewForTitledPane(n);
-            ArrayList<Action> actions = new ArrayList<>();
-            actions.addAll(table.getItems());
+            TableView<StatusReference> table = getTableViewForTitledPane(n);
             
-            questSteps.add(new Step(stepName, stepDescription, actions));
+            questSteps.add(new Step(stepName, stepDescription, table.getItems()));
         }
         
         questForScreen.setSteps(questSteps);
@@ -344,11 +333,9 @@ public class QuestBuilderScreenController implements Initializable {
      */
     private void setupStepPane(TitledPane pane) {
         //setup the action dropdown and table
-        TableView<Action> table = getTableViewForTitledPane(pane);
-        ((TableColumn<Action, String>)table.getColumns().get(0)).setCellValueFactory(cellData -> cellData.getValue().getDescriptorProperty());
-
-        //load action component
-        ActionComponentController controller = controllerMap.get(pane);
+        TableView<StatusReference> table = getTableViewForTitledPane(pane);
+        ((TableColumn<StatusReference, String>)table.getColumns().get(0)).setCellValueFactory(cellData -> StatusCheckableFactory.getStatusTypeOfCheck(cellData.getValue().getStatus()).getNameProperty());
+        ((TableColumn<StatusReference, String>)table.getColumns().get(1)).setCellValueFactory(cellData -> cellData.getValue().getStatus().getNameProperty());
         
         //setup the row listeners by changing the factory callback
         //since the API gives us no other direct row access
@@ -356,12 +343,13 @@ public class QuestBuilderScreenController implements Initializable {
             TableRow row = new TableRow();
             row.setOnMouseClicked(event -> {
                 //null-check load the selected action
-                Action selectedAction = ((TableRow<Action>)event.getSource()).getItem();
-                if(selectedAction == null) return;
-                currentAction =  selectedAction;
+                StatusReference reference = ((TableRow<StatusReference>)event.getSource()).getItem();
+                if(reference == null) return;
+                currentReference =  reference;
                 
-                //load the information from the selected action into the ui
-                controller.setAction(currentAction);
+                if (event.getClickCount() >= 2) {
+                    StatusCheckableScreenController controller = StatusCheckableScreenController.openScreenForStatusCheck(currentReference);
+                }
             });
 
             return row;
@@ -370,7 +358,7 @@ public class QuestBuilderScreenController implements Initializable {
         //setup the handlers for the action buttons and text boxesS
         //pane.getContent().lookup(".saveActionButton").setOnMouseClicked(event -> saveAction(event));            
         pane.getContent().lookup(".newActionButton").setOnMouseClicked(event -> newActionButtonPressed(event));            
-        pane.getContent().lookup(".removeActionButton").setOnMouseClicked(event -> table.getItems().remove(currentAction));
+        pane.getContent().lookup(".removeActionButton").setOnMouseClicked(event -> table.getItems().remove(currentReference));
         getStepNameForTitledPane(pane).setOnKeyPressed(event -> justifyStepName(pane));
     }
     
@@ -382,8 +370,8 @@ public class QuestBuilderScreenController implements Initializable {
         return (Pane)pane.getContent().lookup(".killPane");
     }
     
-    public TableView<Action> getTableViewForTitledPane(TitledPane pane) {
-        return (TableView<Action>)pane.getContent().lookup(".actionTable");
+    public TableView<StatusReference> getTableViewForTitledPane(TitledPane pane) {
+        return (TableView<StatusReference>)pane.getContent().lookup(".actionTable");
     }
     
     //public ChoiceBox getActionTypeForTitledPane(TitledPane pane) {

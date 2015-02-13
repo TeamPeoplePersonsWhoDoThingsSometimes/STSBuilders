@@ -21,6 +21,7 @@ public class ActionCheckable implements StatusCheckable {
         action = act;
         empty = true;
         amount = -1;
+        bindName();
     }
     
     public ActionCheckable() {
@@ -32,11 +33,17 @@ public class ActionCheckable implements StatusCheckable {
     }
     
     public ActionCheckable(StatusCheckableProtocol proto) {
-        init(new Action(proto.getAction(), proto.getAmount()));
+        init(new Action(proto.getAction()));
     }
     
     public void setAction(Action act) {
         action = act;
+        if (act != null) {
+            bindName();
+        } else {
+            name.unbind();
+            name.set("Empty");
+        }
     }
     
     public Action getAction() {
@@ -57,7 +64,7 @@ public class ActionCheckable implements StatusCheckable {
     public String toString() {
         if (empty) 
             return "Empty Check";
-        return "Action Check: " + action.getActionType() + " on " + action.getDirectObject();
+        return "Action Check: " + action.getActionType();
     }
 
     @Override
@@ -66,5 +73,26 @@ public class ActionCheckable implements StatusCheckable {
         builder.setAction(action.getActionAsProtobuf());
         builder.setAmount(amount);
         return builder.build();
+    }
+
+    @Override
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+    
+    public int getAmount() {
+        return amount;
+    }
+    
+    /**
+     * Bind the action checkable name property to the action properties
+     */
+    public void bindName() {
+        name.bind(action.getDescriptorProperty());
+    }
+
+    @Override
+    public boolean getEmpty() {
+        return empty;
     }
 }

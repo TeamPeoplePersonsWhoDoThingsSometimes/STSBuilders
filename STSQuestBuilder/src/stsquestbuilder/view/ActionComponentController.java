@@ -19,6 +19,8 @@ import stsquestbuilder.model.Action;
 import stsquestbuilder.model.DirectObject;
 import stsquestbuilder.model.Enemy;
 import stsquestbuilder.model.Area;
+import stsquestbuilder.model.DirectObjectFactory;
+import stsquestbuilder.model.Item;
 import stsquestbuilder.protocolbuffers.QuestProtobuf.ActionType;
 
 /**
@@ -114,15 +116,7 @@ public class ActionComponentController implements Initializable {
     public void switchToActionType(ActionType type) {
         Object sub = null;
         
-        switch(type) {
-            case ATTACK:
-            case KILL:
-                sub = new Enemy();
-                break;
-            case MOVE_AREA:
-                sub = new Area();
-                break;
-        }
+        sub = DirectObjectFactory.buildObjectByType(type);
         switchToActionType(type, sub);
     }
     
@@ -130,15 +124,21 @@ public class ActionComponentController implements Initializable {
         destroySubcomponent();
         
         action.setActionType(type);
-
-        if(type.equals(ActionType.KILL) || type.equals(ActionType.ATTACK)) {
+        
+        DirectObjectFactory.ObjectType objType = DirectObjectFactory.getObjectTypeForActionType(type);
+        
+        if(objType.equals(DirectObjectFactory.ObjectType.ENEMY)) {
             EnemyComponentController controller = EnemyComponentController.openComponentForEnemy((Enemy)subObject);
             subPanelRoot = controller.getRoot();
             action.setDirectObject((Enemy)subObject);
-        } else if(type.equals(ActionType.MOVE_AREA)) {
+        } else if(objType.equals(DirectObjectFactory.ObjectType.AREA)) {
             AreaComponentController controller = AreaComponentController.openAreaComponentController((Area)subObject);
             subPanelRoot = controller.getRoot();
             action.setDirectObject((Area)subObject);
+        } else if(objType.equals(DirectObjectFactory.ObjectType.ITEM)) {
+            ItemComponentController controller = ItemComponentController.openComponentForItem((Item) subObject);
+            subPanelRoot = controller.getRoot();
+            action.setDirectObject((Item)subObject);
         }
         
         if(subPanelRoot != null) {

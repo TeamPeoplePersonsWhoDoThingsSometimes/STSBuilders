@@ -45,6 +45,7 @@ public class Enemy extends DirectObject {
         return "" + getGeneralType().getName() + ":" + getParticularType() + ":" + super.getAmount();
     }
     
+    @Override
     public DirectObjectProtocol getDirectObjectAsProtobuf() {
         DirectObjectProtocol.Builder builder = DirectObjectProtocol.newBuilder();
         
