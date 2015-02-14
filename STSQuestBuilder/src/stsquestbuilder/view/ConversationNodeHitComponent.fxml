@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="71.0" prefWidth="238.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="stsquestbuilder.view.ConversationNodeHitComponentController">
+   <children>
+      <Label layoutY="6.0" text="Conversation: " />
+      <ChoiceBox fx:id="conversationDropdown" layoutX="76.0" layoutY="2.0" prefWidth="150.0" />
+      <Label layoutY="34.0" text="Node: " />
+      <ChoiceBox fx:id="nodeDropdown" layoutX="76.0" layoutY="30.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>

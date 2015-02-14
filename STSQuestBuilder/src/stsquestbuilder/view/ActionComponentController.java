@@ -21,6 +21,7 @@ import stsquestbuilder.model.Enemy;
 import stsquestbuilder.model.Area;
 import stsquestbuilder.model.DirectObjectFactory;
 import stsquestbuilder.model.Item;
+import stsquestbuilder.model.ConversationNode;
 import stsquestbuilder.protocolbuffers.QuestProtobuf.ActionType;
 
 /**
@@ -67,11 +68,6 @@ public class ActionComponentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         typeSelector.setItems(FXCollections.observableArrayList(ActionType.values()));
-        
-        //register non-standard handlers
-        typeSelector.valueProperty().addListener(event -> {
-            switchToActionType(typeSelector.getValue());
-        });
     }
     
     private void setRoot(Parent r) {
@@ -94,19 +90,33 @@ public class ActionComponentController implements Initializable {
         
         ActionType type = action.getActionType();
         DirectObject DO = action.getDirectObject();
+        DirectObjectFactory.ObjectType objType = DirectObjectFactory.getObjectTypeForActionType(type);
         Object sub = null;
         
         typeSelector.setValue(type);
         
-        switch(type) {
-            case KILL:
+        switch(objType) {
+            case ENEMY:
                 sub = (Enemy)DO;
                 break;
-            case MOVE_AREA:
+            case AREA:
                 sub = (Area)DO;
                 break;
+            case ITEM:
+                sub = (Item)DO;
+                break;
+            case CONVERSATION_NODE:
+                sub = (ConversationNode)DO;
+                break;
         }
+        
         switchToActionType(type, DO);
+        
+        //register non-standard handlers
+        //needs to be here to prevent initial setup overwriting
+        typeSelector.valueProperty().addListener(event -> {
+            switchToActionType(typeSelector.getValue());
+        });
     }
     
     public void destroySubcomponent() {
@@ -139,6 +149,16 @@ public class ActionComponentController implements Initializable {
             ItemComponentController controller = ItemComponentController.openComponentForItem((Item) subObject);
             subPanelRoot = controller.getRoot();
             action.setDirectObject((Item)subObject);
+        } else if(objType.equals(DirectObjectFactory.ObjectType.CONVERSATION_NODE)) {
+            ObjectProperty<ConversationNode> node = new SimpleObjectProperty<>((ConversationNode)subObject);
+            
+            node.addListener(event -> {
+                action.setDirectObject(node.get());
+            });
+            
+            ConversationNodeHitComponentController controller = ConversationNodeHitComponentController.openCityBoundsComponentForProperty(node);
+            subPanelRoot = controller.getRoot();
+            action.setDirectObject(node.get());
         }
         
         if(subPanelRoot != null) {

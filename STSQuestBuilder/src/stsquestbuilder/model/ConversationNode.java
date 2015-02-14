@@ -11,16 +11,19 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import stsquestbuilder.protocolbuffers.ConversationProtobuf;
+import stsquestbuilder.protocolbuffers.QuestProtobuf;
 import stsquestbuilder.protocolbuffers.QuestProtobuf;
 import stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol;
 
 
 /**
  *
+ * For direct object convention, type will store the uid, and name will store the
+ * user defined string id
+ * 
  * @author William
  */
-public class ConversationNode {
+public class ConversationNode extends DirectObject {
     
     public class Alternative {
         String text;
@@ -88,11 +91,18 @@ public class ConversationNode {
     }
     
     private static long currentUID = 0;
-    private static HashMap<Long, ConversationNode> idMap = new HashMap<>();
-    public static HashMap<String, ConversationNode> strIdMap = new HashMap<>();
+    private static HashMap<Long, ConversationNode> idMap = new HashMap<>();//backend
+    public static HashMap<String, ConversationNode> strIdMap = new HashMap<>();//user friendly
     
     private static long getNextUID() {
-        return currentUID++;
+        do {
+            currentUID++;
+        } while(idMap.containsKey(currentUID));
+        return currentUID;
+    }
+    
+    public static boolean isValidStringId(String id) {
+        return strIdMap.containsKey(id);
     }
     
     public static ConversationNode getNodeByID(long id) {
@@ -107,6 +117,7 @@ public class ConversationNode {
         return strIdMap.keySet();
     }
     
+    private Conversation rootConversation;
     private ObservableList<StatusBlock> blocks; 
     private HashMap<Long, Alternative> alternatives;
     private final long uid;
@@ -114,17 +125,21 @@ public class ConversationNode {
     private final StringProperty text;
     private int X, Y;//for ui moveable node saving
     
-    
     public ConversationNode() {
+        super("","");
         text = new SimpleStringProperty();
         ID = new SimpleStringProperty();
         alternatives = new HashMap<>();
         uid = getNextUID();
         ID.set("" + uid);
         blocks = FXCollections.observableArrayList();
+        super.setIdentifier("" + uid);
+        idMap.put(uid, this);
+        strIdMap.put("", this);
     }
     
     public ConversationNode(String message) {
+        super("",message);
         alternatives = new HashMap<>();
         ID = new SimpleStringProperty();
         text = new SimpleStringProperty();
@@ -132,9 +147,13 @@ public class ConversationNode {
         uid = getNextUID();
         ID.set("" + uid);
         blocks = FXCollections.observableArrayList();
+        super.setIdentifier("" + uid);
+        idMap.put(uid, this);
+        strIdMap.put("", this);
     }
     
-    public ConversationNode(ConversationProtobuf.ConversationNode proto) {
+    public ConversationNode(QuestProtobuf.ConversationNode proto) {
+        super("","");
         text = new SimpleStringProperty();
         ID = new SimpleStringProperty();
         text.set(proto.getText());
@@ -144,12 +163,12 @@ public class ConversationNode {
         X = proto.getX();
         Y = proto.getY();
         
-        for(ConversationProtobuf.Connection c : proto.getConnectionsList()) {
+        for(QuestProtobuf.Connection c : proto.getConnectionsList()) {
             Alternative alt = new Alternative(c.getNodeId());
             alt.text = c.getText();
             alternatives.put(alt.getUID(), alt);
             ObservableList<ObservableList<StatusReference>> requirementSets = alt.getRequirements();
-            for (ConversationProtobuf.RequirementSet set : c.getRequirementSetsList()) {
+            for (QuestProtobuf.RequirementSet set : c.getRequirementSetsList()) {
                 ObservableList<StatusReference> requirements = FXCollections.observableArrayList();
                 for (QuestProtobuf.StatusCheckableProtocol status : set.getRequirementsList()) {
                     requirements.add(new StatusReference(StatusCheckableFactory.getStatusFromProtobuf(status)));
@@ -161,6 +180,11 @@ public class ConversationNode {
         for(StatusBlockProtocol s : proto.getBlocksList()) {
             blocks.add(new StatusBlock(s));
         }
+        
+        super.setIdentifier("" + getID());
+        super.setTypeId("" + uid);
+        idMap.put(uid, this);
+        strIdMap.put("", this);
     }
     
     public StringProperty textProperty() {
@@ -180,7 +204,7 @@ public class ConversationNode {
     }
     
     public String getID() {
-        return ID.get();
+        return (ID.get() == null ? "" + uid : ID.get());
     }
     
     /**
@@ -189,9 +213,10 @@ public class ConversationNode {
      * @return true on successful set
      */
     public boolean setID(String id) {
-        if (strIdMap.containsKey(id) && !ID.get().equals(id))
+        if (strIdMap.containsKey(id) && (ID.get() == null || !ID.get().equals(id)))
             return false;
         ID.set(id);
+        strIdMap.put(id, this);
         return true;
     }
     
@@ -213,6 +238,14 @@ public class ConversationNode {
     
     public void setY(int newY) {
         Y = newY;
+    }
+    
+    public void setConversation(Conversation conversation) {
+        rootConversation = conversation;
+    }
+    
+    public Conversation getConversation() {
+        return rootConversation;
     }
     
     public void newStatusBlock() {
@@ -273,22 +306,36 @@ public class ConversationNode {
     
     /**
      * Creates and returns a protobuf with the information from this conversation node
+     * specified for direct object protocols, allows for use of conversaiton nodes
+     * in conjunction with actions
+     * 
+     * @return a direct object protobuf with the information from this conversation node
+     */
+    public QuestProtobuf.DirectObjectProtocol getDirectObjectAsProtobuf() {
+        QuestProtobuf.DirectObjectProtocol.Builder builder = QuestProtobuf.DirectObjectProtocol.newBuilder();
+        builder.setName("" + getID());
+        builder.setType("" + uid);
+        return builder.build();
+    }
+    
+    /**
+     * Creates and returns a protobuf with the information from this conversation node
      * @return a protobuf with the information from this conversation node
      */
-    public ConversationProtobuf.ConversationNode getConversationNodeAsProtobuf() {
-        ConversationProtobuf.ConversationNode.Builder builder = ConversationProtobuf.ConversationNode.newBuilder();
+    public QuestProtobuf.ConversationNode getConversationNodeAsProtobuf() {
+        QuestProtobuf.ConversationNode.Builder builder = QuestProtobuf.ConversationNode.newBuilder();
         if(text.get() != null)
             builder.setText(text.get());
         else
             builder.setText("");
         for(Long i : alternatives.keySet()) {
             Alternative a = alternatives.get(i);
-            ConversationProtobuf.Connection.Builder cBuilder = ConversationProtobuf.Connection.newBuilder();
+            QuestProtobuf.Connection.Builder cBuilder = QuestProtobuf.Connection.newBuilder();
             cBuilder.setText(a.text);
             cBuilder.setNodeId(a.target.uid);//break law of demeter due to encapsulated class
             
             for (ObservableList<StatusReference> block : a.getRequirements()) {
-                ConversationProtobuf.RequirementSet.Builder sBuilder = ConversationProtobuf.RequirementSet.newBuilder();
+                QuestProtobuf.RequirementSet.Builder sBuilder = QuestProtobuf.RequirementSet.newBuilder();
                 for (StatusReference ref : block) {
                     sBuilder.addRequirements(ref.getStatus().getStatusCheckableAsProtobuf());
                 }
@@ -299,6 +346,7 @@ public class ConversationNode {
         }
         
         builder.setUid(uid);
+        builder.setName("" + ID.get());
         builder.setX(X);
         builder.setY(Y);
         
@@ -307,6 +355,20 @@ public class ConversationNode {
         }
         
         return builder.build();
+    }
+    
+    @Override
+    public String toString() {
+        return getID() + ": " + getText();
+    }
+    
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof ConversationNode) {
+            ConversationNode n = (ConversationNode)other;
+            return uid == n.getUID();
+        }
+        return false;
     }
     
 }

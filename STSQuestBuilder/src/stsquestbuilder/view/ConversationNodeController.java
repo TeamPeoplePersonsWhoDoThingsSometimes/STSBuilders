@@ -258,6 +258,7 @@ public class ConversationNodeController implements Initializable {
                 c.line.setEndY(lineEnd.y);
                 
                 //TODO last second changes! Copy copy copy, remove this later
+                
                 //rotate outer sections of the marks
                 //transform
                 Point adjustedEnd = new Point((int)c.line.getStartX() - (int)c.line.getEndX(), (int)c.line.getStartY() - (int)c.line.getEndY());
@@ -350,10 +351,9 @@ public class ConversationNodeController implements Initializable {
      * @param event the event that triggered this handler
      */
     public void handleConversationConnectionDrag(MouseDragEvent event) {
-        System.out.println("Drag End");
         //don't connect a conversation to itself, instead, open an editor
         if(this.equals(root.getCurrentConversationNode())) {
-            root.displayConversationNodeEditor();
+            //root.displayConversationNodeEditor();
             return;
         }
         
@@ -361,7 +361,6 @@ public class ConversationNodeController implements Initializable {
             return;
 
 
-        System.out.println("Establish Connection- from target");
         ConversationNode.Alternative alt = root.getCurrentConversationNode().setupAlternative(this);
         Connection data = drawConnection(root.getCurrentConversationNode(), alt);
         root.getCurrentConversationNode().addAlternative(this, data);

@@ -3,6 +3,7 @@ package stsquestbuilder;
 import java.io.IOException;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,7 +22,6 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 
 import stsquestbuilder.model.*;
-import stsquestbuilder.protocolbuffers.ConversationProtobuf;
 import stsquestbuilder.protocolbuffers.QuestProtobuf;
 import stsquestbuilder.view.PrimaryScreenController;
 
@@ -32,25 +32,29 @@ import stsquestbuilder.view.PrimaryScreenController;
  */
 public class STSQuestBuilder extends Application {
     
+    public static STSQuestBuilder instance;
     public static final String UserName = System.getenv("USERNAME");
     public static final String Storage_File = "./out.quest";    
     public static final String Storage_File_Conversations = "./out.conv";
-    public static final String Action_File = "./builder.data";
+    public static final String Action_File = "/builder.data";
     
     public static final double WINDOW_WIDTH = 600;
     public static final double WINDOW_HEIGHT = 400;
 
-    
     private ObservableList<Quest> quests;
     private ObservableList<Conversation> conversations;
     
     @Override
     public void start(Stage primaryStage) {
+        instance = this;
         conversations = FXCollections.observableArrayList();
         quests = FXCollections.observableArrayList();
+        
+        //this ordering is critical, types are needed for conversations and quests
+        //and conversations are needed for quests
         loadTypes();
-        loadQuests();
         loadConversations();
+        loadQuests();
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/stsquestbuilder/view/PrimaryScreen.fxml"));
         Parent parent;
@@ -104,8 +108,8 @@ public class STSQuestBuilder extends Application {
         }
         
         //convert conversations to protobufs and store in a conversation package protobuf
-        ConversationProtobuf.ConversationPackage.Builder builder = ConversationProtobuf.ConversationPackage.newBuilder();
-        ConversationProtobuf.ConversationPackage cPack;
+        QuestProtobuf.ConversationPackage.Builder builder = QuestProtobuf.ConversationPackage.newBuilder();
+        QuestProtobuf.ConversationPackage cPack;
         for(Conversation c : conversations) {
             builder.addConversations(c.getConversationAsProtobuf());
         }
@@ -154,10 +158,10 @@ public class STSQuestBuilder extends Application {
      */
     public void loadTypes() {
         //first load the package        
-        FileInputStream inStream;
+        InputStream inStream;
         QuestProtobuf.BuilderPackage pack;
         try {
-            inStream = new FileInputStream(Action_File);
+            inStream = getClass().getResourceAsStream(Action_File);
             pack = QuestProtobuf.BuilderPackage.parseFrom(inStream);
             inStream.close();
         } catch(IOException excep) {
@@ -187,19 +191,23 @@ public class STSQuestBuilder extends Application {
     public void loadConversations() {
         //first load the package        
         FileInputStream inStream;
-        ConversationProtobuf.ConversationPackage pack;
+        QuestProtobuf.ConversationPackage pack;
         try {
             inStream = new FileInputStream(Storage_File_Conversations);
-            pack = ConversationProtobuf.ConversationPackage.parseFrom(inStream);
+            pack = QuestProtobuf.ConversationPackage.parseFrom(inStream);
             inStream.close();
         } catch(IOException excep) {
             Logger.getLogger(STSQuestBuilder.class.getName()).log(Level.SEVERE, null, excep);
             return;
         }
         
-        for(ConversationProtobuf.Conversation c : pack.getConversationsList()) {
+        for(QuestProtobuf.Conversation c : pack.getConversationsList()) {
             conversations.add(new Conversation(c));
         }
+    }
+    
+    public ObservableList<Conversation> getConversations() {
+        return conversations;
     }
     
     /**

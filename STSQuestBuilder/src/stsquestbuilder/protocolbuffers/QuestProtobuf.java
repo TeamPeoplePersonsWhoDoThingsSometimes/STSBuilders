@@ -172,20 +172,20 @@ public final class QuestProtobuf {
   
   public enum LevelSpecification
       implements com.google.protobuf.ProtocolMessageEnum {
-    MINIMUM(0, 0),
-    EXACT(1, 1),
+    MINIMUM(0, 1),
+    EXACT(1, 2),
     ;
     
-    public static final int MINIMUM_VALUE = 0;
-    public static final int EXACT_VALUE = 1;
+    public static final int MINIMUM_VALUE = 1;
+    public static final int EXACT_VALUE = 2;
     
     
     public final int getNumber() { return value; }
     
     public static LevelSpecification valueOf(int value) {
       switch (value) {
-        case 0: return MINIMUM;
-        case 1: return EXACT;
+        case 1: return MINIMUM;
+        case 2: return EXACT;
         default: return null;
       }
     }
@@ -8150,6 +8150,3869 @@ public final class QuestProtobuf {
     // @@protoc_insertion_point(class_scope:ItemProtocol)
   }
   
+  public interface ConversationPackageOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // repeated .Conversation conversations = 1;
+    java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation> 
+        getConversationsList();
+    stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation getConversations(int index);
+    int getConversationsCount();
+    java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationOrBuilder> 
+        getConversationsOrBuilderList();
+    stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationOrBuilder getConversationsOrBuilder(
+        int index);
+  }
+  public static final class ConversationPackage extends
+      com.google.protobuf.GeneratedMessage
+      implements ConversationPackageOrBuilder {
+    // Use ConversationPackage.newBuilder() to construct.
+    private ConversationPackage(Builder builder) {
+      super(builder);
+    }
+    private ConversationPackage(boolean noInit) {}
+    
+    private static final ConversationPackage defaultInstance;
+    public static ConversationPackage getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public ConversationPackage getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_ConversationPackage_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_ConversationPackage_fieldAccessorTable;
+    }
+    
+    // repeated .Conversation conversations = 1;
+    public static final int CONVERSATIONS_FIELD_NUMBER = 1;
+    private java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation> conversations_;
+    public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation> getConversationsList() {
+      return conversations_;
+    }
+    public java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationOrBuilder> 
+        getConversationsOrBuilderList() {
+      return conversations_;
+    }
+    public int getConversationsCount() {
+      return conversations_.size();
+    }
+    public stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation getConversations(int index) {
+      return conversations_.get(index);
+    }
+    public stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationOrBuilder getConversationsOrBuilder(
+        int index) {
+      return conversations_.get(index);
+    }
+    
+    private void initFields() {
+      conversations_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      for (int i = 0; i < getConversationsCount(); i++) {
+        if (!getConversations(i).isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      for (int i = 0; i < conversations_.size(); i++) {
+        output.writeMessage(1, conversations_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      for (int i = 0; i < conversations_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, conversations_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackageOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_ConversationPackage_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_ConversationPackage_fieldAccessorTable;
+      }
+      
+      // Construct using stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getConversationsFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        if (conversationsBuilder_ == null) {
+          conversations_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          conversationsBuilder_.clear();
+        }
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage.getDescriptor();
+      }
+      
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage getDefaultInstanceForType() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage.getDefaultInstance();
+      }
+      
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage build() {
+        stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage buildPartial() {
+        stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage result = new stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage(this);
+        int from_bitField0_ = bitField0_;
+        if (conversationsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            conversations_ = java.util.Collections.unmodifiableList(conversations_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.conversations_ = conversations_;
+        } else {
+          result.conversations_ = conversationsBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage) {
+          return mergeFrom((stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage other) {
+        if (other == stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage.getDefaultInstance()) return this;
+        if (conversationsBuilder_ == null) {
+          if (!other.conversations_.isEmpty()) {
+            if (conversations_.isEmpty()) {
+              conversations_ = other.conversations_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureConversationsIsMutable();
+              conversations_.addAll(other.conversations_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.conversations_.isEmpty()) {
+            if (conversationsBuilder_.isEmpty()) {
+              conversationsBuilder_.dispose();
+              conversationsBuilder_ = null;
+              conversations_ = other.conversations_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              conversationsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getConversationsFieldBuilder() : null;
+            } else {
+              conversationsBuilder_.addAllMessages(other.conversations_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        for (int i = 0; i < getConversationsCount(); i++) {
+          if (!getConversations(i).isInitialized()) {
+            
+            return false;
+          }
+        }
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.Builder subBuilder = stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addConversations(subBuilder.buildPartial());
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // repeated .Conversation conversations = 1;
+      private java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation> conversations_ =
+        java.util.Collections.emptyList();
+      private void ensureConversationsIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          conversations_ = new java.util.ArrayList<stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation>(conversations_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation, stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationOrBuilder> conversationsBuilder_;
+      
+      public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation> getConversationsList() {
+        if (conversationsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(conversations_);
+        } else {
+          return conversationsBuilder_.getMessageList();
+        }
+      }
+      public int getConversationsCount() {
+        if (conversationsBuilder_ == null) {
+          return conversations_.size();
+        } else {
+          return conversationsBuilder_.getCount();
+        }
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation getConversations(int index) {
+        if (conversationsBuilder_ == null) {
+          return conversations_.get(index);
+        } else {
+          return conversationsBuilder_.getMessage(index);
+        }
+      }
+      public Builder setConversations(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation value) {
+        if (conversationsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureConversationsIsMutable();
+          conversations_.set(index, value);
+          onChanged();
+        } else {
+          conversationsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setConversations(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.Builder builderForValue) {
+        if (conversationsBuilder_ == null) {
+          ensureConversationsIsMutable();
+          conversations_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          conversationsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addConversations(stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation value) {
+        if (conversationsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureConversationsIsMutable();
+          conversations_.add(value);
+          onChanged();
+        } else {
+          conversationsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addConversations(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation value) {
+        if (conversationsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureConversationsIsMutable();
+          conversations_.add(index, value);
+          onChanged();
+        } else {
+          conversationsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addConversations(
+          stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.Builder builderForValue) {
+        if (conversationsBuilder_ == null) {
+          ensureConversationsIsMutable();
+          conversations_.add(builderForValue.build());
+          onChanged();
+        } else {
+          conversationsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addConversations(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.Builder builderForValue) {
+        if (conversationsBuilder_ == null) {
+          ensureConversationsIsMutable();
+          conversations_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          conversationsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllConversations(
+          java.lang.Iterable<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation> values) {
+        if (conversationsBuilder_ == null) {
+          ensureConversationsIsMutable();
+          super.addAll(values, conversations_);
+          onChanged();
+        } else {
+          conversationsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearConversations() {
+        if (conversationsBuilder_ == null) {
+          conversations_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          conversationsBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeConversations(int index) {
+        if (conversationsBuilder_ == null) {
+          ensureConversationsIsMutable();
+          conversations_.remove(index);
+          onChanged();
+        } else {
+          conversationsBuilder_.remove(index);
+        }
+        return this;
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.Builder getConversationsBuilder(
+          int index) {
+        return getConversationsFieldBuilder().getBuilder(index);
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationOrBuilder getConversationsOrBuilder(
+          int index) {
+        if (conversationsBuilder_ == null) {
+          return conversations_.get(index);  } else {
+          return conversationsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationOrBuilder> 
+           getConversationsOrBuilderList() {
+        if (conversationsBuilder_ != null) {
+          return conversationsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(conversations_);
+        }
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.Builder addConversationsBuilder() {
+        return getConversationsFieldBuilder().addBuilder(
+            stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.getDefaultInstance());
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.Builder addConversationsBuilder(
+          int index) {
+        return getConversationsFieldBuilder().addBuilder(
+            index, stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.getDefaultInstance());
+      }
+      public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.Builder> 
+           getConversationsBuilderList() {
+        return getConversationsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation, stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationOrBuilder> 
+          getConversationsFieldBuilder() {
+        if (conversationsBuilder_ == null) {
+          conversationsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation, stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationOrBuilder>(
+                  conversations_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          conversations_ = null;
+        }
+        return conversationsBuilder_;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:ConversationPackage)
+    }
+    
+    static {
+      defaultInstance = new ConversationPackage(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:ConversationPackage)
+  }
+  
+  public interface ConversationOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // repeated .ConversationNode allNodes = 1;
+    java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode> 
+        getAllNodesList();
+    stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode getAllNodes(int index);
+    int getAllNodesCount();
+    java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNodeOrBuilder> 
+        getAllNodesOrBuilderList();
+    stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNodeOrBuilder getAllNodesOrBuilder(
+        int index);
+    
+    // optional string name = 2;
+    boolean hasName();
+    String getName();
+    
+    // optional string creator = 3;
+    boolean hasCreator();
+    String getCreator();
+  }
+  public static final class Conversation extends
+      com.google.protobuf.GeneratedMessage
+      implements ConversationOrBuilder {
+    // Use Conversation.newBuilder() to construct.
+    private Conversation(Builder builder) {
+      super(builder);
+    }
+    private Conversation(boolean noInit) {}
+    
+    private static final Conversation defaultInstance;
+    public static Conversation getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public Conversation getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_Conversation_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_Conversation_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // repeated .ConversationNode allNodes = 1;
+    public static final int ALLNODES_FIELD_NUMBER = 1;
+    private java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode> allNodes_;
+    public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode> getAllNodesList() {
+      return allNodes_;
+    }
+    public java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNodeOrBuilder> 
+        getAllNodesOrBuilderList() {
+      return allNodes_;
+    }
+    public int getAllNodesCount() {
+      return allNodes_.size();
+    }
+    public stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode getAllNodes(int index) {
+      return allNodes_.get(index);
+    }
+    public stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNodeOrBuilder getAllNodesOrBuilder(
+        int index) {
+      return allNodes_.get(index);
+    }
+    
+    // optional string name = 2;
+    public static final int NAME_FIELD_NUMBER = 2;
+    private java.lang.Object name_;
+    public boolean hasName() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          name_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string creator = 3;
+    public static final int CREATOR_FIELD_NUMBER = 3;
+    private java.lang.Object creator_;
+    public boolean hasCreator() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public String getCreator() {
+      java.lang.Object ref = creator_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          creator_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getCreatorBytes() {
+      java.lang.Object ref = creator_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        creator_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    private void initFields() {
+      allNodes_ = java.util.Collections.emptyList();
+      name_ = "";
+      creator_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      for (int i = 0; i < getAllNodesCount(); i++) {
+        if (!getAllNodes(i).isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      for (int i = 0; i < allNodes_.size(); i++) {
+        output.writeMessage(1, allNodes_.get(i));
+      }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(2, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(3, getCreatorBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      for (int i = 0; i < allNodes_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, allNodes_.get(i));
+      }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getCreatorBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_Conversation_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_Conversation_fieldAccessorTable;
+      }
+      
+      // Construct using stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getAllNodesFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        if (allNodesBuilder_ == null) {
+          allNodes_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          allNodesBuilder_.clear();
+        }
+        name_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        creator_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.getDescriptor();
+      }
+      
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation getDefaultInstanceForType() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.getDefaultInstance();
+      }
+      
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation build() {
+        stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation buildPartial() {
+        stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation result = new stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (allNodesBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            allNodes_ = java.util.Collections.unmodifiableList(allNodes_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.allNodes_ = allNodes_;
+        } else {
+          result.allNodes_ = allNodesBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.name_ = name_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.creator_ = creator_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation) {
+          return mergeFrom((stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation other) {
+        if (other == stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.getDefaultInstance()) return this;
+        if (allNodesBuilder_ == null) {
+          if (!other.allNodes_.isEmpty()) {
+            if (allNodes_.isEmpty()) {
+              allNodes_ = other.allNodes_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureAllNodesIsMutable();
+              allNodes_.addAll(other.allNodes_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.allNodes_.isEmpty()) {
+            if (allNodesBuilder_.isEmpty()) {
+              allNodesBuilder_.dispose();
+              allNodesBuilder_ = null;
+              allNodes_ = other.allNodes_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              allNodesBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getAllNodesFieldBuilder() : null;
+            } else {
+              allNodesBuilder_.addAllMessages(other.allNodes_);
+            }
+          }
+        }
+        if (other.hasName()) {
+          setName(other.getName());
+        }
+        if (other.hasCreator()) {
+          setCreator(other.getCreator());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        for (int i = 0; i < getAllNodesCount(); i++) {
+          if (!getAllNodes(i).isInitialized()) {
+            
+            return false;
+          }
+        }
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.Builder subBuilder = stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addAllNodes(subBuilder.buildPartial());
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              name_ = input.readBytes();
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000004;
+              creator_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // repeated .ConversationNode allNodes = 1;
+      private java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode> allNodes_ =
+        java.util.Collections.emptyList();
+      private void ensureAllNodesIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          allNodes_ = new java.util.ArrayList<stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode>(allNodes_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode, stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNodeOrBuilder> allNodesBuilder_;
+      
+      public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode> getAllNodesList() {
+        if (allNodesBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(allNodes_);
+        } else {
+          return allNodesBuilder_.getMessageList();
+        }
+      }
+      public int getAllNodesCount() {
+        if (allNodesBuilder_ == null) {
+          return allNodes_.size();
+        } else {
+          return allNodesBuilder_.getCount();
+        }
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode getAllNodes(int index) {
+        if (allNodesBuilder_ == null) {
+          return allNodes_.get(index);
+        } else {
+          return allNodesBuilder_.getMessage(index);
+        }
+      }
+      public Builder setAllNodes(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode value) {
+        if (allNodesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllNodesIsMutable();
+          allNodes_.set(index, value);
+          onChanged();
+        } else {
+          allNodesBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setAllNodes(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.Builder builderForValue) {
+        if (allNodesBuilder_ == null) {
+          ensureAllNodesIsMutable();
+          allNodes_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          allNodesBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllNodes(stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode value) {
+        if (allNodesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllNodesIsMutable();
+          allNodes_.add(value);
+          onChanged();
+        } else {
+          allNodesBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addAllNodes(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode value) {
+        if (allNodesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllNodesIsMutable();
+          allNodes_.add(index, value);
+          onChanged();
+        } else {
+          allNodesBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addAllNodes(
+          stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.Builder builderForValue) {
+        if (allNodesBuilder_ == null) {
+          ensureAllNodesIsMutable();
+          allNodes_.add(builderForValue.build());
+          onChanged();
+        } else {
+          allNodesBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllNodes(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.Builder builderForValue) {
+        if (allNodesBuilder_ == null) {
+          ensureAllNodesIsMutable();
+          allNodes_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          allNodesBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllAllNodes(
+          java.lang.Iterable<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode> values) {
+        if (allNodesBuilder_ == null) {
+          ensureAllNodesIsMutable();
+          super.addAll(values, allNodes_);
+          onChanged();
+        } else {
+          allNodesBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearAllNodes() {
+        if (allNodesBuilder_ == null) {
+          allNodes_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          allNodesBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeAllNodes(int index) {
+        if (allNodesBuilder_ == null) {
+          ensureAllNodesIsMutable();
+          allNodes_.remove(index);
+          onChanged();
+        } else {
+          allNodesBuilder_.remove(index);
+        }
+        return this;
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.Builder getAllNodesBuilder(
+          int index) {
+        return getAllNodesFieldBuilder().getBuilder(index);
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNodeOrBuilder getAllNodesOrBuilder(
+          int index) {
+        if (allNodesBuilder_ == null) {
+          return allNodes_.get(index);  } else {
+          return allNodesBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNodeOrBuilder> 
+           getAllNodesOrBuilderList() {
+        if (allNodesBuilder_ != null) {
+          return allNodesBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(allNodes_);
+        }
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.Builder addAllNodesBuilder() {
+        return getAllNodesFieldBuilder().addBuilder(
+            stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.getDefaultInstance());
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.Builder addAllNodesBuilder(
+          int index) {
+        return getAllNodesFieldBuilder().addBuilder(
+            index, stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.getDefaultInstance());
+      }
+      public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.Builder> 
+           getAllNodesBuilderList() {
+        return getAllNodesFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode, stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNodeOrBuilder> 
+          getAllNodesFieldBuilder() {
+        if (allNodesBuilder_ == null) {
+          allNodesBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode, stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNodeOrBuilder>(
+                  allNodes_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          allNodes_ = null;
+        }
+        return allNodesBuilder_;
+      }
+      
+      // optional string name = 2;
+      private java.lang.Object name_ = "";
+      public boolean hasName() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setName(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearName() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      void setName(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        name_ = value;
+        onChanged();
+      }
+      
+      // optional string creator = 3;
+      private java.lang.Object creator_ = "";
+      public boolean hasCreator() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public String getCreator() {
+        java.lang.Object ref = creator_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          creator_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setCreator(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        creator_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearCreator() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        creator_ = getDefaultInstance().getCreator();
+        onChanged();
+        return this;
+      }
+      void setCreator(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000004;
+        creator_ = value;
+        onChanged();
+      }
+      
+      // @@protoc_insertion_point(builder_scope:Conversation)
+    }
+    
+    static {
+      defaultInstance = new Conversation(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:Conversation)
+  }
+  
+  public interface ConversationNodeOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // required string text = 1;
+    boolean hasText();
+    String getText();
+    
+    // required string name = 2;
+    boolean hasName();
+    String getName();
+    
+    // required int64 uid = 3;
+    boolean hasUid();
+    long getUid();
+    
+    // required int32 X = 4;
+    boolean hasX();
+    int getX();
+    
+    // required int32 Y = 5;
+    boolean hasY();
+    int getY();
+    
+    // repeated .Connection connections = 6;
+    java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.Connection> 
+        getConnectionsList();
+    stsquestbuilder.protocolbuffers.QuestProtobuf.Connection getConnections(int index);
+    int getConnectionsCount();
+    java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.ConnectionOrBuilder> 
+        getConnectionsOrBuilderList();
+    stsquestbuilder.protocolbuffers.QuestProtobuf.ConnectionOrBuilder getConnectionsOrBuilder(
+        int index);
+    
+    // repeated .StatusBlockProtocol blocks = 7;
+    java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol> 
+        getBlocksList();
+    stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol getBlocks(int index);
+    int getBlocksCount();
+    java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocolOrBuilder> 
+        getBlocksOrBuilderList();
+    stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocolOrBuilder getBlocksOrBuilder(
+        int index);
+  }
+  public static final class ConversationNode extends
+      com.google.protobuf.GeneratedMessage
+      implements ConversationNodeOrBuilder {
+    // Use ConversationNode.newBuilder() to construct.
+    private ConversationNode(Builder builder) {
+      super(builder);
+    }
+    private ConversationNode(boolean noInit) {}
+    
+    private static final ConversationNode defaultInstance;
+    public static ConversationNode getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public ConversationNode getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_ConversationNode_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_ConversationNode_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // required string text = 1;
+    public static final int TEXT_FIELD_NUMBER = 1;
+    private java.lang.Object text_;
+    public boolean hasText() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getText() {
+      java.lang.Object ref = text_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          text_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getTextBytes() {
+      java.lang.Object ref = text_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        text_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // required string name = 2;
+    public static final int NAME_FIELD_NUMBER = 2;
+    private java.lang.Object name_;
+    public boolean hasName() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          name_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // required int64 uid = 3;
+    public static final int UID_FIELD_NUMBER = 3;
+    private long uid_;
+    public boolean hasUid() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public long getUid() {
+      return uid_;
+    }
+    
+    // required int32 X = 4;
+    public static final int X_FIELD_NUMBER = 4;
+    private int x_;
+    public boolean hasX() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public int getX() {
+      return x_;
+    }
+    
+    // required int32 Y = 5;
+    public static final int Y_FIELD_NUMBER = 5;
+    private int y_;
+    public boolean hasY() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public int getY() {
+      return y_;
+    }
+    
+    // repeated .Connection connections = 6;
+    public static final int CONNECTIONS_FIELD_NUMBER = 6;
+    private java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.Connection> connections_;
+    public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.Connection> getConnectionsList() {
+      return connections_;
+    }
+    public java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.ConnectionOrBuilder> 
+        getConnectionsOrBuilderList() {
+      return connections_;
+    }
+    public int getConnectionsCount() {
+      return connections_.size();
+    }
+    public stsquestbuilder.protocolbuffers.QuestProtobuf.Connection getConnections(int index) {
+      return connections_.get(index);
+    }
+    public stsquestbuilder.protocolbuffers.QuestProtobuf.ConnectionOrBuilder getConnectionsOrBuilder(
+        int index) {
+      return connections_.get(index);
+    }
+    
+    // repeated .StatusBlockProtocol blocks = 7;
+    public static final int BLOCKS_FIELD_NUMBER = 7;
+    private java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol> blocks_;
+    public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol> getBlocksList() {
+      return blocks_;
+    }
+    public java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocolOrBuilder> 
+        getBlocksOrBuilderList() {
+      return blocks_;
+    }
+    public int getBlocksCount() {
+      return blocks_.size();
+    }
+    public stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol getBlocks(int index) {
+      return blocks_.get(index);
+    }
+    public stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocolOrBuilder getBlocksOrBuilder(
+        int index) {
+      return blocks_.get(index);
+    }
+    
+    private void initFields() {
+      text_ = "";
+      name_ = "";
+      uid_ = 0L;
+      x_ = 0;
+      y_ = 0;
+      connections_ = java.util.Collections.emptyList();
+      blocks_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      if (!hasText()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasName()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasUid()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasX()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasY()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      for (int i = 0; i < getConnectionsCount(); i++) {
+        if (!getConnections(i).isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      for (int i = 0; i < getBlocksCount(); i++) {
+        if (!getBlocks(i).isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getTextBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt64(3, uid_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeInt32(4, x_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeInt32(5, y_);
+      }
+      for (int i = 0; i < connections_.size(); i++) {
+        output.writeMessage(6, connections_.get(i));
+      }
+      for (int i = 0; i < blocks_.size(); i++) {
+        output.writeMessage(7, blocks_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getTextBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, uid_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, x_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, y_);
+      }
+      for (int i = 0; i < connections_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, connections_.get(i));
+      }
+      for (int i = 0; i < blocks_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, blocks_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNodeOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_ConversationNode_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_ConversationNode_fieldAccessorTable;
+      }
+      
+      // Construct using stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getConnectionsFieldBuilder();
+          getBlocksFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        text_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        name_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        uid_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        x_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        y_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        if (connectionsBuilder_ == null) {
+          connections_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000020);
+        } else {
+          connectionsBuilder_.clear();
+        }
+        if (blocksBuilder_ == null) {
+          blocks_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000040);
+        } else {
+          blocksBuilder_.clear();
+        }
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.getDescriptor();
+      }
+      
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode getDefaultInstanceForType() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.getDefaultInstance();
+      }
+      
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode build() {
+        stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode buildPartial() {
+        stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode result = new stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.text_ = text_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.name_ = name_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.uid_ = uid_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.x_ = x_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.y_ = y_;
+        if (connectionsBuilder_ == null) {
+          if (((bitField0_ & 0x00000020) == 0x00000020)) {
+            connections_ = java.util.Collections.unmodifiableList(connections_);
+            bitField0_ = (bitField0_ & ~0x00000020);
+          }
+          result.connections_ = connections_;
+        } else {
+          result.connections_ = connectionsBuilder_.build();
+        }
+        if (blocksBuilder_ == null) {
+          if (((bitField0_ & 0x00000040) == 0x00000040)) {
+            blocks_ = java.util.Collections.unmodifiableList(blocks_);
+            bitField0_ = (bitField0_ & ~0x00000040);
+          }
+          result.blocks_ = blocks_;
+        } else {
+          result.blocks_ = blocksBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode) {
+          return mergeFrom((stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode other) {
+        if (other == stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.getDefaultInstance()) return this;
+        if (other.hasText()) {
+          setText(other.getText());
+        }
+        if (other.hasName()) {
+          setName(other.getName());
+        }
+        if (other.hasUid()) {
+          setUid(other.getUid());
+        }
+        if (other.hasX()) {
+          setX(other.getX());
+        }
+        if (other.hasY()) {
+          setY(other.getY());
+        }
+        if (connectionsBuilder_ == null) {
+          if (!other.connections_.isEmpty()) {
+            if (connections_.isEmpty()) {
+              connections_ = other.connections_;
+              bitField0_ = (bitField0_ & ~0x00000020);
+            } else {
+              ensureConnectionsIsMutable();
+              connections_.addAll(other.connections_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.connections_.isEmpty()) {
+            if (connectionsBuilder_.isEmpty()) {
+              connectionsBuilder_.dispose();
+              connectionsBuilder_ = null;
+              connections_ = other.connections_;
+              bitField0_ = (bitField0_ & ~0x00000020);
+              connectionsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getConnectionsFieldBuilder() : null;
+            } else {
+              connectionsBuilder_.addAllMessages(other.connections_);
+            }
+          }
+        }
+        if (blocksBuilder_ == null) {
+          if (!other.blocks_.isEmpty()) {
+            if (blocks_.isEmpty()) {
+              blocks_ = other.blocks_;
+              bitField0_ = (bitField0_ & ~0x00000040);
+            } else {
+              ensureBlocksIsMutable();
+              blocks_.addAll(other.blocks_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.blocks_.isEmpty()) {
+            if (blocksBuilder_.isEmpty()) {
+              blocksBuilder_.dispose();
+              blocksBuilder_ = null;
+              blocks_ = other.blocks_;
+              bitField0_ = (bitField0_ & ~0x00000040);
+              blocksBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getBlocksFieldBuilder() : null;
+            } else {
+              blocksBuilder_.addAllMessages(other.blocks_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        if (!hasText()) {
+          
+          return false;
+        }
+        if (!hasName()) {
+          
+          return false;
+        }
+        if (!hasUid()) {
+          
+          return false;
+        }
+        if (!hasX()) {
+          
+          return false;
+        }
+        if (!hasY()) {
+          
+          return false;
+        }
+        for (int i = 0; i < getConnectionsCount(); i++) {
+          if (!getConnections(i).isInitialized()) {
+            
+            return false;
+          }
+        }
+        for (int i = 0; i < getBlocksCount(); i++) {
+          if (!getBlocks(i).isInitialized()) {
+            
+            return false;
+          }
+        }
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              text_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              name_ = input.readBytes();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              uid_ = input.readInt64();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              x_ = input.readInt32();
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000010;
+              y_ = input.readInt32();
+              break;
+            }
+            case 50: {
+              stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.Builder subBuilder = stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addConnections(subBuilder.buildPartial());
+              break;
+            }
+            case 58: {
+              stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol.Builder subBuilder = stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addBlocks(subBuilder.buildPartial());
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // required string text = 1;
+      private java.lang.Object text_ = "";
+      public boolean hasText() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getText() {
+        java.lang.Object ref = text_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          text_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setText(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        text_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearText() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        text_ = getDefaultInstance().getText();
+        onChanged();
+        return this;
+      }
+      void setText(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        text_ = value;
+        onChanged();
+      }
+      
+      // required string name = 2;
+      private java.lang.Object name_ = "";
+      public boolean hasName() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setName(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearName() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      void setName(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        name_ = value;
+        onChanged();
+      }
+      
+      // required int64 uid = 3;
+      private long uid_ ;
+      public boolean hasUid() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public long getUid() {
+        return uid_;
+      }
+      public Builder setUid(long value) {
+        bitField0_ |= 0x00000004;
+        uid_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearUid() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        uid_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // required int32 X = 4;
+      private int x_ ;
+      public boolean hasX() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public int getX() {
+        return x_;
+      }
+      public Builder setX(int value) {
+        bitField0_ |= 0x00000008;
+        x_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearX() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        x_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // required int32 Y = 5;
+      private int y_ ;
+      public boolean hasY() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public int getY() {
+        return y_;
+      }
+      public Builder setY(int value) {
+        bitField0_ |= 0x00000010;
+        y_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearY() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        y_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // repeated .Connection connections = 6;
+      private java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.Connection> connections_ =
+        java.util.Collections.emptyList();
+      private void ensureConnectionsIsMutable() {
+        if (!((bitField0_ & 0x00000020) == 0x00000020)) {
+          connections_ = new java.util.ArrayList<stsquestbuilder.protocolbuffers.QuestProtobuf.Connection>(connections_);
+          bitField0_ |= 0x00000020;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          stsquestbuilder.protocolbuffers.QuestProtobuf.Connection, stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.ConnectionOrBuilder> connectionsBuilder_;
+      
+      public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.Connection> getConnectionsList() {
+        if (connectionsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(connections_);
+        } else {
+          return connectionsBuilder_.getMessageList();
+        }
+      }
+      public int getConnectionsCount() {
+        if (connectionsBuilder_ == null) {
+          return connections_.size();
+        } else {
+          return connectionsBuilder_.getCount();
+        }
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.Connection getConnections(int index) {
+        if (connectionsBuilder_ == null) {
+          return connections_.get(index);
+        } else {
+          return connectionsBuilder_.getMessage(index);
+        }
+      }
+      public Builder setConnections(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.Connection value) {
+        if (connectionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureConnectionsIsMutable();
+          connections_.set(index, value);
+          onChanged();
+        } else {
+          connectionsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setConnections(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.Builder builderForValue) {
+        if (connectionsBuilder_ == null) {
+          ensureConnectionsIsMutable();
+          connections_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          connectionsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addConnections(stsquestbuilder.protocolbuffers.QuestProtobuf.Connection value) {
+        if (connectionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureConnectionsIsMutable();
+          connections_.add(value);
+          onChanged();
+        } else {
+          connectionsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addConnections(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.Connection value) {
+        if (connectionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureConnectionsIsMutable();
+          connections_.add(index, value);
+          onChanged();
+        } else {
+          connectionsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addConnections(
+          stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.Builder builderForValue) {
+        if (connectionsBuilder_ == null) {
+          ensureConnectionsIsMutable();
+          connections_.add(builderForValue.build());
+          onChanged();
+        } else {
+          connectionsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addConnections(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.Builder builderForValue) {
+        if (connectionsBuilder_ == null) {
+          ensureConnectionsIsMutable();
+          connections_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          connectionsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllConnections(
+          java.lang.Iterable<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.Connection> values) {
+        if (connectionsBuilder_ == null) {
+          ensureConnectionsIsMutable();
+          super.addAll(values, connections_);
+          onChanged();
+        } else {
+          connectionsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearConnections() {
+        if (connectionsBuilder_ == null) {
+          connections_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000020);
+          onChanged();
+        } else {
+          connectionsBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeConnections(int index) {
+        if (connectionsBuilder_ == null) {
+          ensureConnectionsIsMutable();
+          connections_.remove(index);
+          onChanged();
+        } else {
+          connectionsBuilder_.remove(index);
+        }
+        return this;
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.Builder getConnectionsBuilder(
+          int index) {
+        return getConnectionsFieldBuilder().getBuilder(index);
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.ConnectionOrBuilder getConnectionsOrBuilder(
+          int index) {
+        if (connectionsBuilder_ == null) {
+          return connections_.get(index);  } else {
+          return connectionsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.ConnectionOrBuilder> 
+           getConnectionsOrBuilderList() {
+        if (connectionsBuilder_ != null) {
+          return connectionsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(connections_);
+        }
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.Builder addConnectionsBuilder() {
+        return getConnectionsFieldBuilder().addBuilder(
+            stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.getDefaultInstance());
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.Builder addConnectionsBuilder(
+          int index) {
+        return getConnectionsFieldBuilder().addBuilder(
+            index, stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.getDefaultInstance());
+      }
+      public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.Builder> 
+           getConnectionsBuilderList() {
+        return getConnectionsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          stsquestbuilder.protocolbuffers.QuestProtobuf.Connection, stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.ConnectionOrBuilder> 
+          getConnectionsFieldBuilder() {
+        if (connectionsBuilder_ == null) {
+          connectionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              stsquestbuilder.protocolbuffers.QuestProtobuf.Connection, stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.ConnectionOrBuilder>(
+                  connections_,
+                  ((bitField0_ & 0x00000020) == 0x00000020),
+                  getParentForChildren(),
+                  isClean());
+          connections_ = null;
+        }
+        return connectionsBuilder_;
+      }
+      
+      // repeated .StatusBlockProtocol blocks = 7;
+      private java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol> blocks_ =
+        java.util.Collections.emptyList();
+      private void ensureBlocksIsMutable() {
+        if (!((bitField0_ & 0x00000040) == 0x00000040)) {
+          blocks_ = new java.util.ArrayList<stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol>(blocks_);
+          bitField0_ |= 0x00000040;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocolOrBuilder> blocksBuilder_;
+      
+      public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol> getBlocksList() {
+        if (blocksBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(blocks_);
+        } else {
+          return blocksBuilder_.getMessageList();
+        }
+      }
+      public int getBlocksCount() {
+        if (blocksBuilder_ == null) {
+          return blocks_.size();
+        } else {
+          return blocksBuilder_.getCount();
+        }
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol getBlocks(int index) {
+        if (blocksBuilder_ == null) {
+          return blocks_.get(index);
+        } else {
+          return blocksBuilder_.getMessage(index);
+        }
+      }
+      public Builder setBlocks(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol value) {
+        if (blocksBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureBlocksIsMutable();
+          blocks_.set(index, value);
+          onChanged();
+        } else {
+          blocksBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setBlocks(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol.Builder builderForValue) {
+        if (blocksBuilder_ == null) {
+          ensureBlocksIsMutable();
+          blocks_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          blocksBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addBlocks(stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol value) {
+        if (blocksBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureBlocksIsMutable();
+          blocks_.add(value);
+          onChanged();
+        } else {
+          blocksBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addBlocks(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol value) {
+        if (blocksBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureBlocksIsMutable();
+          blocks_.add(index, value);
+          onChanged();
+        } else {
+          blocksBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addBlocks(
+          stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol.Builder builderForValue) {
+        if (blocksBuilder_ == null) {
+          ensureBlocksIsMutable();
+          blocks_.add(builderForValue.build());
+          onChanged();
+        } else {
+          blocksBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addBlocks(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol.Builder builderForValue) {
+        if (blocksBuilder_ == null) {
+          ensureBlocksIsMutable();
+          blocks_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          blocksBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllBlocks(
+          java.lang.Iterable<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol> values) {
+        if (blocksBuilder_ == null) {
+          ensureBlocksIsMutable();
+          super.addAll(values, blocks_);
+          onChanged();
+        } else {
+          blocksBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearBlocks() {
+        if (blocksBuilder_ == null) {
+          blocks_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000040);
+          onChanged();
+        } else {
+          blocksBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeBlocks(int index) {
+        if (blocksBuilder_ == null) {
+          ensureBlocksIsMutable();
+          blocks_.remove(index);
+          onChanged();
+        } else {
+          blocksBuilder_.remove(index);
+        }
+        return this;
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol.Builder getBlocksBuilder(
+          int index) {
+        return getBlocksFieldBuilder().getBuilder(index);
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocolOrBuilder getBlocksOrBuilder(
+          int index) {
+        if (blocksBuilder_ == null) {
+          return blocks_.get(index);  } else {
+          return blocksBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocolOrBuilder> 
+           getBlocksOrBuilderList() {
+        if (blocksBuilder_ != null) {
+          return blocksBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(blocks_);
+        }
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol.Builder addBlocksBuilder() {
+        return getBlocksFieldBuilder().addBuilder(
+            stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol.getDefaultInstance());
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol.Builder addBlocksBuilder(
+          int index) {
+        return getBlocksFieldBuilder().addBuilder(
+            index, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol.getDefaultInstance());
+      }
+      public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol.Builder> 
+           getBlocksBuilderList() {
+        return getBlocksFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocolOrBuilder> 
+          getBlocksFieldBuilder() {
+        if (blocksBuilder_ == null) {
+          blocksBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocolOrBuilder>(
+                  blocks_,
+                  ((bitField0_ & 0x00000040) == 0x00000040),
+                  getParentForChildren(),
+                  isClean());
+          blocks_ = null;
+        }
+        return blocksBuilder_;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:ConversationNode)
+    }
+    
+    static {
+      defaultInstance = new ConversationNode(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:ConversationNode)
+  }
+  
+  public interface ConnectionOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // required int64 nodeId = 1;
+    boolean hasNodeId();
+    long getNodeId();
+    
+    // required string text = 2;
+    boolean hasText();
+    String getText();
+    
+    // repeated .RequirementSet requirementSets = 3;
+    java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet> 
+        getRequirementSetsList();
+    stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet getRequirementSets(int index);
+    int getRequirementSetsCount();
+    java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSetOrBuilder> 
+        getRequirementSetsOrBuilderList();
+    stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSetOrBuilder getRequirementSetsOrBuilder(
+        int index);
+  }
+  public static final class Connection extends
+      com.google.protobuf.GeneratedMessage
+      implements ConnectionOrBuilder {
+    // Use Connection.newBuilder() to construct.
+    private Connection(Builder builder) {
+      super(builder);
+    }
+    private Connection(boolean noInit) {}
+    
+    private static final Connection defaultInstance;
+    public static Connection getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public Connection getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_Connection_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_Connection_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // required int64 nodeId = 1;
+    public static final int NODEID_FIELD_NUMBER = 1;
+    private long nodeId_;
+    public boolean hasNodeId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public long getNodeId() {
+      return nodeId_;
+    }
+    
+    // required string text = 2;
+    public static final int TEXT_FIELD_NUMBER = 2;
+    private java.lang.Object text_;
+    public boolean hasText() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public String getText() {
+      java.lang.Object ref = text_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          text_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getTextBytes() {
+      java.lang.Object ref = text_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        text_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // repeated .RequirementSet requirementSets = 3;
+    public static final int REQUIREMENTSETS_FIELD_NUMBER = 3;
+    private java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet> requirementSets_;
+    public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet> getRequirementSetsList() {
+      return requirementSets_;
+    }
+    public java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSetOrBuilder> 
+        getRequirementSetsOrBuilderList() {
+      return requirementSets_;
+    }
+    public int getRequirementSetsCount() {
+      return requirementSets_.size();
+    }
+    public stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet getRequirementSets(int index) {
+      return requirementSets_.get(index);
+    }
+    public stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSetOrBuilder getRequirementSetsOrBuilder(
+        int index) {
+      return requirementSets_.get(index);
+    }
+    
+    private void initFields() {
+      nodeId_ = 0L;
+      text_ = "";
+      requirementSets_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      if (!hasNodeId()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasText()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      for (int i = 0; i < getRequirementSetsCount(); i++) {
+        if (!getRequirementSets(i).isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt64(1, nodeId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getTextBytes());
+      }
+      for (int i = 0; i < requirementSets_.size(); i++) {
+        output.writeMessage(3, requirementSets_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, nodeId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getTextBytes());
+      }
+      for (int i = 0; i < requirementSets_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, requirementSets_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Connection parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Connection parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Connection parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Connection parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Connection parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Connection parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Connection parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Connection parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Connection parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.Connection parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(stsquestbuilder.protocolbuffers.QuestProtobuf.Connection prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements stsquestbuilder.protocolbuffers.QuestProtobuf.ConnectionOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_Connection_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_Connection_fieldAccessorTable;
+      }
+      
+      // Construct using stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getRequirementSetsFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        nodeId_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        text_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        if (requirementSetsBuilder_ == null) {
+          requirementSets_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+        } else {
+          requirementSetsBuilder_.clear();
+        }
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.getDescriptor();
+      }
+      
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.Connection getDefaultInstanceForType() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.getDefaultInstance();
+      }
+      
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.Connection build() {
+        stsquestbuilder.protocolbuffers.QuestProtobuf.Connection result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private stsquestbuilder.protocolbuffers.QuestProtobuf.Connection buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        stsquestbuilder.protocolbuffers.QuestProtobuf.Connection result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.Connection buildPartial() {
+        stsquestbuilder.protocolbuffers.QuestProtobuf.Connection result = new stsquestbuilder.protocolbuffers.QuestProtobuf.Connection(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.nodeId_ = nodeId_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.text_ = text_;
+        if (requirementSetsBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004)) {
+            requirementSets_ = java.util.Collections.unmodifiableList(requirementSets_);
+            bitField0_ = (bitField0_ & ~0x00000004);
+          }
+          result.requirementSets_ = requirementSets_;
+        } else {
+          result.requirementSets_ = requirementSetsBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof stsquestbuilder.protocolbuffers.QuestProtobuf.Connection) {
+          return mergeFrom((stsquestbuilder.protocolbuffers.QuestProtobuf.Connection)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(stsquestbuilder.protocolbuffers.QuestProtobuf.Connection other) {
+        if (other == stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.getDefaultInstance()) return this;
+        if (other.hasNodeId()) {
+          setNodeId(other.getNodeId());
+        }
+        if (other.hasText()) {
+          setText(other.getText());
+        }
+        if (requirementSetsBuilder_ == null) {
+          if (!other.requirementSets_.isEmpty()) {
+            if (requirementSets_.isEmpty()) {
+              requirementSets_ = other.requirementSets_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+            } else {
+              ensureRequirementSetsIsMutable();
+              requirementSets_.addAll(other.requirementSets_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.requirementSets_.isEmpty()) {
+            if (requirementSetsBuilder_.isEmpty()) {
+              requirementSetsBuilder_.dispose();
+              requirementSetsBuilder_ = null;
+              requirementSets_ = other.requirementSets_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+              requirementSetsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getRequirementSetsFieldBuilder() : null;
+            } else {
+              requirementSetsBuilder_.addAllMessages(other.requirementSets_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        if (!hasNodeId()) {
+          
+          return false;
+        }
+        if (!hasText()) {
+          
+          return false;
+        }
+        for (int i = 0; i < getRequirementSetsCount(); i++) {
+          if (!getRequirementSets(i).isInitialized()) {
+            
+            return false;
+          }
+        }
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              nodeId_ = input.readInt64();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              text_ = input.readBytes();
+              break;
+            }
+            case 26: {
+              stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.Builder subBuilder = stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addRequirementSets(subBuilder.buildPartial());
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // required int64 nodeId = 1;
+      private long nodeId_ ;
+      public boolean hasNodeId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public long getNodeId() {
+        return nodeId_;
+      }
+      public Builder setNodeId(long value) {
+        bitField0_ |= 0x00000001;
+        nodeId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearNodeId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        nodeId_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // required string text = 2;
+      private java.lang.Object text_ = "";
+      public boolean hasText() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public String getText() {
+        java.lang.Object ref = text_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          text_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setText(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        text_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearText() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        text_ = getDefaultInstance().getText();
+        onChanged();
+        return this;
+      }
+      void setText(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        text_ = value;
+        onChanged();
+      }
+      
+      // repeated .RequirementSet requirementSets = 3;
+      private java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet> requirementSets_ =
+        java.util.Collections.emptyList();
+      private void ensureRequirementSetsIsMutable() {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+          requirementSets_ = new java.util.ArrayList<stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet>(requirementSets_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet, stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSetOrBuilder> requirementSetsBuilder_;
+      
+      public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet> getRequirementSetsList() {
+        if (requirementSetsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(requirementSets_);
+        } else {
+          return requirementSetsBuilder_.getMessageList();
+        }
+      }
+      public int getRequirementSetsCount() {
+        if (requirementSetsBuilder_ == null) {
+          return requirementSets_.size();
+        } else {
+          return requirementSetsBuilder_.getCount();
+        }
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet getRequirementSets(int index) {
+        if (requirementSetsBuilder_ == null) {
+          return requirementSets_.get(index);
+        } else {
+          return requirementSetsBuilder_.getMessage(index);
+        }
+      }
+      public Builder setRequirementSets(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet value) {
+        if (requirementSetsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRequirementSetsIsMutable();
+          requirementSets_.set(index, value);
+          onChanged();
+        } else {
+          requirementSetsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setRequirementSets(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.Builder builderForValue) {
+        if (requirementSetsBuilder_ == null) {
+          ensureRequirementSetsIsMutable();
+          requirementSets_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          requirementSetsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addRequirementSets(stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet value) {
+        if (requirementSetsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRequirementSetsIsMutable();
+          requirementSets_.add(value);
+          onChanged();
+        } else {
+          requirementSetsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addRequirementSets(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet value) {
+        if (requirementSetsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRequirementSetsIsMutable();
+          requirementSets_.add(index, value);
+          onChanged();
+        } else {
+          requirementSetsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addRequirementSets(
+          stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.Builder builderForValue) {
+        if (requirementSetsBuilder_ == null) {
+          ensureRequirementSetsIsMutable();
+          requirementSets_.add(builderForValue.build());
+          onChanged();
+        } else {
+          requirementSetsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addRequirementSets(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.Builder builderForValue) {
+        if (requirementSetsBuilder_ == null) {
+          ensureRequirementSetsIsMutable();
+          requirementSets_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          requirementSetsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllRequirementSets(
+          java.lang.Iterable<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet> values) {
+        if (requirementSetsBuilder_ == null) {
+          ensureRequirementSetsIsMutable();
+          super.addAll(values, requirementSets_);
+          onChanged();
+        } else {
+          requirementSetsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearRequirementSets() {
+        if (requirementSetsBuilder_ == null) {
+          requirementSets_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+          onChanged();
+        } else {
+          requirementSetsBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeRequirementSets(int index) {
+        if (requirementSetsBuilder_ == null) {
+          ensureRequirementSetsIsMutable();
+          requirementSets_.remove(index);
+          onChanged();
+        } else {
+          requirementSetsBuilder_.remove(index);
+        }
+        return this;
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.Builder getRequirementSetsBuilder(
+          int index) {
+        return getRequirementSetsFieldBuilder().getBuilder(index);
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSetOrBuilder getRequirementSetsOrBuilder(
+          int index) {
+        if (requirementSetsBuilder_ == null) {
+          return requirementSets_.get(index);  } else {
+          return requirementSetsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSetOrBuilder> 
+           getRequirementSetsOrBuilderList() {
+        if (requirementSetsBuilder_ != null) {
+          return requirementSetsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(requirementSets_);
+        }
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.Builder addRequirementSetsBuilder() {
+        return getRequirementSetsFieldBuilder().addBuilder(
+            stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.getDefaultInstance());
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.Builder addRequirementSetsBuilder(
+          int index) {
+        return getRequirementSetsFieldBuilder().addBuilder(
+            index, stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.getDefaultInstance());
+      }
+      public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.Builder> 
+           getRequirementSetsBuilderList() {
+        return getRequirementSetsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet, stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSetOrBuilder> 
+          getRequirementSetsFieldBuilder() {
+        if (requirementSetsBuilder_ == null) {
+          requirementSetsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet, stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSetOrBuilder>(
+                  requirementSets_,
+                  ((bitField0_ & 0x00000004) == 0x00000004),
+                  getParentForChildren(),
+                  isClean());
+          requirementSets_ = null;
+        }
+        return requirementSetsBuilder_;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:Connection)
+    }
+    
+    static {
+      defaultInstance = new Connection(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:Connection)
+  }
+  
+  public interface RequirementSetOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // repeated .StatusCheckableProtocol requirements = 1;
+    java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol> 
+        getRequirementsList();
+    stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol getRequirements(int index);
+    int getRequirementsCount();
+    java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocolOrBuilder> 
+        getRequirementsOrBuilderList();
+    stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocolOrBuilder getRequirementsOrBuilder(
+        int index);
+  }
+  public static final class RequirementSet extends
+      com.google.protobuf.GeneratedMessage
+      implements RequirementSetOrBuilder {
+    // Use RequirementSet.newBuilder() to construct.
+    private RequirementSet(Builder builder) {
+      super(builder);
+    }
+    private RequirementSet(boolean noInit) {}
+    
+    private static final RequirementSet defaultInstance;
+    public static RequirementSet getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public RequirementSet getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_RequirementSet_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_RequirementSet_fieldAccessorTable;
+    }
+    
+    // repeated .StatusCheckableProtocol requirements = 1;
+    public static final int REQUIREMENTS_FIELD_NUMBER = 1;
+    private java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol> requirements_;
+    public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol> getRequirementsList() {
+      return requirements_;
+    }
+    public java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocolOrBuilder> 
+        getRequirementsOrBuilderList() {
+      return requirements_;
+    }
+    public int getRequirementsCount() {
+      return requirements_.size();
+    }
+    public stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol getRequirements(int index) {
+      return requirements_.get(index);
+    }
+    public stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocolOrBuilder getRequirementsOrBuilder(
+        int index) {
+      return requirements_.get(index);
+    }
+    
+    private void initFields() {
+      requirements_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      for (int i = 0; i < getRequirementsCount(); i++) {
+        if (!getRequirements(i).isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      for (int i = 0; i < requirements_.size(); i++) {
+        output.writeMessage(1, requirements_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      for (int i = 0; i < requirements_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, requirements_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSetOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_RequirementSet_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_RequirementSet_fieldAccessorTable;
+      }
+      
+      // Construct using stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getRequirementsFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        if (requirementsBuilder_ == null) {
+          requirements_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          requirementsBuilder_.clear();
+        }
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.getDescriptor();
+      }
+      
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet getDefaultInstanceForType() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.getDefaultInstance();
+      }
+      
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet build() {
+        stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet buildPartial() {
+        stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet result = new stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet(this);
+        int from_bitField0_ = bitField0_;
+        if (requirementsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            requirements_ = java.util.Collections.unmodifiableList(requirements_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.requirements_ = requirements_;
+        } else {
+          result.requirements_ = requirementsBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet) {
+          return mergeFrom((stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet other) {
+        if (other == stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.getDefaultInstance()) return this;
+        if (requirementsBuilder_ == null) {
+          if (!other.requirements_.isEmpty()) {
+            if (requirements_.isEmpty()) {
+              requirements_ = other.requirements_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureRequirementsIsMutable();
+              requirements_.addAll(other.requirements_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.requirements_.isEmpty()) {
+            if (requirementsBuilder_.isEmpty()) {
+              requirementsBuilder_.dispose();
+              requirementsBuilder_ = null;
+              requirements_ = other.requirements_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              requirementsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getRequirementsFieldBuilder() : null;
+            } else {
+              requirementsBuilder_.addAllMessages(other.requirements_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        for (int i = 0; i < getRequirementsCount(); i++) {
+          if (!getRequirements(i).isInitialized()) {
+            
+            return false;
+          }
+        }
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.Builder subBuilder = stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addRequirements(subBuilder.buildPartial());
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // repeated .StatusCheckableProtocol requirements = 1;
+      private java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol> requirements_ =
+        java.util.Collections.emptyList();
+      private void ensureRequirementsIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          requirements_ = new java.util.ArrayList<stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol>(requirements_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocolOrBuilder> requirementsBuilder_;
+      
+      public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol> getRequirementsList() {
+        if (requirementsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(requirements_);
+        } else {
+          return requirementsBuilder_.getMessageList();
+        }
+      }
+      public int getRequirementsCount() {
+        if (requirementsBuilder_ == null) {
+          return requirements_.size();
+        } else {
+          return requirementsBuilder_.getCount();
+        }
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol getRequirements(int index) {
+        if (requirementsBuilder_ == null) {
+          return requirements_.get(index);
+        } else {
+          return requirementsBuilder_.getMessage(index);
+        }
+      }
+      public Builder setRequirements(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol value) {
+        if (requirementsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRequirementsIsMutable();
+          requirements_.set(index, value);
+          onChanged();
+        } else {
+          requirementsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setRequirements(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.Builder builderForValue) {
+        if (requirementsBuilder_ == null) {
+          ensureRequirementsIsMutable();
+          requirements_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          requirementsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addRequirements(stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol value) {
+        if (requirementsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRequirementsIsMutable();
+          requirements_.add(value);
+          onChanged();
+        } else {
+          requirementsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addRequirements(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol value) {
+        if (requirementsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRequirementsIsMutable();
+          requirements_.add(index, value);
+          onChanged();
+        } else {
+          requirementsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addRequirements(
+          stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.Builder builderForValue) {
+        if (requirementsBuilder_ == null) {
+          ensureRequirementsIsMutable();
+          requirements_.add(builderForValue.build());
+          onChanged();
+        } else {
+          requirementsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addRequirements(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.Builder builderForValue) {
+        if (requirementsBuilder_ == null) {
+          ensureRequirementsIsMutable();
+          requirements_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          requirementsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllRequirements(
+          java.lang.Iterable<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol> values) {
+        if (requirementsBuilder_ == null) {
+          ensureRequirementsIsMutable();
+          super.addAll(values, requirements_);
+          onChanged();
+        } else {
+          requirementsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearRequirements() {
+        if (requirementsBuilder_ == null) {
+          requirements_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          requirementsBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeRequirements(int index) {
+        if (requirementsBuilder_ == null) {
+          ensureRequirementsIsMutable();
+          requirements_.remove(index);
+          onChanged();
+        } else {
+          requirementsBuilder_.remove(index);
+        }
+        return this;
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.Builder getRequirementsBuilder(
+          int index) {
+        return getRequirementsFieldBuilder().getBuilder(index);
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocolOrBuilder getRequirementsOrBuilder(
+          int index) {
+        if (requirementsBuilder_ == null) {
+          return requirements_.get(index);  } else {
+          return requirementsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocolOrBuilder> 
+           getRequirementsOrBuilderList() {
+        if (requirementsBuilder_ != null) {
+          return requirementsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(requirements_);
+        }
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.Builder addRequirementsBuilder() {
+        return getRequirementsFieldBuilder().addBuilder(
+            stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.getDefaultInstance());
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.Builder addRequirementsBuilder(
+          int index) {
+        return getRequirementsFieldBuilder().addBuilder(
+            index, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.getDefaultInstance());
+      }
+      public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.Builder> 
+           getRequirementsBuilderList() {
+        return getRequirementsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocolOrBuilder> 
+          getRequirementsFieldBuilder() {
+        if (requirementsBuilder_ == null) {
+          requirementsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocolOrBuilder>(
+                  requirements_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          requirements_ = null;
+        }
+        return requirementsBuilder_;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:RequirementSet)
+    }
+    
+    static {
+      defaultInstance = new RequirementSet(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:RequirementSet)
+  }
+  
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_QuestPackage_descriptor;
   private static
@@ -8205,6 +12068,31 @@ public final class QuestProtobuf {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_ItemProtocol_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_ConversationPackage_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ConversationPackage_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_Conversation_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Conversation_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_ConversationNode_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ConversationNode_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_Connection_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Connection_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_RequirementSet_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_RequirementSet_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -8243,15 +12131,27 @@ public final class QuestProtobuf {
       "col\"C\n\013MapProtocol\022\013\n\003uid\030\001 \002(\003\022\030\n\020gener" +
       "ateIfNeeded\030\002 \002(\010\022\r\n\005range\030\003 \002(\001\"G\n\014Item" +
       "Protocol\022\017\n\007version\030\001 \002(\005\022&\n\tlevelSpec\030\002" +
-      " \002(\0162\023.LevelSpecification*\274\001\n\nActionType",
-      "\022\010\n\004KILL\020\000\022\r\n\tMOVE_AREA\020\001\022\025\n\021APPROACHED_" +
-      "OBJECT\020\002\022\024\n\020PICKED_UP_OBJECT\020\003\022\025\n\021ENTER_" +
-      "CITY_LIMITS\020\004\022\014\n\010LEVEL_UP\020\005\022\016\n\nEQUIP_ITE" +
-      "M\020\006\022\014\n\010USE_ITEM\020\007\022\n\n\006ATTACK\020\010\022\031\n\025CONVERS" +
-      "ATION_NODE_HIT\020\t*5\n\032SpawnAreaTypeSpecifi" +
-      "cation\022\t\n\005LOCAL\020\000\022\014\n\010DISTANCE\020\001*,\n\022Level" +
-      "Specification\022\013\n\007MINIMUM\020\000\022\t\n\005EXACT\020\001B!\n" +
-      "\037stsquestbuilder.protocolbuffers"
+      " \002(\0162\023.LevelSpecification\";\n\023Conversatio",
+      "nPackage\022$\n\rconversations\030\001 \003(\0132\r.Conver" +
+      "sation\"R\n\014Conversation\022#\n\010allNodes\030\001 \003(\013" +
+      "2\021.ConversationNode\022\014\n\004name\030\002 \001(\t\022\017\n\007cre" +
+      "ator\030\003 \001(\t\"\231\001\n\020ConversationNode\022\014\n\004text\030" +
+      "\001 \002(\t\022\014\n\004name\030\002 \002(\t\022\013\n\003uid\030\003 \002(\003\022\t\n\001X\030\004 " +
+      "\002(\005\022\t\n\001Y\030\005 \002(\005\022 \n\013connections\030\006 \003(\0132\013.Co" +
+      "nnection\022$\n\006blocks\030\007 \003(\0132\024.StatusBlockPr" +
+      "otocol\"T\n\nConnection\022\016\n\006nodeId\030\001 \002(\003\022\014\n\004" +
+      "text\030\002 \002(\t\022(\n\017requirementSets\030\003 \003(\0132\017.Re" +
+      "quirementSet\"@\n\016RequirementSet\022.\n\014requir",
+      "ements\030\001 \003(\0132\030.StatusCheckableProtocol*\274" +
+      "\001\n\nActionType\022\010\n\004KILL\020\000\022\r\n\tMOVE_AREA\020\001\022\025" +
+      "\n\021APPROACHED_OBJECT\020\002\022\024\n\020PICKED_UP_OBJEC" +
+      "T\020\003\022\025\n\021ENTER_CITY_LIMITS\020\004\022\014\n\010LEVEL_UP\020\005" +
+      "\022\016\n\nEQUIP_ITEM\020\006\022\014\n\010USE_ITEM\020\007\022\n\n\006ATTACK" +
+      "\020\010\022\031\n\025CONVERSATION_NODE_HIT\020\t*5\n\032SpawnAr" +
+      "eaTypeSpecification\022\t\n\005LOCAL\020\000\022\014\n\010DISTAN" +
+      "CE\020\001*,\n\022LevelSpecification\022\013\n\007MINIMUM\020\001\022" +
+      "\t\n\005EXACT\020\002B!\n\037stsquestbuilder.protocolbu" +
+      "ffers"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -8346,6 +12246,46 @@ public final class QuestProtobuf {
               new java.lang.String[] { "Version", "LevelSpec", },
               stsquestbuilder.protocolbuffers.QuestProtobuf.ItemProtocol.class,
               stsquestbuilder.protocolbuffers.QuestProtobuf.ItemProtocol.Builder.class);
+          internal_static_ConversationPackage_descriptor =
+            getDescriptor().getMessageTypes().get(11);
+          internal_static_ConversationPackage_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_ConversationPackage_descriptor,
+              new java.lang.String[] { "Conversations", },
+              stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage.class,
+              stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage.Builder.class);
+          internal_static_Conversation_descriptor =
+            getDescriptor().getMessageTypes().get(12);
+          internal_static_Conversation_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Conversation_descriptor,
+              new java.lang.String[] { "AllNodes", "Name", "Creator", },
+              stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.class,
+              stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.Builder.class);
+          internal_static_ConversationNode_descriptor =
+            getDescriptor().getMessageTypes().get(13);
+          internal_static_ConversationNode_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_ConversationNode_descriptor,
+              new java.lang.String[] { "Text", "Name", "Uid", "X", "Y", "Connections", "Blocks", },
+              stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.class,
+              stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.Builder.class);
+          internal_static_Connection_descriptor =
+            getDescriptor().getMessageTypes().get(14);
+          internal_static_Connection_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Connection_descriptor,
+              new java.lang.String[] { "NodeId", "Text", "RequirementSets", },
+              stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.class,
+              stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.Builder.class);
+          internal_static_RequirementSet_descriptor =
+            getDescriptor().getMessageTypes().get(15);
+          internal_static_RequirementSet_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_RequirementSet_descriptor,
+              new java.lang.String[] { "Requirements", },
+              stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.class,
+              stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.Builder.class);
           return null;
         }
       };

@@ -7,7 +7,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-import stsquestbuilder.protocolbuffers.ConversationProtobuf;
+import stsquestbuilder.protocolbuffers.QuestProtobuf;
 
 /**
  *
@@ -37,7 +37,7 @@ public class Conversation {
         nodes.set(0);
     }
     
-    public Conversation(ConversationProtobuf.Conversation proto) {
+    public Conversation(QuestProtobuf.Conversation proto) {
         nodes = new SimpleIntegerProperty();
         name = new SimpleStringProperty();
         creator = new SimpleStringProperty();
@@ -47,7 +47,7 @@ public class Conversation {
         if(proto.hasCreator())
             creator.set(proto.getCreator());
         
-        for(ConversationProtobuf.ConversationNode c : proto.getAllNodesList()) {
+        for(QuestProtobuf.ConversationNode c : proto.getAllNodesList()) {
             addNode(new ConversationNode(c));
         }
     }
@@ -80,6 +80,8 @@ public class Conversation {
         
         nodeList.add(node);
         nodes.set(nodes.get() + 1);
+        
+        node.setConversation(this);
     }
     
     public void removeNode(ConversationNode node) {
@@ -119,8 +121,8 @@ public class Conversation {
      * Creates and returns a protobuf with the information from this conversation
      * @return 
      */
-    public ConversationProtobuf.Conversation getConversationAsProtobuf() {
-        ConversationProtobuf.Conversation.Builder builder = ConversationProtobuf.Conversation.newBuilder();
+    public QuestProtobuf.Conversation getConversationAsProtobuf() {
+        QuestProtobuf.Conversation.Builder builder = QuestProtobuf.Conversation.newBuilder();
         builder.setName(name.get());
         if(creator.get() != null)
             builder.setCreator(creator.get());
@@ -130,5 +132,10 @@ public class Conversation {
         }
         
         return builder.build();
+    }
+    
+    @Override
+    public String toString() {
+        return name.get();
     }
 }

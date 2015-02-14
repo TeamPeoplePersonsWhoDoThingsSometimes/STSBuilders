@@ -52,7 +52,7 @@ public class ConversationBuilderScreenController implements Initializable {
     
     public static void openConversationBuilderScreenForConversation(Conversation convo, STSQuestBuilder app) {
         Parent parent;
-        FXMLLoader loader = new FXMLLoader(ConversationNodeController.class.getResource("/stsquestbuilder/view/ConversationBuilderScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(ConversationBuilderScreenController.class.getResource("/stsquestbuilder/view/ConversationBuilderScreen.fxml"));
         try {
             parent = loader.load();
         } catch (IOException ex) {
@@ -430,13 +430,9 @@ public class ConversationBuilderScreenController implements Initializable {
             double height = idErrorMessage.getPrefHeight();
             if (!node.setID(nodeID.getText())) {
                 //display error message
-                nodeMessage.setLayoutY(nodeMessage.getLayoutY() + height);
-                nodeMessage.setPrefHeight(nodeMessage.getHeight() - height);
-                idErrorMessage.setVisible(true);
+                nodeID.setStyle("-fx-text-box-border: red ; -fx-focus-color: red ;");
             } else {
-                nodeMessage.setLayoutY(nodeMessage.getLayoutY() - height);
-                nodeMessage.setPrefHeight(nodeMessage.getHeight() + height);
-                idErrorMessage.setVisible(false);
+                nodeID.setStyle("");
             }
         });
         

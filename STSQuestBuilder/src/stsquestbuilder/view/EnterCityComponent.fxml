@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="83.0" prefWidth="270.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="stsquestbuilder.view.EnterCityComponentController">
+   <children>
+      <ChoiceBox fx:id="sizeSpecificationBox" layoutX="109.0" layoutY="14.0" prefWidth="150.0" />
+      <Label layoutX="11.0" layoutY="18.0" text="Size Specification: " />
+      <TextField fx:id="sizeField" layoutX="109.0" layoutY="46.0" />
+      <Label layoutX="82.0" layoutY="50.0" text="Size: " />
+   </children>
+</AnchorPane>

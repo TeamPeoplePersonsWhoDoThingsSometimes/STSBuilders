@@ -28,6 +28,11 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
 
+import java.io.PrintStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 import stsquestbuilder.protocolbuffers.QuestProtobuf.ActionType;
 import stsquestbuilder.STSQuestBuilder;
 import stsquestbuilder.model.*;
