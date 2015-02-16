@@ -95,19 +95,23 @@ public class ActionComponentController implements Initializable {
         
         typeSelector.setValue(type);
         
-        switch(objType) {
-            case ENEMY:
-                sub = (Enemy)DO;
-                break;
-            case AREA:
-                sub = (Area)DO;
-                break;
-            case ITEM:
-                sub = (Item)DO;
-                break;
-            case CONVERSATION_NODE:
-                sub = (ConversationNode)DO;
-                break;
+        try {
+            switch(objType) {
+                case ENEMY:
+                    sub = (Enemy)DO;
+                    break;
+                case AREA:
+                    sub = (Area)DO;
+                    break;
+                case ITEM:
+                    sub = (Item)DO;
+                    break;
+                case CONVERSATION_NODE:
+                    sub = (ConversationNode)DO;
+                    break;
+            }
+        } catch (ClassCastException excep) {
+            DO = DirectObjectFactory.buildObjectByType(type);
         }
         
         switchToActionType(type, DO);

@@ -91,6 +91,9 @@ public class DirectObjectFactory {
                 break;
         }
         
+        if (directObject == null)
+            directObject = new DirectObject(proto);
+        
         return directObject;
     }
     
