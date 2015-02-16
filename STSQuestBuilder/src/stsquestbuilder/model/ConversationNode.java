@@ -215,6 +215,7 @@ public class ConversationNode extends DirectObject {
     public boolean setID(String id) {
         if (strIdMap.containsKey(id) && (ID.get() == null || !ID.get().equals(id)))
             return false;
+        strIdMap.remove(ID.get());
         ID.set(id);
         strIdMap.put(id, this);
         return true;

@@ -217,6 +217,119 @@ public class ConversationBuilderScreenController implements Initializable {
             activeConversationNode = controller;
         }
         
+        /*
+        
+        wire up model to changes
+        
+        */
+        nodeID.textProperty().addListener(event -> {
+            if(setupData){
+                setupData = false; //do not act on setup changes
+                return;
+            }
+            double height = idErrorMessage.getPrefHeight();
+            if (!activeConversationNode.getConversationNode().setID(nodeID.getText())) {
+                //display error message
+                nodeID.setStyle("-fx-text-box-border: red ; -fx-focus-color: red ;");
+            } else {
+                nodeID.setStyle("");
+            }
+        });
+        
+        nodeMessage.textProperty().addListener(event -> {
+            if(setupData) return;
+            activeConversationNode.getConversationNode().setText(nodeMessage.getText());
+        });
+        
+        nodeStatusBlocks.setCellFactory(list -> {
+            //I don't know why, but the default text setup functionality is removed
+            //when a factory is provided, so this is neccesary
+            ListCell<StatusBlock> cell = new ListCell<StatusBlock>() {
+                @Override
+                protected void updateItem(StatusBlock item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if(item != null) {
+                        this.setText(item.toString());
+                    }
+                }
+            };
+            
+            cell.setOnMouseClicked(event -> {
+                selectedStatusBlock = cell.getItem();
+                nodeStatusBlock.setItems(selectedStatusBlock.getStatuses());
+                nodeCommands.setItems(selectedStatusBlock.getCommands());
+            });
+            return cell;
+        });
+        
+        nodeStatusBlock.setOnMouseClicked(event -> {
+            selectedStatus = nodeStatusBlock.getSelectionModel().getSelectedItem();
+            if(event.getClickCount() >= 2) {
+                StatusCheckableScreenController.openScreenForStatusCheck(selectedStatus);
+            }
+        });
+        
+        nodeCommands.setOnMouseClicked(event -> {
+            selectedCommand = nodeCommands.getSelectionModel().getSelectedItem();
+            if(event.getClickCount() >= 2) {
+                CommandScreenController.openCommandScreenControllerForCommand(selectedCommand);
+            }
+        });
+        
+        
+        /*
+        
+        wire model to changes
+        
+        */
+        alternativeText.textProperty().addListener(event -> {
+            activeAlternative.setText(alternativeText.getText());
+        });
+                
+        alternativeOptions.setCellFactory(list -> {
+            //Note- copied from display conversation method because I don't want to create an entirely new class for this...
+            //I don't know why, but the default text setup functionality is removed
+            //when a factory is provided, so this is neccesary
+            ListCell<ObservableList<StatusReference>> cell = new ListCell<ObservableList<StatusReference>>() {
+                @Override
+                protected void updateItem(ObservableList<StatusReference> item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if(item != null) {
+                        this.setText("Set: " + list.getItems().indexOf(item));
+                    }
+                }
+            };
+            
+            cell.setOnMouseClicked(event -> {
+                selectedRequirementBlock = cell.getItem();
+                alternativeSet.setItems(selectedRequirementBlock);
+            });
+            return cell;
+        });
+        
+        alternativeSet.setCellFactory(list -> {
+            //Note- copied from display conversation method because I don't want to create an entirely new class for this...
+            //I don't know why, but the default text setup functionality is removed
+            //when a factory is provided, so this is neccesary
+            ListCell<StatusReference> cell = new ListCell<StatusReference>() {
+                @Override
+                protected void updateItem(StatusReference item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if(item != null) {
+                        this.setText(item.toString());
+                    }
+                }
+            };
+            
+            cell.setOnMouseClicked(event -> {
+                selectedRequirement = cell.getItem();
+                if(event.getClickCount() >= 2) {
+                    StatusCheckableScreenController.openScreenForStatusCheck(selectedRequirement);
+                }
+            });
+            return cell;
+        });
+        
         ConversationNameBox.setText(conversation.getName());
     }
     
@@ -415,67 +528,12 @@ public class ConversationBuilderScreenController implements Initializable {
         clearSelectionColors();//this method assumes a selected conversation node, so we shouldn't color alternatives
         
         ConversationNode node = activeConversationNode.getConversationNode();
-        setupData = true;
         nodeID.setText(node.getID());
         nodeMessage.setText(node.getText());
         
         nodeStatusBlocks.setItems(node.getBlocks());
         nodeStatusBlock.setItems(null);
         nodeCommands.setItems(null);
-        
-        //wire up model to changes
-        setupData = false;
-        nodeID.textProperty().addListener(event -> {
-            if(setupData) return;//do not act on setup changes
-            double height = idErrorMessage.getPrefHeight();
-            if (!node.setID(nodeID.getText())) {
-                //display error message
-                nodeID.setStyle("-fx-text-box-border: red ; -fx-focus-color: red ;");
-            } else {
-                nodeID.setStyle("");
-            }
-        });
-        
-        nodeMessage.textProperty().addListener(event -> {
-            if(setupData) return;
-            node.setText(nodeMessage.getText());
-        });
-        
-        nodeStatusBlocks.setCellFactory(list -> {
-            //I don't know why, but the default text setup functionality is removed
-            //when a factory is provided, so this is neccesary
-            ListCell<StatusBlock> cell = new ListCell<StatusBlock>() {
-                @Override
-                protected void updateItem(StatusBlock item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if(item != null) {
-                        this.setText(item.toString());
-                    }
-                }
-            };
-            
-            cell.setOnMouseClicked(event -> {
-                selectedStatusBlock = cell.getItem();
-                nodeStatusBlock.setItems(selectedStatusBlock.getStatuses());
-                nodeCommands.setItems(selectedStatusBlock.getCommands());
-            });
-            return cell;
-        });
-        
-        nodeStatusBlock.setOnMouseClicked(event -> {
-            selectedStatus = nodeStatusBlock.getSelectionModel().getSelectedItem();
-            if(event.getClickCount() >= 2) {
-                StatusCheckableScreenController.openScreenForStatusCheck(selectedStatus);
-            }
-        });
-        
-        nodeCommands.setOnMouseClicked(event -> {
-            selectedCommand = nodeCommands.getSelectionModel().getSelectedItem();
-            if(event.getClickCount() >= 2) {
-                CommandScreenController.openCommandScreenControllerForCommand(selectedCommand);
-            }
-        });
-        
         
         if (!isNodeEditorOpened) {
             double height = nodePanel.getHeight();
@@ -496,54 +554,7 @@ public class ConversationBuilderScreenController implements Initializable {
         alternativeText.setText(activeAlternative.getText());
         alternativeOptions.setItems(activeAlternative.getRequirements());
         
-        //wire model to changes
-        alternativeText.textProperty().addListener(event -> {
-            activeAlternative.setText(alternativeText.getText());
-        });
-                
-        alternativeOptions.setCellFactory(list -> {
-            //Note- copied from display conversation method because I don't want to create an entirely new class for this...
-            //I don't know why, but the default text setup functionality is removed
-            //when a factory is provided, so this is neccesary
-            ListCell<ObservableList<StatusReference>> cell = new ListCell<ObservableList<StatusReference>>() {
-                @Override
-                protected void updateItem(ObservableList<StatusReference> item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if(item != null) {
-                        this.setText("Set: " + list.getItems().indexOf(item));
-                    }
-                }
-            };
-            
-            cell.setOnMouseClicked(event -> {
-                selectedRequirementBlock = cell.getItem();
-                alternativeSet.setItems(selectedRequirementBlock);
-            });
-            return cell;
-        });
         
-        alternativeSet.setCellFactory(list -> {
-            //Note- copied from display conversation method because I don't want to create an entirely new class for this...
-            //I don't know why, but the default text setup functionality is removed
-            //when a factory is provided, so this is neccesary
-            ListCell<StatusReference> cell = new ListCell<StatusReference>() {
-                @Override
-                protected void updateItem(StatusReference item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if(item != null) {
-                        this.setText(item.toString());
-                    }
-                }
-            };
-            
-            cell.setOnMouseClicked(event -> {
-                selectedRequirement = cell.getItem();
-                if(event.getClickCount() >= 2) {
-                    StatusCheckableScreenController.openScreenForStatusCheck(selectedRequirement);
-                }
-            });
-            return cell;
-        });
         
         if(!isAlternativeEditorOpened) {
             double height = alternativePanel.getHeight();
@@ -567,6 +578,7 @@ public class ConversationBuilderScreenController implements Initializable {
         }
         
         selectedStatusBlock = null;
+        setupData = true;
     }
     
     /**
