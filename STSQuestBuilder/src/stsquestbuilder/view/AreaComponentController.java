@@ -18,6 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import stsquestbuilder.model.Area;
+import stsquestbuilder.protocolbuffers.QuestProtobuf.MapType;
 
 /**
  * FXML Controller class
@@ -51,7 +52,7 @@ public class AreaComponentController implements Initializable {
     private Pane backPane;
     
     @FXML
-    private ChoiceBox<Area.MapType> areaType;
+    private ChoiceBox<MapType> areaType;
     
     @FXML
     private TextField nameField;
@@ -67,7 +68,7 @@ public class AreaComponentController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        areaType.setItems(FXCollections.observableArrayList(Area.MapType.values()));
+        areaType.setItems(FXCollections.observableArrayList(MapType.values()));
     }
     
     public void postSetupOp() {

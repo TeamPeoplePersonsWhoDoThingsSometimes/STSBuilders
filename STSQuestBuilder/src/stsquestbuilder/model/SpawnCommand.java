@@ -4,6 +4,7 @@ import stsquestbuilder.model.DirectObject;
 import stsquestbuilder.protocolbuffers.QuestProtobuf;
 
 import stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol;
+import stsquestbuilder.protocolbuffers.QuestProtobuf.MapType;
 
 /**
  * Class has many optional values as opposed to using polymorphism in order to easily
@@ -12,7 +13,7 @@ import stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol;
  */
 public class SpawnCommand {
     
-    private Area.MapType spawnArea;
+    private MapType spawnArea;
     private QuestProtobuf.SpawnAreaTypeSpecification specification;
     private int range;
     private int quantity;//not used on area spawns
@@ -24,13 +25,13 @@ public class SpawnCommand {
 
     //preserve default
     public SpawnCommand() {
-        spawnArea = Area.MapType.CITY;
+        spawnArea = MapType.CITY;
         range = 1;
         quantity = 1;
     }
     
     public SpawnCommand(SpawnCommandProtocol proto) {
-        spawnArea = Area.MapType.valueOf(proto.getSpawnArea());
+        spawnArea = MapType.valueOf(proto.getSpawnArea());
         range = proto.getRange();
         specification = proto.getSpawnSpecification();
         
@@ -47,7 +48,7 @@ public class SpawnCommand {
         }
     }
     
-    public Area.MapType getSpawnArea() {
+    public MapType getSpawnArea() {
         return spawnArea;
     }
 
@@ -55,7 +56,7 @@ public class SpawnCommand {
      * Sets the area in which to spawn
      * @param spawnArea 
      */
-    public void setSpawnArea(Area.MapType spawnArea) {
+    public void setSpawnArea(MapType spawnArea) {
         this.spawnArea = spawnArea;
     }
 

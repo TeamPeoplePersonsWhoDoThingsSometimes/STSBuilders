@@ -101,6 +101,78 @@ public final class QuestProtobuf {
     // @@protoc_insertion_point(enum_scope:ActionType)
   }
   
+  public enum MapType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    CITY(0, 0),
+    PATH(1, 1),
+    DUNGEON(2, 2),
+    ;
+    
+    public static final int CITY_VALUE = 0;
+    public static final int PATH_VALUE = 1;
+    public static final int DUNGEON_VALUE = 2;
+    
+    
+    public final int getNumber() { return value; }
+    
+    public static MapType valueOf(int value) {
+      switch (value) {
+        case 0: return CITY;
+        case 1: return PATH;
+        case 2: return DUNGEON;
+        default: return null;
+      }
+    }
+    
+    public static com.google.protobuf.Internal.EnumLiteMap<MapType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<MapType>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<MapType>() {
+            public MapType findValueByNumber(int number) {
+              return MapType.valueOf(number);
+            }
+          };
+    
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return stsquestbuilder.protocolbuffers.QuestProtobuf.getDescriptor().getEnumTypes().get(1);
+    }
+    
+    private static final MapType[] VALUES = {
+      CITY, PATH, DUNGEON, 
+    };
+    
+    public static MapType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+    
+    private final int index;
+    private final int value;
+    
+    private MapType(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+    
+    // @@protoc_insertion_point(enum_scope:MapType)
+  }
+  
   public enum SpawnAreaTypeSpecification
       implements com.google.protobuf.ProtocolMessageEnum {
     LOCAL(0, 0),
@@ -143,7 +215,7 @@ public final class QuestProtobuf {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return stsquestbuilder.protocolbuffers.QuestProtobuf.getDescriptor().getEnumTypes().get(1);
+      return stsquestbuilder.protocolbuffers.QuestProtobuf.getDescriptor().getEnumTypes().get(2);
     }
     
     private static final SpawnAreaTypeSpecification[] VALUES = {
@@ -212,7 +284,7 @@ public final class QuestProtobuf {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return stsquestbuilder.protocolbuffers.QuestProtobuf.getDescriptor().getEnumTypes().get(2);
+      return stsquestbuilder.protocolbuffers.QuestProtobuf.getDescriptor().getEnumTypes().get(3);
     }
     
     private static final LevelSpecification[] VALUES = {
@@ -12147,11 +12219,12 @@ public final class QuestProtobuf {
       "\n\021APPROACHED_OBJECT\020\002\022\024\n\020PICKED_UP_OBJEC" +
       "T\020\003\022\025\n\021ENTER_CITY_LIMITS\020\004\022\014\n\010LEVEL_UP\020\005" +
       "\022\016\n\nEQUIP_ITEM\020\006\022\014\n\010USE_ITEM\020\007\022\n\n\006ATTACK" +
-      "\020\010\022\031\n\025CONVERSATION_NODE_HIT\020\t*5\n\032SpawnAr" +
-      "eaTypeSpecification\022\t\n\005LOCAL\020\000\022\014\n\010DISTAN" +
-      "CE\020\001*,\n\022LevelSpecification\022\013\n\007MINIMUM\020\001\022" +
-      "\t\n\005EXACT\020\002B!\n\037stsquestbuilder.protocolbu" +
-      "ffers"
+      "\020\010\022\031\n\025CONVERSATION_NODE_HIT\020\t**\n\007MapType" +
+      "\022\010\n\004CITY\020\000\022\010\n\004PATH\020\001\022\013\n\007DUNGEON\020\002*5\n\032Spa" +
+      "wnAreaTypeSpecification\022\t\n\005LOCAL\020\000\022\014\n\010DI" +
+      "STANCE\020\001*,\n\022LevelSpecification\022\013\n\007MINIMU" +
+      "M\020\001\022\t\n\005EXACT\020\002B!\n\037stsquestbuilder.protoc",
+      "olbuffers"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

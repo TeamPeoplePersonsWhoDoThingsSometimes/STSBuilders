@@ -2,6 +2,7 @@ package stsquestbuilder.model;
 
 import stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol;
 import stsquestbuilder.protocolbuffers.QuestProtobuf.MapProtocol;
+import stsquestbuilder.protocolbuffers.QuestProtobuf.MapType;
 
 import java.util.HashMap;
 
@@ -15,12 +16,6 @@ import java.util.HashMap;
  * @author William
  */
 public class Area extends DirectObject {
-    
-    public enum MapType {
-        CITY,
-        PATH,
-        DUNGEON;
-    }
     
     public static Area getAreaById(long id) {
         return areaIdMap.get(id);
