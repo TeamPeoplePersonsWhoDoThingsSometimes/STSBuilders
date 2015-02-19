@@ -3725,9 +3725,9 @@ public final class QuestProtobuf {
   public interface SpawnCommandProtocolOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // required string spawnArea = 1;
+    // required .MapType spawnArea = 1;
     boolean hasSpawnArea();
-    String getSpawnArea();
+    stsquestbuilder.protocolbuffers.QuestProtobuf.MapType getSpawnArea();
     
     // required .SpawnAreaTypeSpecification spawnSpecification = 2;
     boolean hasSpawnSpecification();
@@ -3781,36 +3781,14 @@ public final class QuestProtobuf {
     }
     
     private int bitField0_;
-    // required string spawnArea = 1;
+    // required .MapType spawnArea = 1;
     public static final int SPAWNAREA_FIELD_NUMBER = 1;
-    private java.lang.Object spawnArea_;
+    private stsquestbuilder.protocolbuffers.QuestProtobuf.MapType spawnArea_;
     public boolean hasSpawnArea() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public String getSpawnArea() {
-      java.lang.Object ref = spawnArea_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          spawnArea_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getSpawnAreaBytes() {
-      java.lang.Object ref = spawnArea_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        spawnArea_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public stsquestbuilder.protocolbuffers.QuestProtobuf.MapType getSpawnArea() {
+      return spawnArea_;
     }
     
     // required .SpawnAreaTypeSpecification spawnSpecification = 2;
@@ -3873,7 +3851,7 @@ public final class QuestProtobuf {
     }
     
     private void initFields() {
-      spawnArea_ = "";
+      spawnArea_ = stsquestbuilder.protocolbuffers.QuestProtobuf.MapType.CITY;
       spawnSpecification_ = stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnAreaTypeSpecification.LOCAL;
       range_ = 0;
       area_ = stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.getDefaultInstance();
@@ -3923,7 +3901,7 @@ public final class QuestProtobuf {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getSpawnAreaBytes());
+        output.writeEnum(1, spawnArea_.getNumber());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeEnum(2, spawnSpecification_.getNumber());
@@ -3951,7 +3929,7 @@ public final class QuestProtobuf {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getSpawnAreaBytes());
+          .computeEnumSize(1, spawnArea_.getNumber());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -4100,7 +4078,7 @@ public final class QuestProtobuf {
       
       public Builder clear() {
         super.clear();
-        spawnArea_ = "";
+        spawnArea_ = stsquestbuilder.protocolbuffers.QuestProtobuf.MapType.CITY;
         bitField0_ = (bitField0_ & ~0x00000001);
         spawnSpecification_ = stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnAreaTypeSpecification.LOCAL;
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -4293,9 +4271,15 @@ public final class QuestProtobuf {
               }
               break;
             }
-            case 10: {
-              bitField0_ |= 0x00000001;
-              spawnArea_ = input.readBytes();
+            case 8: {
+              int rawValue = input.readEnum();
+              stsquestbuilder.protocolbuffers.QuestProtobuf.MapType value = stsquestbuilder.protocolbuffers.QuestProtobuf.MapType.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(1, rawValue);
+              } else {
+                bitField0_ |= 0x00000001;
+                spawnArea_ = value;
+              }
               break;
             }
             case 16: {
@@ -4347,40 +4331,28 @@ public final class QuestProtobuf {
       
       private int bitField0_;
       
-      // required string spawnArea = 1;
-      private java.lang.Object spawnArea_ = "";
+      // required .MapType spawnArea = 1;
+      private stsquestbuilder.protocolbuffers.QuestProtobuf.MapType spawnArea_ = stsquestbuilder.protocolbuffers.QuestProtobuf.MapType.CITY;
       public boolean hasSpawnArea() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public String getSpawnArea() {
-        java.lang.Object ref = spawnArea_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          spawnArea_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.MapType getSpawnArea() {
+        return spawnArea_;
       }
-      public Builder setSpawnArea(String value) {
+      public Builder setSpawnArea(stsquestbuilder.protocolbuffers.QuestProtobuf.MapType value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000001;
         spawnArea_ = value;
         onChanged();
         return this;
       }
       public Builder clearSpawnArea() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        spawnArea_ = getDefaultInstance().getSpawnArea();
+        spawnArea_ = stsquestbuilder.protocolbuffers.QuestProtobuf.MapType.CITY;
         onChanged();
         return this;
-      }
-      void setSpawnArea(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000001;
-        spawnArea_ = value;
-        onChanged();
       }
       
       // required .SpawnAreaTypeSpecification spawnSpecification = 2;
@@ -12184,47 +12156,47 @@ public final class QuestProtobuf {
       "epProtocol\"x\n\023StatusBlockProtocol\022\014\n\004nam" +
       "e\030\001 \002(\t\022*\n\010statuses\030\002 \003(\0132\030.StatusChecka" +
       "bleProtocol\022\'\n\010commands\030\003 \003(\0132\025.SpawnCom",
-      "mandProtocol\"\341\001\n\024SpawnCommandProtocol\022\021\n" +
-      "\tspawnArea\030\001 \002(\t\0227\n\022spawnSpecification\030\002" +
-      " \002(\0162\033.SpawnAreaTypeSpecification\022\r\n\005ran" +
-      "ge\030\003 \002(\005\022#\n\004area\030\004 \001(\0132\025.DirectObjectPro" +
-      "tocol\022#\n\004item\030\005 \001(\0132\025.DirectObjectProtoc" +
-      "ol\022$\n\005enemy\030\006 \001(\0132\025.DirectObjectProtocol" +
-      "\"i\n\022StatusStepProtocol\022\014\n\004name\030\001 \002(\t\022\023\n\013" +
-      "description\030\002 \002(\t\0220\n\016statusesInStep\030\003 \003(" +
-      "\0132\030.StatusCheckableProtocol\"J\n\027StatusChe" +
-      "ckableProtocol\022\037\n\006action\030\001 \001(\0132\017.ActionP",
-      "rotocol\022\016\n\006amount\030\002 \001(\005\"R\n\016ActionProtoco" +
-      "l\022\031\n\004type\030\001 \002(\0162\013.ActionType\022%\n\006target\030\002" +
-      " \001(\0132\025.DirectObjectProtocol\"\205\001\n\024DirectOb" +
-      "jectProtocol\022\014\n\004type\030\001 \001(\t\022\014\n\004name\030\002 \002(\t" +
-      "\022\031\n\003map\030\003 \001(\0132\014.MapProtocol\022\016\n\006amount\030\004 " +
-      "\001(\005\022&\n\017itemInformation\030\005 \001(\0132\r.ItemProto" +
-      "col\"C\n\013MapProtocol\022\013\n\003uid\030\001 \002(\003\022\030\n\020gener" +
-      "ateIfNeeded\030\002 \002(\010\022\r\n\005range\030\003 \002(\001\"G\n\014Item" +
-      "Protocol\022\017\n\007version\030\001 \002(\005\022&\n\tlevelSpec\030\002" +
-      " \002(\0162\023.LevelSpecification\";\n\023Conversatio",
-      "nPackage\022$\n\rconversations\030\001 \003(\0132\r.Conver" +
-      "sation\"R\n\014Conversation\022#\n\010allNodes\030\001 \003(\013" +
-      "2\021.ConversationNode\022\014\n\004name\030\002 \001(\t\022\017\n\007cre" +
-      "ator\030\003 \001(\t\"\231\001\n\020ConversationNode\022\014\n\004text\030" +
-      "\001 \002(\t\022\014\n\004name\030\002 \002(\t\022\013\n\003uid\030\003 \002(\003\022\t\n\001X\030\004 " +
-      "\002(\005\022\t\n\001Y\030\005 \002(\005\022 \n\013connections\030\006 \003(\0132\013.Co" +
-      "nnection\022$\n\006blocks\030\007 \003(\0132\024.StatusBlockPr" +
-      "otocol\"T\n\nConnection\022\016\n\006nodeId\030\001 \002(\003\022\014\n\004" +
-      "text\030\002 \002(\t\022(\n\017requirementSets\030\003 \003(\0132\017.Re" +
-      "quirementSet\"@\n\016RequirementSet\022.\n\014requir",
-      "ements\030\001 \003(\0132\030.StatusCheckableProtocol*\274" +
-      "\001\n\nActionType\022\010\n\004KILL\020\000\022\r\n\tMOVE_AREA\020\001\022\025" +
-      "\n\021APPROACHED_OBJECT\020\002\022\024\n\020PICKED_UP_OBJEC" +
-      "T\020\003\022\025\n\021ENTER_CITY_LIMITS\020\004\022\014\n\010LEVEL_UP\020\005" +
-      "\022\016\n\nEQUIP_ITEM\020\006\022\014\n\010USE_ITEM\020\007\022\n\n\006ATTACK" +
-      "\020\010\022\031\n\025CONVERSATION_NODE_HIT\020\t**\n\007MapType" +
-      "\022\010\n\004CITY\020\000\022\010\n\004PATH\020\001\022\013\n\007DUNGEON\020\002*5\n\032Spa" +
-      "wnAreaTypeSpecification\022\t\n\005LOCAL\020\000\022\014\n\010DI" +
-      "STANCE\020\001*,\n\022LevelSpecification\022\013\n\007MINIMU" +
-      "M\020\001\022\t\n\005EXACT\020\002B!\n\037stsquestbuilder.protoc",
-      "olbuffers"
+      "mandProtocol\"\353\001\n\024SpawnCommandProtocol\022\033\n" +
+      "\tspawnArea\030\001 \002(\0162\010.MapType\0227\n\022spawnSpeci" +
+      "fication\030\002 \002(\0162\033.SpawnAreaTypeSpecificat" +
+      "ion\022\r\n\005range\030\003 \002(\005\022#\n\004area\030\004 \001(\0132\025.Direc" +
+      "tObjectProtocol\022#\n\004item\030\005 \001(\0132\025.DirectOb" +
+      "jectProtocol\022$\n\005enemy\030\006 \001(\0132\025.DirectObje" +
+      "ctProtocol\"i\n\022StatusStepProtocol\022\014\n\004name" +
+      "\030\001 \002(\t\022\023\n\013description\030\002 \002(\t\0220\n\016statusesI" +
+      "nStep\030\003 \003(\0132\030.StatusCheckableProtocol\"J\n" +
+      "\027StatusCheckableProtocol\022\037\n\006action\030\001 \001(\013",
+      "2\017.ActionProtocol\022\016\n\006amount\030\002 \001(\005\"R\n\016Act" +
+      "ionProtocol\022\031\n\004type\030\001 \002(\0162\013.ActionType\022%" +
+      "\n\006target\030\002 \001(\0132\025.DirectObjectProtocol\"\205\001" +
+      "\n\024DirectObjectProtocol\022\014\n\004type\030\001 \001(\t\022\014\n\004" +
+      "name\030\002 \002(\t\022\031\n\003map\030\003 \001(\0132\014.MapProtocol\022\016\n" +
+      "\006amount\030\004 \001(\005\022&\n\017itemInformation\030\005 \001(\0132\r" +
+      ".ItemProtocol\"C\n\013MapProtocol\022\013\n\003uid\030\001 \002(" +
+      "\003\022\030\n\020generateIfNeeded\030\002 \002(\010\022\r\n\005range\030\003 \002" +
+      "(\001\"G\n\014ItemProtocol\022\017\n\007version\030\001 \002(\005\022&\n\tl" +
+      "evelSpec\030\002 \002(\0162\023.LevelSpecification\";\n\023C",
+      "onversationPackage\022$\n\rconversations\030\001 \003(" +
+      "\0132\r.Conversation\"R\n\014Conversation\022#\n\010allN" +
+      "odes\030\001 \003(\0132\021.ConversationNode\022\014\n\004name\030\002 " +
+      "\001(\t\022\017\n\007creator\030\003 \001(\t\"\231\001\n\020ConversationNod" +
+      "e\022\014\n\004text\030\001 \002(\t\022\014\n\004name\030\002 \002(\t\022\013\n\003uid\030\003 \002" +
+      "(\003\022\t\n\001X\030\004 \002(\005\022\t\n\001Y\030\005 \002(\005\022 \n\013connections\030" +
+      "\006 \003(\0132\013.Connection\022$\n\006blocks\030\007 \003(\0132\024.Sta" +
+      "tusBlockProtocol\"T\n\nConnection\022\016\n\006nodeId" +
+      "\030\001 \002(\003\022\014\n\004text\030\002 \002(\t\022(\n\017requirementSets\030" +
+      "\003 \003(\0132\017.RequirementSet\"@\n\016RequirementSet",
+      "\022.\n\014requirements\030\001 \003(\0132\030.StatusCheckable" +
+      "Protocol*\274\001\n\nActionType\022\010\n\004KILL\020\000\022\r\n\tMOV" +
+      "E_AREA\020\001\022\025\n\021APPROACHED_OBJECT\020\002\022\024\n\020PICKE" +
+      "D_UP_OBJECT\020\003\022\025\n\021ENTER_CITY_LIMITS\020\004\022\014\n\010" +
+      "LEVEL_UP\020\005\022\016\n\nEQUIP_ITEM\020\006\022\014\n\010USE_ITEM\020\007" +
+      "\022\n\n\006ATTACK\020\010\022\031\n\025CONVERSATION_NODE_HIT\020\t*" +
+      "*\n\007MapType\022\010\n\004CITY\020\000\022\010\n\004PATH\020\001\022\013\n\007DUNGEO" +
+      "N\020\002*5\n\032SpawnAreaTypeSpecification\022\t\n\005LOC" +
+      "AL\020\000\022\014\n\010DISTANCE\020\001*,\n\022LevelSpecification" +
+      "\022\013\n\007MINIMUM\020\001\022\t\n\005EXACT\020\002B!\n\037stsquestbuil",
+      "der.protocolbuffers"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

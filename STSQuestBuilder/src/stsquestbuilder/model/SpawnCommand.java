@@ -19,7 +19,7 @@ public class SpawnCommand {
     private int quantity;//not used on area spawns
     
     //following fields are singularly exclusive
-    private Area areaToSpawn;
+    //private Area areaToSpawn;
     private Item itemToSpawn;
     private Enemy enemyToSpawn;
 
@@ -31,13 +31,13 @@ public class SpawnCommand {
     }
     
     public SpawnCommand(SpawnCommandProtocol proto) {
-        spawnArea = MapType.valueOf(proto.getSpawnArea());
+        spawnArea = proto.getSpawnArea();
         range = proto.getRange();
         specification = proto.getSpawnSpecification();
         
-        if (proto.hasArea()) {
+        /*if (proto.hasArea()) {
             areaToSpawn = new Area(proto.getArea());
-        }
+        }*/
         
         if (proto.hasItem()) {
             itemToSpawn = new Item(proto.getItem());
@@ -76,19 +76,19 @@ public class SpawnCommand {
         this.quantity = quantity;
     }
 
-    public Area getAreaToSpawn() {
+    /*public Area getAreaToSpawn() {
         return areaToSpawn;
-    }
+    }*/
 
     /**
      * Sets the area which will be spawned
      * @param areaToSpawn 
      */
-    public void setAreaToSpawn(Area areaToSpawn) {
+    /*public void setAreaToSpawn(Area areaToSpawn) {
         this.areaToSpawn = areaToSpawn;
         itemToSpawn = null;
         enemyToSpawn = null;
-    }
+    }*/
 
     public Item getItemToSpawn() {
         return itemToSpawn;
@@ -96,7 +96,7 @@ public class SpawnCommand {
 
     public void setItemToSpawn(Item itemToSpawn) {
         this.itemToSpawn = itemToSpawn;
-        areaToSpawn = null;
+        //areaToSpawn = null;
         enemyToSpawn = null;
     }
 
@@ -106,16 +106,16 @@ public class SpawnCommand {
 
     public void setEnemyToSpawn(Enemy enemyToSpawn) {
         this.enemyToSpawn = enemyToSpawn;
-        areaToSpawn = null;
+        //areaToSpawn = null;
         itemToSpawn = null;
     }
     
     @Override
     public String toString() {
         DirectObject.ObjectType type = commandType();
-        if(type.equals(DirectObject.ObjectType.AREA)) {
+        /*if(type.equals(DirectObject.ObjectType.AREA)) {
             return "Area Spawn";
-        } else if(type.equals(DirectObject.ObjectType.ENEMY)) {
+        } else*/ if(type.equals(DirectObject.ObjectType.ENEMY)) {
             return "Enemy Spawn";
         } else if(type.equals(DirectObject.ObjectType.ITEM)) {
             return "Item Spawn";
@@ -128,9 +128,9 @@ public class SpawnCommand {
      * @return the command's type int 
      */
     public DirectObject.ObjectType commandType() {
-        if(areaToSpawn != null) {
+        /*if(areaToSpawn != null) {
             return DirectObject.ObjectType.AREA;
-        } else if(enemyToSpawn != null) {
+        } else*/ if(enemyToSpawn != null) {
             return DirectObject.ObjectType.ENEMY;
         } else if(itemToSpawn != null) {
             return DirectObject.ObjectType.ITEM;
@@ -151,12 +151,15 @@ public class SpawnCommand {
         
         builder.setRange(range);
         builder.setSpawnSpecification(specification);
-        if (commandType().equals(DirectObject.ObjectType.AREA))
+        /*if (commandType().equals(DirectObject.ObjectType.AREA))
             builder.setArea(areaToSpawn.getDirectObjectAsProtobuf());
-        else if (commandType().equals(DirectObject.ObjectType.ENEMY))
+        else*/
+        if (commandType().equals(DirectObject.ObjectType.ENEMY))
             builder.setEnemy(enemyToSpawn.getDirectObjectAsProtobuf());
+        else if (commandType().equals(DirectObject.ObjectType.ITEM))
+            builder.setItem(itemToSpawn.getDirectObjectAsProtobuf());
         
-        builder.setSpawnArea(spawnArea.toString());
+        builder.setSpawnArea(spawnArea);
         return builder.build();
     }
     

@@ -125,10 +125,10 @@ public class CommandScreenController implements Initializable {
         
         switch(commandTypeDropdown.getValue()) {
             case AREA:
-                if (command.getAreaToSpawn() == null) {
+                /*if (command.getAreaToSpawn() == null) {
                     command.setAreaToSpawn(new Area());
                 }
-                subRoot = AreaComponentController.openAreaComponentController(command.getAreaToSpawn()).getRoot();
+                subRoot = AreaComponentController.openAreaComponentController(command.getAreaToSpawn()).getRoot();*/
                 break;
             case ITEM:
                 
