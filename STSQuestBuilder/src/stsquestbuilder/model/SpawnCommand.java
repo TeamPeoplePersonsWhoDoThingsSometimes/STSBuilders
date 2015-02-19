@@ -38,10 +38,9 @@ public class SpawnCommand {
             areaToSpawn = new Area(proto.getArea());
         }
         
-        //TODO items not yet implemented
-        /*if (proto.hasItem()) {
+        if (proto.hasItem()) {
             itemToSpawn = new Item(proto.getItem());
-        }*/
+        }
         
         if(proto.hasEnemy()) {
             enemyToSpawn = new Enemy(proto.getEnemy());
