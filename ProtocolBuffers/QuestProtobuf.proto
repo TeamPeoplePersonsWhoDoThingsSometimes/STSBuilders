@@ -4,6 +4,29 @@ enum ActionType {
 	KILL = 0;
 	MOVE_AREA = 1;
 	APPROACHED_OBJECT = 2;
+	PICKED_UP_OBJECT = 3;
+	ENTER_CITY_LIMITS = 4;
+	LEVEL_UP = 5;
+	EQUIP_ITEM = 6;
+	USE_ITEM = 7;
+	ATTACK = 8;
+	CONVERSATION_NODE_HIT = 9;
+}
+
+enum MapType {
+	CITY = 0;
+	PATH = 1;
+	DUNGEON = 2;
+}
+
+enum SpawnAreaTypeSpecification {
+	LOCAL = 0;
+	DISTANCE = 1;
+}
+
+enum LevelSpecification {
+	MINIMUM = 1;
+	EXACT = 2;
 }
 
 message QuestPackage {
@@ -11,13 +34,30 @@ message QuestPackage {
 }
 
 message BuilderPackage {
-    repeated DirectObjectProtocol actions = 1;
+    repeated DirectObjectProtocol enemies = 1;
+	repeated DirectObjectProtocol weapons = 2;
+	repeated DirectObjectProtocol hacks = 3;
 }
 
 message QuestProtocol {
     required string name = 1;
 	optional string creator = 3;
 	repeated StatusStepProtocol steps = 2;
+}
+
+message StatusBlockProtocol {
+	required string name = 1;
+	repeated StatusCheckableProtocol statuses = 2;
+	repeated SpawnCommandProtocol commands = 3;
+}
+
+message SpawnCommandProtocol {
+	required string spawnArea = 1;
+	required SpawnAreaTypeSpecification spawnSpecification = 2;
+	required int32 range = 3;
+	optional DirectObjectProtocol area = 4;
+	optional DirectObjectProtocol item = 5;
+	optional DirectObjectProtocol enemy = 6;
 }
 
 message StatusStepProtocol {
@@ -39,4 +79,53 @@ message ActionProtocol {
 message DirectObjectProtocol {
 	optional string type = 1;
 	required string name = 2;
+	optional MapProtocol map = 3;
+	optional int32 amount = 4;
+	optional ItemProtocol itemInformation = 5;
+}
+
+message MapProtocol {
+	required int64 uid = 1;
+	required bool generateIfNeeded = 2;
+	required double range = 3;
+}
+
+message ItemProtocol {
+	required int32 version = 1;
+	required LevelSpecification levelSpec = 2;
+}
+
+
+
+
+
+
+message ConversationPackage {
+    repeated Conversation conversations = 1;
+}
+
+message Conversation {
+	repeated ConversationNode allNodes = 1;
+	optional string name = 2;
+	optional string creator = 3;
+}
+
+message ConversationNode {
+    required string text = 1;
+	required string name = 2;
+	required int64 uid = 3;
+	required int32 X = 4;
+	required int32 Y = 5;
+    repeated Connection connections = 6;
+	repeated StatusBlockProtocol blocks = 7;
+}
+
+message Connection {
+    required int64 nodeId = 1;
+    required string text = 2;
+	repeated RequirementSet requirementSets = 3;
+}
+
+message RequirementSet {
+	repeated StatusCheckableProtocol requirements = 1;
 }
