@@ -28,6 +28,7 @@ public class SpawnCommand {
         spawnArea = MapType.CITY;
         range = 1;
         quantity = 1;
+        specification = QuestProtobuf.SpawnAreaTypeSpecification.LOCAL;
     }
     
     public SpawnCommand(SpawnCommandProtocol proto) {
@@ -112,12 +113,12 @@ public class SpawnCommand {
     
     @Override
     public String toString() {
-        DirectObject.ObjectType type = commandType();
+        DirectObjectFactory.ObjectType type = commandType();
         /*if(type.equals(DirectObject.ObjectType.AREA)) {
             return "Area Spawn";
-        } else*/ if(type.equals(DirectObject.ObjectType.ENEMY)) {
+        } else*/ if(type.equals(DirectObjectFactory.ObjectType.ENEMY)) {
             return "Enemy Spawn";
-        } else if(type.equals(DirectObject.ObjectType.ITEM)) {
+        } else if(type.equals(DirectObjectFactory.ObjectType.ITEM)) {
             return "Item Spawn";
         }
         return "Empty Command";
@@ -127,15 +128,15 @@ public class SpawnCommand {
      * Gets this command's type,
      * @return the command's type int 
      */
-    public DirectObject.ObjectType commandType() {
+    public DirectObjectFactory.ObjectType commandType() {
         /*if(areaToSpawn != null) {
             return DirectObject.ObjectType.AREA;
         } else*/ if(enemyToSpawn != null) {
-            return DirectObject.ObjectType.ENEMY;
+            return DirectObjectFactory.ObjectType.ENEMY;
         } else if(itemToSpawn != null) {
-            return DirectObject.ObjectType.ITEM;
+            return DirectObjectFactory.ObjectType.ITEM;
         }
-        return DirectObject.ObjectType.AREA;
+        return DirectObjectFactory.ObjectType.EMPTY;
     }
 
     public QuestProtobuf.SpawnAreaTypeSpecification getSpecification() {
@@ -154,9 +155,9 @@ public class SpawnCommand {
         /*if (commandType().equals(DirectObject.ObjectType.AREA))
             builder.setArea(areaToSpawn.getDirectObjectAsProtobuf());
         else*/
-        if (commandType().equals(DirectObject.ObjectType.ENEMY))
+        if (commandType().equals(DirectObjectFactory.ObjectType.ENEMY))
             builder.setEnemy(enemyToSpawn.getDirectObjectAsProtobuf());
-        else if (commandType().equals(DirectObject.ObjectType.ITEM))
+        else if (commandType().equals(DirectObjectFactory.ObjectType.ITEM))
             builder.setItem(itemToSpawn.getDirectObjectAsProtobuf());
         
         builder.setSpawnArea(spawnArea);

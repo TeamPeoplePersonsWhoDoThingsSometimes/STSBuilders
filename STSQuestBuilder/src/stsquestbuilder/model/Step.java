@@ -18,11 +18,13 @@ public class Step {
     private String stepName;
     private String stepDescription;
     private ObservableList<StatusReference> statuses;
+    private ObservableList<SpawnCommand> commands;
     
-    public Step(String name, String description, ObservableList<StatusReference> parts) {
+    public Step(String name, String description, ObservableList<StatusReference> parts, ObservableList<SpawnCommand> comm) {
         stepName = name;
         stepDescription = description;
         statuses = parts;
+        commands = comm;
     }
 
     /**
@@ -41,6 +43,12 @@ public class Step {
         statuses = FXCollections.observableArrayList();
         for(QuestProtobuf.StatusCheckableProtocol s : statusProtobufs) {
             statuses.add(new StatusReference(StatusCheckableFactory.getStatusFromProtobuf(s)));
+        }
+        
+        List<QuestProtobuf.SpawnCommandProtocol> spawnProtobufs = step.getCommandsList();
+        commands = FXCollections.observableArrayList();
+        for (QuestProtobuf.SpawnCommandProtocol s : spawnProtobufs) {
+            commands.add(new SpawnCommand(s));
         }
     }
     
@@ -72,6 +80,14 @@ public class Step {
         this.statuses = statuses;
     }
     
+    public ObservableList<SpawnCommand> getCommands() {
+        return commands;
+    }
+    
+    public void setCommands(ObservableList<SpawnCommand> comm) {
+        commands = comm;
+    }
+    
     /**
      * Builds this object as a StatusStep Protobuf
      * @return a protobuf with the information from this object
@@ -82,8 +98,12 @@ public class Step {
         builder.setDescription(this.getStepDescription());
         
         //get status checkable protobufs
-        for(StatusReference ref : statuses) {
+        for (StatusReference ref : statuses) {
             builder.addStatusesInStep(ref.getStatus().getStatusCheckableAsProtobuf());
+        }
+        
+        for (SpawnCommand comm : commands) {
+            builder.addCommands(comm.getSpawnCommandAsProto());
         }
         
         return builder.build();    

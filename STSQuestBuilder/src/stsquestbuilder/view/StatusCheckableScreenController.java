@@ -5,10 +5,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 import javafx.fxml.Initializable;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 
 import stsquestbuilder.model.Action;
 import stsquestbuilder.model.ActionCheckable;
+import stsquestbuilder.model.TierCheckable;
 import stsquestbuilder.model.StatusCheckable;
 import stsquestbuilder.model.StatusReference;
 import stsquestbuilder.model.StatusCheckableFactory;
@@ -120,6 +122,9 @@ public class StatusCheckableScreenController implements Initializable {
             case ActionCheckable:
                 o = new Action();
                 break;
+            case TierCheckable:
+                o = new SimpleIntegerProperty();
+                break;
         }
         changeToStatusType(type, o);
     }
@@ -132,6 +137,11 @@ public class StatusCheckableScreenController implements Initializable {
             ((ActionCheckable)status.getStatus()).setAction((Action)subObject);
             ActionComponentController controller = ActionComponentController.openComponentForAction((Action)subObject);
             subPanelRoot = controller.getRoot();
+        } else if (type.equals(StatusCheckableFactory.StatusType.TierCheckable)) {
+            status.setStatus(StatusCheckableFactory.getTierStatus());
+            ((TierCheckable)status.getStatus()).setTier((IntegerProperty)subObject);
+            TierComponentController controller = TierComponentController.openComponentForAction((IntegerProperty)subObject);
+            subPanelRoot = controller.getRoot();
         }
         
         backPane.getChildren().add(subPanelRoot);
@@ -142,6 +152,9 @@ public class StatusCheckableScreenController implements Initializable {
         if(StatusCheckableFactory.getStatusTypeOfCheck(status.getStatus()).equals(StatusCheckableFactory.StatusType.ActionCheckable)) {
             checkTypeDropdown.setValue(StatusCheckableFactory.StatusType.ActionCheckable);
             changeToStatusType(StatusCheckableFactory.StatusType.ActionCheckable, ((ActionCheckable)status.getStatus()).getAction());
+        } else if (StatusCheckableFactory.getStatusTypeOfCheck(status.getStatus()).equals(StatusCheckableFactory.StatusType.TierCheckable)) {
+            checkTypeDropdown.setValue(StatusCheckableFactory.StatusType.TierCheckable);
+            changeToStatusType(StatusCheckableFactory.StatusType.TierCheckable, ((TierCheckable)status.getStatus()).getTierProperty());
         }
     }
     

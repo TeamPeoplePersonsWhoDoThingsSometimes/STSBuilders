@@ -13,14 +13,7 @@ import stsquestbuilder.protocolbuffers.QuestProtobuf;
  * @author William
  */
 public class DirectObject {
-    
-    public enum ObjectType {
-        AREA,
-        ITEM,
-        ENEMY,
-        NPC
-    }
-    
+
     private String name;
     private String type;
     private int amount;

@@ -18,6 +18,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
+import javafx.scene.control.ListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -31,6 +32,7 @@ import javafx.event.EventHandler;
 import java.io.PrintStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.ListCell;
 
 
 import stsquestbuilder.protocolbuffers.QuestProtobuf.ActionType;
@@ -107,6 +109,8 @@ public class QuestBuilderScreenController implements Initializable {
     
     private StatusReference currentReference;
     
+    private SpawnCommand currentCommand;
+    
     private STSQuestBuilder app;
     
     private Stage window;
@@ -137,8 +141,12 @@ public class QuestBuilderScreenController implements Initializable {
                 //populate the step pane
                 ObservableList<StatusReference> observableActions = FXCollections.observableArrayList();
                 observableActions.addAll(s.getActions());
+                
+                ObservableList<SpawnCommand> commands = FXCollections.observableArrayList();
+                commands.addAll(s.getCommands());
 
                 getTableViewForTitledPane(stepPane).setItems(observableActions);
+                getListViewForTitledPane(stepPane).setItems(commands);
                 getStepNameForTitledPane(stepPane).setText(s.getStepName());
                 getStepDescriptionForTitledPane(stepPane).setText(s.getStepDescription());
                 justifyStepName(stepPane);
@@ -257,24 +265,16 @@ public class QuestBuilderScreenController implements Initializable {
     }
     
     /**
-     * Save the action per the user's request
-     * @param event event that triggered this handler
+     * Handles the user pressing a new command button
+     * @param event the event that triggered this action
      */
-    /*public void saveAction(MouseEvent event) {
+    public void newCommandButtonPressed(MouseEvent event) {
         Node button = (Node)event.getSource();
-        TableView actionTable = (TableView)button.parentProperty().getValue().lookup(".actionTable");
-        
-        //build an action from the action ui
-        Parent pane = button.getParent();
-        ActionType actionType = (ActionType)((ChoiceBox)pane.lookup(".actionTypeDropdown")).getValue();
-        Pane killPane = (Pane)pane.lookup(".killPane");
-        EnemyType enemy = (EnemyType)getEnemySelectionForKillPane(killPane).getValue();        
-        String type = (String)getEnemyTypeForKillPane(killPane).getValue();        
-        String amount = getEnemyAmountForKillPane(killPane).getText();
-        Action actionFromUI = new Action(actionType, new DirectObject(enemy.getName(), type), Integer.parseInt(amount));
-        
-        currentAction.setAction(actionFromUI);
-    }*/
+        ListView commandList = (ListView)button.parentProperty().getValue().lookup(".commandList");
+
+        currentCommand = new SpawnCommand();
+        commandList.getItems().add(currentCommand);
+    }
     
     /**
      * Save the current steps
@@ -289,8 +289,9 @@ public class QuestBuilderScreenController implements Initializable {
             
             //get step actions
             TableView<StatusReference> table = getTableViewForTitledPane(n);
+            ListView<SpawnCommand> commandList = getListViewForTitledPane(n);
             
-            questSteps.add(new Step(stepName, stepDescription, table.getItems()));
+            questSteps.add(new Step(stepName, stepDescription, table.getItems(), commandList.getItems()));
         }
         
         questForScreen.setSteps(questSteps);
@@ -342,6 +343,8 @@ public class QuestBuilderScreenController implements Initializable {
         ((TableColumn<StatusReference, String>)table.getColumns().get(0)).setCellValueFactory(cellData -> StatusCheckableFactory.getStatusTypeOfCheck(cellData.getValue().getStatus()).getNameProperty());
         ((TableColumn<StatusReference, String>)table.getColumns().get(1)).setCellValueFactory(cellData -> cellData.getValue().getStatus().getNameProperty());
         
+        ListView<SpawnCommand> list = getListViewForTitledPane(pane);
+        
         //setup the row listeners by changing the factory callback
         //since the API gives us no other direct row access
         table.setRowFactory(tbl -> {
@@ -359,11 +362,37 @@ public class QuestBuilderScreenController implements Initializable {
 
             return row;
         });
+        
+        list.setCellFactory(l -> {
+            //I don't know why, but the default text setup functionality is removed
+            //when a factory is provided, so this is neccesary
+            ListCell<SpawnCommand> cell = new ListCell<SpawnCommand>() {
+                @Override
+                protected void updateItem(SpawnCommand item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if(item != null) {
+                        this.setText(item.toString());
+                    }
+                }
+            };
+            
+            cell.setOnMouseClicked(event -> {
+                currentCommand = cell.getItem();
+                if (event.getClickCount() >= 2) {
+                    CommandScreenController.openCommandScreenControllerForCommand(currentCommand);
+                }
+            });
+            return cell;
+        });
 
         //setup the handlers for the action buttons and text boxesS
         //pane.getContent().lookup(".saveActionButton").setOnMouseClicked(event -> saveAction(event));            
         pane.getContent().lookup(".newActionButton").setOnMouseClicked(event -> newActionButtonPressed(event));            
         pane.getContent().lookup(".removeActionButton").setOnMouseClicked(event -> table.getItems().remove(currentReference));
+        pane.getContent().lookup(".addCommand").setOnMouseClicked(event -> newCommandButtonPressed(event)); 
+        pane.getContent().lookup(".removeCommand").setOnMouseClicked(event -> list.getItems().remove(currentCommand));       
+
+        
         getStepNameForTitledPane(pane).setOnKeyPressed(event -> justifyStepName(pane));
     }
     
@@ -377,6 +406,10 @@ public class QuestBuilderScreenController implements Initializable {
     
     public TableView<StatusReference> getTableViewForTitledPane(TitledPane pane) {
         return (TableView<StatusReference>)pane.getContent().lookup(".actionTable");
+    }
+    
+    public ListView<SpawnCommand> getListViewForTitledPane(TitledPane pane) {
+        return (ListView<SpawnCommand>)pane.getContent().lookup(".commandList");
     }
     
     //public ChoiceBox getActionTypeForTitledPane(TitledPane pane) {

@@ -3,13 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/Item.java</file>
             <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/view/ActionComponentController.java</file>
+            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/Enemy.java</file>
             <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/DirectObject.java</file>
             <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/view/ItemComponentController.java</file>
+            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/SpawnCommand.java</file>
+            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/StatusReference.java</file>
             <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/STSQuestBuilder.java</file>
             <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/ItemType.java</file>
             <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/EnemyType.java</file>
+            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/Area.java</file>
+            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/view/CommandScreenController.java</file>
         </group>
     </open-files>
 </project-private>

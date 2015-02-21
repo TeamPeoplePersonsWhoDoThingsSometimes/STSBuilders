@@ -13,6 +13,7 @@ public class StatusCheckableFactory {
     
     public enum StatusType {
         ActionCheckable("Action Checkable"),
+        TierCheckable("Tier Checkable"),
         EMPTY("Empty Check");
         
         private StringProperty name;
@@ -25,6 +26,7 @@ public class StatusCheckableFactory {
         public StringProperty getNameProperty() {
             return name;
         }
+        
     }
     
     public static StatusType getStatusTypeOfCheck(StatusCheckable status) {
@@ -32,8 +34,10 @@ public class StatusCheckableFactory {
             return StatusType.EMPTY;
         }
         
-        if(status instanceof ActionCheckable) {
+        if (status instanceof ActionCheckable) {
             return StatusType.ActionCheckable;
+        } else if (status instanceof TierCheckable) {
+            return StatusType.TierCheckable;
         }
         
         return StatusType.ActionCheckable;
@@ -43,6 +47,8 @@ public class StatusCheckableFactory {
         StatusCheckable status = null;
         if (proto.hasAction()) {
             status = new ActionCheckable(proto);
+        } else if (proto.hasTier()) {
+            status = new TierCheckable(proto);
         }
         
         if (status == null)
@@ -73,4 +79,14 @@ public class StatusCheckableFactory {
         check.setNotEmpty();
         return check;
     }
+    
+    /**
+     * Gets a TierCheckable
+     * @return 
+     */
+    public static StatusCheckable getTierStatus() {
+        StatusCheckable check = new TierCheckable();
+        return check;
+    }
+    
 }

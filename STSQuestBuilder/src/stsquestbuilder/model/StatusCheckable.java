@@ -9,6 +9,7 @@ import stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol;
  */
 public interface StatusCheckable {
     
+    //empty checkable handling only really needs to be impelemted by one subclass
     public boolean getEmpty();
     
     public void setNotEmpty();

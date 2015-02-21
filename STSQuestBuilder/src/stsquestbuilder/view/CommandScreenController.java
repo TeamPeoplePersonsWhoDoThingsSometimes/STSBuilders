@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +26,7 @@ import stsquestbuilder.model.Item;
 import stsquestbuilder.model.Enemy;
 import stsquestbuilder.model.DirectObject;
 import stsquestbuilder.STSQuestBuilder;
+import stsquestbuilder.model.DirectObjectFactory;
 
 /**
  * FXML Controller class
@@ -74,7 +76,7 @@ public class CommandScreenController implements Initializable {
     private Pane backPane;
     
     @FXML
-    private ChoiceBox<DirectObject.ObjectType> commandTypeDropdown;
+    private ChoiceBox<DirectObjectFactory.ObjectType> commandTypeDropdown;
     
     @FXML
     private ChoiceBox<SpawnAreaTypeSpecification> spawnAreaTypeDropdown;
@@ -87,8 +89,8 @@ public class CommandScreenController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        commandTypeDropdown.setItems(FXCollections.observableArrayList(DirectObject.ObjectType.values()));
-        commandTypeDropdown.setValue(DirectObject.ObjectType.AREA);
+        commandTypeDropdown.setItems(FXCollections.observableArrayList(DirectObjectFactory.ObjectType.getSpawnables()));
+        commandTypeDropdown.setValue(DirectObjectFactory.ObjectType.AREA);
         spawnAreaTypeDropdown.setItems(FXCollections.observableArrayList(SpawnAreaTypeSpecification.values()));
         spawnAreaTypeDropdown.setValue(SpawnAreaTypeSpecification.LOCAL);
         
@@ -124,18 +126,22 @@ public class CommandScreenController implements Initializable {
         }
         
         switch(commandTypeDropdown.getValue()) {
-            case AREA:
-                /*if (command.getAreaToSpawn() == null) {
+            /*case AREA:
+                if (command.getAreaToSpawn() == null) {
                     command.setAreaToSpawn(new Area());
                 }
-                subRoot = AreaComponentController.openAreaComponentController(command.getAreaToSpawn()).getRoot();*/
-                break;
+                subRoot = AreaComponentController.openAreaComponentController(command.getAreaToSpawn()).getRoot();
+                break;*/
             case ITEM:
-                
+                if (command.getItemToSpawn() == null) {
+                    command.setItemToSpawn(new Item());
+                }
+                subRoot = ItemComponentController.openComponentForItem(command.getItemToSpawn()).getRoot();
                 break;
-            case NPC:
+            /*case NPC:
                 
-                break;
+                break;*/
+            case EMPTY:
             case ENEMY:
                 if (command.getEnemyToSpawn() == null) {
                     command.setEnemyToSpawn(new Enemy());

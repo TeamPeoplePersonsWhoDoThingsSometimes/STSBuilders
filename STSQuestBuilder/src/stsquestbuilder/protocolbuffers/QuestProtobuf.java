@@ -3737,11 +3737,6 @@ public final class QuestProtobuf {
     boolean hasRange();
     int getRange();
     
-    // optional .DirectObjectProtocol area = 4;
-    boolean hasArea();
-    stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol getArea();
-    stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocolOrBuilder getAreaOrBuilder();
-    
     // optional .DirectObjectProtocol item = 5;
     boolean hasItem();
     stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol getItem();
@@ -3811,24 +3806,11 @@ public final class QuestProtobuf {
       return range_;
     }
     
-    // optional .DirectObjectProtocol area = 4;
-    public static final int AREA_FIELD_NUMBER = 4;
-    private stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol area_;
-    public boolean hasArea() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    public stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol getArea() {
-      return area_;
-    }
-    public stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocolOrBuilder getAreaOrBuilder() {
-      return area_;
-    }
-    
     // optional .DirectObjectProtocol item = 5;
     public static final int ITEM_FIELD_NUMBER = 5;
     private stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol item_;
     public boolean hasItem() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     public stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol getItem() {
       return item_;
@@ -3841,7 +3823,7 @@ public final class QuestProtobuf {
     public static final int ENEMY_FIELD_NUMBER = 6;
     private stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol enemy_;
     public boolean hasEnemy() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     public stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol getEnemy() {
       return enemy_;
@@ -3854,7 +3836,6 @@ public final class QuestProtobuf {
       spawnArea_ = stsquestbuilder.protocolbuffers.QuestProtobuf.MapType.CITY;
       spawnSpecification_ = stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnAreaTypeSpecification.LOCAL;
       range_ = 0;
-      area_ = stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.getDefaultInstance();
       item_ = stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.getDefaultInstance();
       enemy_ = stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.getDefaultInstance();
     }
@@ -3874,12 +3855,6 @@ public final class QuestProtobuf {
       if (!hasRange()) {
         memoizedIsInitialized = 0;
         return false;
-      }
-      if (hasArea()) {
-        if (!getArea().isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
       }
       if (hasItem()) {
         if (!getItem().isInitialized()) {
@@ -3910,12 +3885,9 @@ public final class QuestProtobuf {
         output.writeInt32(3, range_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeMessage(4, area_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeMessage(5, item_);
       }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeMessage(6, enemy_);
       }
       getUnknownFields().writeTo(output);
@@ -3941,13 +3913,9 @@ public final class QuestProtobuf {
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, area_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, item_);
       }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(6, enemy_);
       }
@@ -4067,7 +4035,6 @@ public final class QuestProtobuf {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getAreaFieldBuilder();
           getItemFieldBuilder();
           getEnemyFieldBuilder();
         }
@@ -4084,24 +4051,18 @@ public final class QuestProtobuf {
         bitField0_ = (bitField0_ & ~0x00000002);
         range_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
-        if (areaBuilder_ == null) {
-          area_ = stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.getDefaultInstance();
-        } else {
-          areaBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000008);
         if (itemBuilder_ == null) {
           item_ = stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.getDefaultInstance();
         } else {
           itemBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
         if (enemyBuilder_ == null) {
           enemy_ = stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.getDefaultInstance();
         } else {
           enemyBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
       
@@ -4155,21 +4116,13 @@ public final class QuestProtobuf {
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        if (areaBuilder_ == null) {
-          result.area_ = area_;
-        } else {
-          result.area_ = areaBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
         if (itemBuilder_ == null) {
           result.item_ = item_;
         } else {
           result.item_ = itemBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
         }
         if (enemyBuilder_ == null) {
           result.enemy_ = enemy_;
@@ -4201,9 +4154,6 @@ public final class QuestProtobuf {
         if (other.hasRange()) {
           setRange(other.getRange());
         }
-        if (other.hasArea()) {
-          mergeArea(other.getArea());
-        }
         if (other.hasItem()) {
           mergeItem(other.getItem());
         }
@@ -4226,12 +4176,6 @@ public final class QuestProtobuf {
         if (!hasRange()) {
           
           return false;
-        }
-        if (hasArea()) {
-          if (!getArea().isInitialized()) {
-            
-            return false;
-          }
         }
         if (hasItem()) {
           if (!getItem().isInitialized()) {
@@ -4296,15 +4240,6 @@ public final class QuestProtobuf {
             case 24: {
               bitField0_ |= 0x00000004;
               range_ = input.readInt32();
-              break;
-            }
-            case 34: {
-              stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.Builder subBuilder = stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.newBuilder();
-              if (hasArea()) {
-                subBuilder.mergeFrom(getArea());
-              }
-              input.readMessage(subBuilder, extensionRegistry);
-              setArea(subBuilder.buildPartial());
               break;
             }
             case 42: {
@@ -4400,102 +4335,12 @@ public final class QuestProtobuf {
         return this;
       }
       
-      // optional .DirectObjectProtocol area = 4;
-      private stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol area_ = stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol, stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocolOrBuilder> areaBuilder_;
-      public boolean hasArea() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      public stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol getArea() {
-        if (areaBuilder_ == null) {
-          return area_;
-        } else {
-          return areaBuilder_.getMessage();
-        }
-      }
-      public Builder setArea(stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol value) {
-        if (areaBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          area_ = value;
-          onChanged();
-        } else {
-          areaBuilder_.setMessage(value);
-        }
-        bitField0_ |= 0x00000008;
-        return this;
-      }
-      public Builder setArea(
-          stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.Builder builderForValue) {
-        if (areaBuilder_ == null) {
-          area_ = builderForValue.build();
-          onChanged();
-        } else {
-          areaBuilder_.setMessage(builderForValue.build());
-        }
-        bitField0_ |= 0x00000008;
-        return this;
-      }
-      public Builder mergeArea(stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol value) {
-        if (areaBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) == 0x00000008) &&
-              area_ != stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.getDefaultInstance()) {
-            area_ =
-              stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.newBuilder(area_).mergeFrom(value).buildPartial();
-          } else {
-            area_ = value;
-          }
-          onChanged();
-        } else {
-          areaBuilder_.mergeFrom(value);
-        }
-        bitField0_ |= 0x00000008;
-        return this;
-      }
-      public Builder clearArea() {
-        if (areaBuilder_ == null) {
-          area_ = stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.getDefaultInstance();
-          onChanged();
-        } else {
-          areaBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000008);
-        return this;
-      }
-      public stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.Builder getAreaBuilder() {
-        bitField0_ |= 0x00000008;
-        onChanged();
-        return getAreaFieldBuilder().getBuilder();
-      }
-      public stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocolOrBuilder getAreaOrBuilder() {
-        if (areaBuilder_ != null) {
-          return areaBuilder_.getMessageOrBuilder();
-        } else {
-          return area_;
-        }
-      }
-      private com.google.protobuf.SingleFieldBuilder<
-          stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol, stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocolOrBuilder> 
-          getAreaFieldBuilder() {
-        if (areaBuilder_ == null) {
-          areaBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol, stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocolOrBuilder>(
-                  area_,
-                  getParentForChildren(),
-                  isClean());
-          area_ = null;
-        }
-        return areaBuilder_;
-      }
-      
       // optional .DirectObjectProtocol item = 5;
       private stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol item_ = stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol, stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocolOrBuilder> itemBuilder_;
       public boolean hasItem() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       public stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol getItem() {
         if (itemBuilder_ == null) {
@@ -4514,7 +4359,7 @@ public final class QuestProtobuf {
         } else {
           itemBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000008;
         return this;
       }
       public Builder setItem(
@@ -4525,12 +4370,12 @@ public final class QuestProtobuf {
         } else {
           itemBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000008;
         return this;
       }
       public Builder mergeItem(stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol value) {
         if (itemBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) == 0x00000010) &&
+          if (((bitField0_ & 0x00000008) == 0x00000008) &&
               item_ != stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.getDefaultInstance()) {
             item_ =
               stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.newBuilder(item_).mergeFrom(value).buildPartial();
@@ -4541,7 +4386,7 @@ public final class QuestProtobuf {
         } else {
           itemBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000008;
         return this;
       }
       public Builder clearItem() {
@@ -4551,11 +4396,11 @@ public final class QuestProtobuf {
         } else {
           itemBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       public stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.Builder getItemBuilder() {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000008;
         onChanged();
         return getItemFieldBuilder().getBuilder();
       }
@@ -4585,7 +4430,7 @@ public final class QuestProtobuf {
       private com.google.protobuf.SingleFieldBuilder<
           stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol, stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocolOrBuilder> enemyBuilder_;
       public boolean hasEnemy() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       public stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol getEnemy() {
         if (enemyBuilder_ == null) {
@@ -4604,7 +4449,7 @@ public final class QuestProtobuf {
         } else {
           enemyBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000010;
         return this;
       }
       public Builder setEnemy(
@@ -4615,12 +4460,12 @@ public final class QuestProtobuf {
         } else {
           enemyBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000010;
         return this;
       }
       public Builder mergeEnemy(stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol value) {
         if (enemyBuilder_ == null) {
-          if (((bitField0_ & 0x00000020) == 0x00000020) &&
+          if (((bitField0_ & 0x00000010) == 0x00000010) &&
               enemy_ != stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.getDefaultInstance()) {
             enemy_ =
               stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.newBuilder(enemy_).mergeFrom(value).buildPartial();
@@ -4631,7 +4476,7 @@ public final class QuestProtobuf {
         } else {
           enemyBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000010;
         return this;
       }
       public Builder clearEnemy() {
@@ -4641,11 +4486,11 @@ public final class QuestProtobuf {
         } else {
           enemyBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
       public stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.Builder getEnemyBuilder() {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000010;
         onChanged();
         return getEnemyFieldBuilder().getBuilder();
       }
@@ -4700,6 +4545,16 @@ public final class QuestProtobuf {
     java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocolOrBuilder> 
         getStatusesInStepOrBuilderList();
     stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocolOrBuilder getStatusesInStepOrBuilder(
+        int index);
+    
+    // repeated .SpawnCommandProtocol commands = 4;
+    java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol> 
+        getCommandsList();
+    stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol getCommands(int index);
+    int getCommandsCount();
+    java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocolOrBuilder> 
+        getCommandsOrBuilderList();
+    stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocolOrBuilder getCommandsOrBuilder(
         int index);
   }
   public static final class StatusStepProtocol extends
@@ -4816,10 +4671,32 @@ public final class QuestProtobuf {
       return statusesInStep_.get(index);
     }
     
+    // repeated .SpawnCommandProtocol commands = 4;
+    public static final int COMMANDS_FIELD_NUMBER = 4;
+    private java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol> commands_;
+    public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol> getCommandsList() {
+      return commands_;
+    }
+    public java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocolOrBuilder> 
+        getCommandsOrBuilderList() {
+      return commands_;
+    }
+    public int getCommandsCount() {
+      return commands_.size();
+    }
+    public stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol getCommands(int index) {
+      return commands_.get(index);
+    }
+    public stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocolOrBuilder getCommandsOrBuilder(
+        int index) {
+      return commands_.get(index);
+    }
+    
     private void initFields() {
       name_ = "";
       description_ = "";
       statusesInStep_ = java.util.Collections.emptyList();
+      commands_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -4840,6 +4717,12 @@ public final class QuestProtobuf {
           return false;
         }
       }
+      for (int i = 0; i < getCommandsCount(); i++) {
+        if (!getCommands(i).isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -4855,6 +4738,9 @@ public final class QuestProtobuf {
       }
       for (int i = 0; i < statusesInStep_.size(); i++) {
         output.writeMessage(3, statusesInStep_.get(i));
+      }
+      for (int i = 0; i < commands_.size(); i++) {
+        output.writeMessage(4, commands_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -4876,6 +4762,10 @@ public final class QuestProtobuf {
       for (int i = 0; i < statusesInStep_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, statusesInStep_.get(i));
+      }
+      for (int i = 0; i < commands_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, commands_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -4994,6 +4884,7 @@ public final class QuestProtobuf {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getStatusesInStepFieldBuilder();
+          getCommandsFieldBuilder();
         }
       }
       private static Builder create() {
@@ -5011,6 +4902,12 @@ public final class QuestProtobuf {
           bitField0_ = (bitField0_ & ~0x00000004);
         } else {
           statusesInStepBuilder_.clear();
+        }
+        if (commandsBuilder_ == null) {
+          commands_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+        } else {
+          commandsBuilder_.clear();
         }
         return this;
       }
@@ -5067,6 +4964,15 @@ public final class QuestProtobuf {
         } else {
           result.statusesInStep_ = statusesInStepBuilder_.build();
         }
+        if (commandsBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+            commands_ = java.util.Collections.unmodifiableList(commands_);
+            bitField0_ = (bitField0_ & ~0x00000008);
+          }
+          result.commands_ = commands_;
+        } else {
+          result.commands_ = commandsBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -5115,6 +5021,32 @@ public final class QuestProtobuf {
             }
           }
         }
+        if (commandsBuilder_ == null) {
+          if (!other.commands_.isEmpty()) {
+            if (commands_.isEmpty()) {
+              commands_ = other.commands_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+            } else {
+              ensureCommandsIsMutable();
+              commands_.addAll(other.commands_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.commands_.isEmpty()) {
+            if (commandsBuilder_.isEmpty()) {
+              commandsBuilder_.dispose();
+              commandsBuilder_ = null;
+              commands_ = other.commands_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+              commandsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getCommandsFieldBuilder() : null;
+            } else {
+              commandsBuilder_.addAllMessages(other.commands_);
+            }
+          }
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
@@ -5130,6 +5062,12 @@ public final class QuestProtobuf {
         }
         for (int i = 0; i < getStatusesInStepCount(); i++) {
           if (!getStatusesInStep(i).isInitialized()) {
+            
+            return false;
+          }
+        }
+        for (int i = 0; i < getCommandsCount(); i++) {
+          if (!getCommands(i).isInitialized()) {
             
             return false;
           }
@@ -5174,6 +5112,12 @@ public final class QuestProtobuf {
               stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.Builder subBuilder = stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addStatusesInStep(subBuilder.buildPartial());
+              break;
+            }
+            case 34: {
+              stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol.Builder subBuilder = stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addCommands(subBuilder.buildPartial());
               break;
             }
           }
@@ -5440,6 +5384,192 @@ public final class QuestProtobuf {
         return statusesInStepBuilder_;
       }
       
+      // repeated .SpawnCommandProtocol commands = 4;
+      private java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol> commands_ =
+        java.util.Collections.emptyList();
+      private void ensureCommandsIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          commands_ = new java.util.ArrayList<stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol>(commands_);
+          bitField0_ |= 0x00000008;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol, stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocolOrBuilder> commandsBuilder_;
+      
+      public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol> getCommandsList() {
+        if (commandsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(commands_);
+        } else {
+          return commandsBuilder_.getMessageList();
+        }
+      }
+      public int getCommandsCount() {
+        if (commandsBuilder_ == null) {
+          return commands_.size();
+        } else {
+          return commandsBuilder_.getCount();
+        }
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol getCommands(int index) {
+        if (commandsBuilder_ == null) {
+          return commands_.get(index);
+        } else {
+          return commandsBuilder_.getMessage(index);
+        }
+      }
+      public Builder setCommands(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol value) {
+        if (commandsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureCommandsIsMutable();
+          commands_.set(index, value);
+          onChanged();
+        } else {
+          commandsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setCommands(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol.Builder builderForValue) {
+        if (commandsBuilder_ == null) {
+          ensureCommandsIsMutable();
+          commands_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          commandsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addCommands(stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol value) {
+        if (commandsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureCommandsIsMutable();
+          commands_.add(value);
+          onChanged();
+        } else {
+          commandsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addCommands(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol value) {
+        if (commandsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureCommandsIsMutable();
+          commands_.add(index, value);
+          onChanged();
+        } else {
+          commandsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addCommands(
+          stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol.Builder builderForValue) {
+        if (commandsBuilder_ == null) {
+          ensureCommandsIsMutable();
+          commands_.add(builderForValue.build());
+          onChanged();
+        } else {
+          commandsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addCommands(
+          int index, stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol.Builder builderForValue) {
+        if (commandsBuilder_ == null) {
+          ensureCommandsIsMutable();
+          commands_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          commandsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllCommands(
+          java.lang.Iterable<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol> values) {
+        if (commandsBuilder_ == null) {
+          ensureCommandsIsMutable();
+          super.addAll(values, commands_);
+          onChanged();
+        } else {
+          commandsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearCommands() {
+        if (commandsBuilder_ == null) {
+          commands_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+          onChanged();
+        } else {
+          commandsBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeCommands(int index) {
+        if (commandsBuilder_ == null) {
+          ensureCommandsIsMutable();
+          commands_.remove(index);
+          onChanged();
+        } else {
+          commandsBuilder_.remove(index);
+        }
+        return this;
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol.Builder getCommandsBuilder(
+          int index) {
+        return getCommandsFieldBuilder().getBuilder(index);
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocolOrBuilder getCommandsOrBuilder(
+          int index) {
+        if (commandsBuilder_ == null) {
+          return commands_.get(index);  } else {
+          return commandsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocolOrBuilder> 
+           getCommandsOrBuilderList() {
+        if (commandsBuilder_ != null) {
+          return commandsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(commands_);
+        }
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol.Builder addCommandsBuilder() {
+        return getCommandsFieldBuilder().addBuilder(
+            stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol.getDefaultInstance());
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol.Builder addCommandsBuilder(
+          int index) {
+        return getCommandsFieldBuilder().addBuilder(
+            index, stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol.getDefaultInstance());
+      }
+      public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol.Builder> 
+           getCommandsBuilderList() {
+        return getCommandsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol, stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocolOrBuilder> 
+          getCommandsFieldBuilder() {
+        if (commandsBuilder_ == null) {
+          commandsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol, stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocolOrBuilder>(
+                  commands_,
+                  ((bitField0_ & 0x00000008) == 0x00000008),
+                  getParentForChildren(),
+                  isClean());
+          commands_ = null;
+        }
+        return commandsBuilder_;
+      }
+      
       // @@protoc_insertion_point(builder_scope:StatusStepProtocol)
     }
     
@@ -5459,7 +5589,12 @@ public final class QuestProtobuf {
     stsquestbuilder.protocolbuffers.QuestProtobuf.ActionProtocol getAction();
     stsquestbuilder.protocolbuffers.QuestProtobuf.ActionProtocolOrBuilder getActionOrBuilder();
     
-    // optional int32 amount = 2;
+    // optional .TierProtocol tier = 2;
+    boolean hasTier();
+    stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol getTier();
+    stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocolOrBuilder getTierOrBuilder();
+    
+    // optional int32 amount = 3;
     boolean hasAmount();
     int getAmount();
   }
@@ -5505,11 +5640,24 @@ public final class QuestProtobuf {
       return action_;
     }
     
-    // optional int32 amount = 2;
-    public static final int AMOUNT_FIELD_NUMBER = 2;
+    // optional .TierProtocol tier = 2;
+    public static final int TIER_FIELD_NUMBER = 2;
+    private stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol tier_;
+    public boolean hasTier() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol getTier() {
+      return tier_;
+    }
+    public stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocolOrBuilder getTierOrBuilder() {
+      return tier_;
+    }
+    
+    // optional int32 amount = 3;
+    public static final int AMOUNT_FIELD_NUMBER = 3;
     private int amount_;
     public boolean hasAmount() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public int getAmount() {
       return amount_;
@@ -5517,6 +5665,7 @@ public final class QuestProtobuf {
     
     private void initFields() {
       action_ = stsquestbuilder.protocolbuffers.QuestProtobuf.ActionProtocol.getDefaultInstance();
+      tier_ = stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.getDefaultInstance();
       amount_ = 0;
     }
     private byte memoizedIsInitialized = -1;
@@ -5526,6 +5675,12 @@ public final class QuestProtobuf {
       
       if (hasAction()) {
         if (!getAction().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      if (hasTier()) {
+        if (!getTier().isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
@@ -5541,7 +5696,10 @@ public final class QuestProtobuf {
         output.writeMessage(1, action_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(2, amount_);
+        output.writeMessage(2, tier_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt32(3, amount_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -5558,7 +5716,11 @@ public final class QuestProtobuf {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, amount_);
+          .computeMessageSize(2, tier_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, amount_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -5677,6 +5839,7 @@ public final class QuestProtobuf {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getActionFieldBuilder();
+          getTierFieldBuilder();
         }
       }
       private static Builder create() {
@@ -5691,8 +5854,14 @@ public final class QuestProtobuf {
           actionBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
-        amount_ = 0;
+        if (tierBuilder_ == null) {
+          tier_ = stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.getDefaultInstance();
+        } else {
+          tierBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000002);
+        amount_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -5742,6 +5911,14 @@ public final class QuestProtobuf {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
+        if (tierBuilder_ == null) {
+          result.tier_ = tier_;
+        } else {
+          result.tier_ = tierBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
         result.amount_ = amount_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -5762,6 +5939,9 @@ public final class QuestProtobuf {
         if (other.hasAction()) {
           mergeAction(other.getAction());
         }
+        if (other.hasTier()) {
+          mergeTier(other.getTier());
+        }
         if (other.hasAmount()) {
           setAmount(other.getAmount());
         }
@@ -5772,6 +5952,12 @@ public final class QuestProtobuf {
       public final boolean isInitialized() {
         if (hasAction()) {
           if (!getAction().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasTier()) {
+          if (!getTier().isInitialized()) {
             
             return false;
           }
@@ -5811,8 +5997,17 @@ public final class QuestProtobuf {
               setAction(subBuilder.buildPartial());
               break;
             }
-            case 16: {
-              bitField0_ |= 0x00000002;
+            case 18: {
+              stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.Builder subBuilder = stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.newBuilder();
+              if (hasTier()) {
+                subBuilder.mergeFrom(getTier());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setTier(subBuilder.buildPartial());
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
               amount_ = input.readInt32();
               break;
             }
@@ -5912,22 +6107,112 @@ public final class QuestProtobuf {
         return actionBuilder_;
       }
       
-      // optional int32 amount = 2;
+      // optional .TierProtocol tier = 2;
+      private stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol tier_ = stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol, stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocolOrBuilder> tierBuilder_;
+      public boolean hasTier() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol getTier() {
+        if (tierBuilder_ == null) {
+          return tier_;
+        } else {
+          return tierBuilder_.getMessage();
+        }
+      }
+      public Builder setTier(stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol value) {
+        if (tierBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          tier_ = value;
+          onChanged();
+        } else {
+          tierBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      public Builder setTier(
+          stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.Builder builderForValue) {
+        if (tierBuilder_ == null) {
+          tier_ = builderForValue.build();
+          onChanged();
+        } else {
+          tierBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      public Builder mergeTier(stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol value) {
+        if (tierBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              tier_ != stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.getDefaultInstance()) {
+            tier_ =
+              stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.newBuilder(tier_).mergeFrom(value).buildPartial();
+          } else {
+            tier_ = value;
+          }
+          onChanged();
+        } else {
+          tierBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      public Builder clearTier() {
+        if (tierBuilder_ == null) {
+          tier_ = stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.getDefaultInstance();
+          onChanged();
+        } else {
+          tierBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.Builder getTierBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getTierFieldBuilder().getBuilder();
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocolOrBuilder getTierOrBuilder() {
+        if (tierBuilder_ != null) {
+          return tierBuilder_.getMessageOrBuilder();
+        } else {
+          return tier_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol, stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocolOrBuilder> 
+          getTierFieldBuilder() {
+        if (tierBuilder_ == null) {
+          tierBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol, stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocolOrBuilder>(
+                  tier_,
+                  getParentForChildren(),
+                  isClean());
+          tier_ = null;
+        }
+        return tierBuilder_;
+      }
+      
+      // optional int32 amount = 3;
       private int amount_ ;
       public boolean hasAmount() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       public int getAmount() {
         return amount_;
       }
       public Builder setAmount(int value) {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         amount_ = value;
         onChanged();
         return this;
       }
       public Builder clearAmount() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         amount_ = 0;
         onChanged();
         return this;
@@ -5942,6 +6227,352 @@ public final class QuestProtobuf {
     }
     
     // @@protoc_insertion_point(class_scope:StatusCheckableProtocol)
+  }
+  
+  public interface TierProtocolOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // required int32 tier = 1;
+    boolean hasTier();
+    int getTier();
+  }
+  public static final class TierProtocol extends
+      com.google.protobuf.GeneratedMessage
+      implements TierProtocolOrBuilder {
+    // Use TierProtocol.newBuilder() to construct.
+    private TierProtocol(Builder builder) {
+      super(builder);
+    }
+    private TierProtocol(boolean noInit) {}
+    
+    private static final TierProtocol defaultInstance;
+    public static TierProtocol getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public TierProtocol getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_TierProtocol_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_TierProtocol_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // required int32 tier = 1;
+    public static final int TIER_FIELD_NUMBER = 1;
+    private int tier_;
+    public boolean hasTier() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public int getTier() {
+      return tier_;
+    }
+    
+    private void initFields() {
+      tier_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      if (!hasTier()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt32(1, tier_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, tier_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocolOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_TierProtocol_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.internal_static_TierProtocol_fieldAccessorTable;
+      }
+      
+      // Construct using stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        tier_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.getDescriptor();
+      }
+      
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol getDefaultInstanceForType() {
+        return stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.getDefaultInstance();
+      }
+      
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol build() {
+        stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol buildPartial() {
+        stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol result = new stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.tier_ = tier_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol) {
+          return mergeFrom((stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol other) {
+        if (other == stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.getDefaultInstance()) return this;
+        if (other.hasTier()) {
+          setTier(other.getTier());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        if (!hasTier()) {
+          
+          return false;
+        }
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              tier_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // required int32 tier = 1;
+      private int tier_ ;
+      public boolean hasTier() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public int getTier() {
+        return tier_;
+      }
+      public Builder setTier(int value) {
+        bitField0_ |= 0x00000001;
+        tier_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearTier() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        tier_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:TierProtocol)
+    }
+    
+    static {
+      defaultInstance = new TierProtocol(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:TierProtocol)
   }
   
   public interface ActionProtocolOrBuilder
@@ -12093,6 +12724,11 @@ public final class QuestProtobuf {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_StatusCheckableProtocol_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_TierProtocol_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_TierProtocol_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_ActionProtocol_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -12156,47 +12792,49 @@ public final class QuestProtobuf {
       "epProtocol\"x\n\023StatusBlockProtocol\022\014\n\004nam" +
       "e\030\001 \002(\t\022*\n\010statuses\030\002 \003(\0132\030.StatusChecka" +
       "bleProtocol\022\'\n\010commands\030\003 \003(\0132\025.SpawnCom",
-      "mandProtocol\"\353\001\n\024SpawnCommandProtocol\022\033\n" +
+      "mandProtocol\"\306\001\n\024SpawnCommandProtocol\022\033\n" +
       "\tspawnArea\030\001 \002(\0162\010.MapType\0227\n\022spawnSpeci" +
       "fication\030\002 \002(\0162\033.SpawnAreaTypeSpecificat" +
-      "ion\022\r\n\005range\030\003 \002(\005\022#\n\004area\030\004 \001(\0132\025.Direc" +
-      "tObjectProtocol\022#\n\004item\030\005 \001(\0132\025.DirectOb" +
-      "jectProtocol\022$\n\005enemy\030\006 \001(\0132\025.DirectObje" +
-      "ctProtocol\"i\n\022StatusStepProtocol\022\014\n\004name" +
-      "\030\001 \002(\t\022\023\n\013description\030\002 \002(\t\0220\n\016statusesI" +
-      "nStep\030\003 \003(\0132\030.StatusCheckableProtocol\"J\n" +
-      "\027StatusCheckableProtocol\022\037\n\006action\030\001 \001(\013",
-      "2\017.ActionProtocol\022\016\n\006amount\030\002 \001(\005\"R\n\016Act" +
-      "ionProtocol\022\031\n\004type\030\001 \002(\0162\013.ActionType\022%" +
-      "\n\006target\030\002 \001(\0132\025.DirectObjectProtocol\"\205\001" +
-      "\n\024DirectObjectProtocol\022\014\n\004type\030\001 \001(\t\022\014\n\004" +
-      "name\030\002 \002(\t\022\031\n\003map\030\003 \001(\0132\014.MapProtocol\022\016\n" +
-      "\006amount\030\004 \001(\005\022&\n\017itemInformation\030\005 \001(\0132\r" +
-      ".ItemProtocol\"C\n\013MapProtocol\022\013\n\003uid\030\001 \002(" +
-      "\003\022\030\n\020generateIfNeeded\030\002 \002(\010\022\r\n\005range\030\003 \002" +
-      "(\001\"G\n\014ItemProtocol\022\017\n\007version\030\001 \002(\005\022&\n\tl" +
-      "evelSpec\030\002 \002(\0162\023.LevelSpecification\";\n\023C",
-      "onversationPackage\022$\n\rconversations\030\001 \003(" +
-      "\0132\r.Conversation\"R\n\014Conversation\022#\n\010allN" +
-      "odes\030\001 \003(\0132\021.ConversationNode\022\014\n\004name\030\002 " +
-      "\001(\t\022\017\n\007creator\030\003 \001(\t\"\231\001\n\020ConversationNod" +
-      "e\022\014\n\004text\030\001 \002(\t\022\014\n\004name\030\002 \002(\t\022\013\n\003uid\030\003 \002" +
-      "(\003\022\t\n\001X\030\004 \002(\005\022\t\n\001Y\030\005 \002(\005\022 \n\013connections\030" +
-      "\006 \003(\0132\013.Connection\022$\n\006blocks\030\007 \003(\0132\024.Sta" +
-      "tusBlockProtocol\"T\n\nConnection\022\016\n\006nodeId" +
-      "\030\001 \002(\003\022\014\n\004text\030\002 \002(\t\022(\n\017requirementSets\030" +
-      "\003 \003(\0132\017.RequirementSet\"@\n\016RequirementSet",
-      "\022.\n\014requirements\030\001 \003(\0132\030.StatusCheckable" +
-      "Protocol*\274\001\n\nActionType\022\010\n\004KILL\020\000\022\r\n\tMOV" +
-      "E_AREA\020\001\022\025\n\021APPROACHED_OBJECT\020\002\022\024\n\020PICKE" +
-      "D_UP_OBJECT\020\003\022\025\n\021ENTER_CITY_LIMITS\020\004\022\014\n\010" +
-      "LEVEL_UP\020\005\022\016\n\nEQUIP_ITEM\020\006\022\014\n\010USE_ITEM\020\007" +
-      "\022\n\n\006ATTACK\020\010\022\031\n\025CONVERSATION_NODE_HIT\020\t*" +
-      "*\n\007MapType\022\010\n\004CITY\020\000\022\010\n\004PATH\020\001\022\013\n\007DUNGEO" +
-      "N\020\002*5\n\032SpawnAreaTypeSpecification\022\t\n\005LOC" +
-      "AL\020\000\022\014\n\010DISTANCE\020\001*,\n\022LevelSpecification" +
-      "\022\013\n\007MINIMUM\020\001\022\t\n\005EXACT\020\002B!\n\037stsquestbuil",
-      "der.protocolbuffers"
+      "ion\022\r\n\005range\030\003 \002(\005\022#\n\004item\030\005 \001(\0132\025.Direc" +
+      "tObjectProtocol\022$\n\005enemy\030\006 \001(\0132\025.DirectO" +
+      "bjectProtocol\"\222\001\n\022StatusStepProtocol\022\014\n\004" +
+      "name\030\001 \002(\t\022\023\n\013description\030\002 \002(\t\0220\n\016statu" +
+      "sesInStep\030\003 \003(\0132\030.StatusCheckableProtoco" +
+      "l\022\'\n\010commands\030\004 \003(\0132\025.SpawnCommandProtoc" +
+      "ol\"g\n\027StatusCheckableProtocol\022\037\n\006action\030",
+      "\001 \001(\0132\017.ActionProtocol\022\033\n\004tier\030\002 \001(\0132\r.T" +
+      "ierProtocol\022\016\n\006amount\030\003 \001(\005\"\034\n\014TierProto" +
+      "col\022\014\n\004tier\030\001 \002(\005\"R\n\016ActionProtocol\022\031\n\004t" +
+      "ype\030\001 \002(\0162\013.ActionType\022%\n\006target\030\002 \001(\0132\025" +
+      ".DirectObjectProtocol\"\205\001\n\024DirectObjectPr" +
+      "otocol\022\014\n\004type\030\001 \001(\t\022\014\n\004name\030\002 \002(\t\022\031\n\003ma" +
+      "p\030\003 \001(\0132\014.MapProtocol\022\016\n\006amount\030\004 \001(\005\022&\n" +
+      "\017itemInformation\030\005 \001(\0132\r.ItemProtocol\"C\n" +
+      "\013MapProtocol\022\013\n\003uid\030\001 \002(\003\022\030\n\020generateIfN" +
+      "eeded\030\002 \002(\010\022\r\n\005range\030\003 \002(\001\"G\n\014ItemProtoc",
+      "ol\022\017\n\007version\030\001 \002(\005\022&\n\tlevelSpec\030\002 \002(\0162\023" +
+      ".LevelSpecification\";\n\023ConversationPacka" +
+      "ge\022$\n\rconversations\030\001 \003(\0132\r.Conversation" +
+      "\"R\n\014Conversation\022#\n\010allNodes\030\001 \003(\0132\021.Con" +
+      "versationNode\022\014\n\004name\030\002 \001(\t\022\017\n\007creator\030\003" +
+      " \001(\t\"\231\001\n\020ConversationNode\022\014\n\004text\030\001 \002(\t\022" +
+      "\014\n\004name\030\002 \002(\t\022\013\n\003uid\030\003 \002(\003\022\t\n\001X\030\004 \002(\005\022\t\n" +
+      "\001Y\030\005 \002(\005\022 \n\013connections\030\006 \003(\0132\013.Connecti" +
+      "on\022$\n\006blocks\030\007 \003(\0132\024.StatusBlockProtocol" +
+      "\"T\n\nConnection\022\016\n\006nodeId\030\001 \002(\003\022\014\n\004text\030\002",
+      " \002(\t\022(\n\017requirementSets\030\003 \003(\0132\017.Requirem" +
+      "entSet\"@\n\016RequirementSet\022.\n\014requirements" +
+      "\030\001 \003(\0132\030.StatusCheckableProtocol*\274\001\n\nAct" +
+      "ionType\022\010\n\004KILL\020\000\022\r\n\tMOVE_AREA\020\001\022\025\n\021APPR" +
+      "OACHED_OBJECT\020\002\022\024\n\020PICKED_UP_OBJECT\020\003\022\025\n" +
+      "\021ENTER_CITY_LIMITS\020\004\022\014\n\010LEVEL_UP\020\005\022\016\n\nEQ" +
+      "UIP_ITEM\020\006\022\014\n\010USE_ITEM\020\007\022\n\n\006ATTACK\020\010\022\031\n\025" +
+      "CONVERSATION_NODE_HIT\020\t**\n\007MapType\022\010\n\004CI" +
+      "TY\020\000\022\010\n\004PATH\020\001\022\013\n\007DUNGEON\020\002*5\n\032SpawnArea" +
+      "TypeSpecification\022\t\n\005LOCAL\020\000\022\014\n\010DISTANCE",
+      "\020\001*,\n\022LevelSpecification\022\013\n\007MINIMUM\020\001\022\t\n" +
+      "\005EXACT\020\002B!\n\037stsquestbuilder.protocolbuff" +
+      "ers"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -12240,7 +12878,7 @@ public final class QuestProtobuf {
           internal_static_SpawnCommandProtocol_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_SpawnCommandProtocol_descriptor,
-              new java.lang.String[] { "SpawnArea", "SpawnSpecification", "Range", "Area", "Item", "Enemy", },
+              new java.lang.String[] { "SpawnArea", "SpawnSpecification", "Range", "Item", "Enemy", },
               stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol.class,
               stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnCommandProtocol.Builder.class);
           internal_static_StatusStepProtocol_descriptor =
@@ -12248,7 +12886,7 @@ public final class QuestProtobuf {
           internal_static_StatusStepProtocol_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_StatusStepProtocol_descriptor,
-              new java.lang.String[] { "Name", "Description", "StatusesInStep", },
+              new java.lang.String[] { "Name", "Description", "StatusesInStep", "Commands", },
               stsquestbuilder.protocolbuffers.QuestProtobuf.StatusStepProtocol.class,
               stsquestbuilder.protocolbuffers.QuestProtobuf.StatusStepProtocol.Builder.class);
           internal_static_StatusCheckableProtocol_descriptor =
@@ -12256,11 +12894,19 @@ public final class QuestProtobuf {
           internal_static_StatusCheckableProtocol_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_StatusCheckableProtocol_descriptor,
-              new java.lang.String[] { "Action", "Amount", },
+              new java.lang.String[] { "Action", "Tier", "Amount", },
               stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.class,
               stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.Builder.class);
-          internal_static_ActionProtocol_descriptor =
+          internal_static_TierProtocol_descriptor =
             getDescriptor().getMessageTypes().get(7);
+          internal_static_TierProtocol_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_TierProtocol_descriptor,
+              new java.lang.String[] { "Tier", },
+              stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.class,
+              stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.Builder.class);
+          internal_static_ActionProtocol_descriptor =
+            getDescriptor().getMessageTypes().get(8);
           internal_static_ActionProtocol_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ActionProtocol_descriptor,
@@ -12268,7 +12914,7 @@ public final class QuestProtobuf {
               stsquestbuilder.protocolbuffers.QuestProtobuf.ActionProtocol.class,
               stsquestbuilder.protocolbuffers.QuestProtobuf.ActionProtocol.Builder.class);
           internal_static_DirectObjectProtocol_descriptor =
-            getDescriptor().getMessageTypes().get(8);
+            getDescriptor().getMessageTypes().get(9);
           internal_static_DirectObjectProtocol_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_DirectObjectProtocol_descriptor,
@@ -12276,7 +12922,7 @@ public final class QuestProtobuf {
               stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.class,
               stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.Builder.class);
           internal_static_MapProtocol_descriptor =
-            getDescriptor().getMessageTypes().get(9);
+            getDescriptor().getMessageTypes().get(10);
           internal_static_MapProtocol_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_MapProtocol_descriptor,
@@ -12284,7 +12930,7 @@ public final class QuestProtobuf {
               stsquestbuilder.protocolbuffers.QuestProtobuf.MapProtocol.class,
               stsquestbuilder.protocolbuffers.QuestProtobuf.MapProtocol.Builder.class);
           internal_static_ItemProtocol_descriptor =
-            getDescriptor().getMessageTypes().get(10);
+            getDescriptor().getMessageTypes().get(11);
           internal_static_ItemProtocol_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ItemProtocol_descriptor,
@@ -12292,7 +12938,7 @@ public final class QuestProtobuf {
               stsquestbuilder.protocolbuffers.QuestProtobuf.ItemProtocol.class,
               stsquestbuilder.protocolbuffers.QuestProtobuf.ItemProtocol.Builder.class);
           internal_static_ConversationPackage_descriptor =
-            getDescriptor().getMessageTypes().get(11);
+            getDescriptor().getMessageTypes().get(12);
           internal_static_ConversationPackage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ConversationPackage_descriptor,
@@ -12300,7 +12946,7 @@ public final class QuestProtobuf {
               stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage.class,
               stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationPackage.Builder.class);
           internal_static_Conversation_descriptor =
-            getDescriptor().getMessageTypes().get(12);
+            getDescriptor().getMessageTypes().get(13);
           internal_static_Conversation_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Conversation_descriptor,
@@ -12308,7 +12954,7 @@ public final class QuestProtobuf {
               stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.class,
               stsquestbuilder.protocolbuffers.QuestProtobuf.Conversation.Builder.class);
           internal_static_ConversationNode_descriptor =
-            getDescriptor().getMessageTypes().get(13);
+            getDescriptor().getMessageTypes().get(14);
           internal_static_ConversationNode_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ConversationNode_descriptor,
@@ -12316,7 +12962,7 @@ public final class QuestProtobuf {
               stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.class,
               stsquestbuilder.protocolbuffers.QuestProtobuf.ConversationNode.Builder.class);
           internal_static_Connection_descriptor =
-            getDescriptor().getMessageTypes().get(14);
+            getDescriptor().getMessageTypes().get(15);
           internal_static_Connection_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Connection_descriptor,
@@ -12324,7 +12970,7 @@ public final class QuestProtobuf {
               stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.class,
               stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.Builder.class);
           internal_static_RequirementSet_descriptor =
-            getDescriptor().getMessageTypes().get(15);
+            getDescriptor().getMessageTypes().get(16);
           internal_static_RequirementSet_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_RequirementSet_descriptor,

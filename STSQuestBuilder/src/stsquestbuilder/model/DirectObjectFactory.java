@@ -1,5 +1,7 @@
 package stsquestbuilder.model;
 
+import java.util.ArrayList;
+
 import stsquestbuilder.protocolbuffers.QuestProtobuf;
 
 /**
@@ -9,11 +11,40 @@ import stsquestbuilder.protocolbuffers.QuestProtobuf;
 public class DirectObjectFactory {
     
     public enum ObjectType {
-        ITEM,
-        AREA,
-        ENEMY,
-        NPC,
-        CONVERSATION_NODE
+        EMPTY(false),
+        AREA(false),
+        ITEM(true),
+        ENEMY(true),
+        //NPC(true),
+        CONVERSATION_NODE(false);
+        
+        private static int spawnableCount;
+        
+        private boolean spawnable;
+        private boolean implemented;
+        
+        ObjectType(boolean s) {
+            spawnable = s;
+            if (spawnable) 
+                addSpawnable();
+        }
+        
+        private static void addSpawnable() {
+            spawnableCount++;
+        }
+         
+        public static ObjectType[] getSpawnables() {
+            ArrayList<ObjectType> types = new ArrayList<>();
+            
+            for (ObjectType t : ObjectType.values()) {
+                if(t.spawnable)
+                    types.add(t);
+            }
+            
+            ObjectType[] rit = new ObjectType[spawnableCount];
+            types.toArray(rit);
+            return rit;
+        }
     }
     
     public static ObjectType getObjectTypeForActionType(QuestProtobuf.ActionType type) {
