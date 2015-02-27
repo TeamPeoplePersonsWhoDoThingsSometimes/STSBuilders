@@ -3,7 +3,6 @@ package stsquestbuilder.view;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -21,6 +20,7 @@ import stsquestbuilder.model.Enemy;
 import stsquestbuilder.model.Area;
 import stsquestbuilder.model.DirectObjectFactory;
 import stsquestbuilder.model.Item;
+import stsquestbuilder.model.Level;
 import stsquestbuilder.model.ConversationNode;
 import stsquestbuilder.protocolbuffers.QuestProtobuf.ActionType;
 
@@ -38,7 +38,7 @@ public class ActionComponentController implements Initializable {
         try {
             parent = loader.load();
         } catch (IOException ex) {
-            Logger.getLogger(EnemyComponentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EnemyComponentController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             return null;
         }
         controller = loader.getController();
@@ -109,6 +109,9 @@ public class ActionComponentController implements Initializable {
                 case CONVERSATION_NODE:
                     sub = (ConversationNode)DO;
                     break;
+                case LEVEL:
+                    sub = (Level)DO;
+                    break;
             }
         } catch (ClassCastException excep) {
             DO = DirectObjectFactory.buildObjectByType(type);
@@ -163,6 +166,11 @@ public class ActionComponentController implements Initializable {
             ConversationNodeHitComponentController controller = ConversationNodeHitComponentController.openCityBoundsComponentForProperty(node);
             subPanelRoot = controller.getRoot();
             action.setDirectObject(node.get());
+        } else if(objType.equals(DirectObjectFactory.ObjectType.LEVEL)) {
+            TierComponentController controller = TierComponentController.openComponentForAction(((Level)subObject).getLevelProperty());
+            controller.setLabelText("Level: ");
+            subPanelRoot = controller.getRoot();
+            action.setDirectObject((Level)subObject);
         }
         
         if(subPanelRoot != null) {

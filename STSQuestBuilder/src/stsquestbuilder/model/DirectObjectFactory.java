@@ -15,6 +15,7 @@ public class DirectObjectFactory {
         AREA(false),
         ITEM(true),
         ENEMY(true),
+        LEVEL(false),
         //NPC(true),
         CONVERSATION_NODE(false);
         
@@ -61,6 +62,8 @@ public class DirectObjectFactory {
                 return ObjectType.ITEM;
             case CONVERSATION_NODE_HIT:
                 return ObjectType.CONVERSATION_NODE;
+            case LEVEL_UP:
+                return ObjectType.LEVEL;
             default:
                 return ObjectType.ENEMY;
         }
@@ -87,6 +90,9 @@ public class DirectObjectFactory {
                 break;
             case CONVERSATION_NODE:
                 directObject = new ConversationNode();
+                break;
+            case LEVEL:
+                directObject = new Level();
                 break;
             default:
                 directObject = new Enemy();
@@ -116,6 +122,9 @@ public class DirectObjectFactory {
                     System.err.println("Building node as naked direct object instead");
                     directObject = new DirectObject(proto);
                 }
+                break;
+            case LEVEL:
+                directObject = new Level(proto);
                 break;
             default:
                 directObject = new DirectObject(proto);

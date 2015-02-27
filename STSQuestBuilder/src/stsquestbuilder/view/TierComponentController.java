@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXMLLoader;
@@ -51,6 +52,9 @@ public class TierComponentController implements Initializable {
     @FXML
     private TextField tierField;
     
+    @FXML
+    private Label componentLabel;
+    
     /**
      * Initializes the controller class.
      */
@@ -72,6 +76,15 @@ public class TierComponentController implements Initializable {
         tier = prop;
         tierField.setText("" + tier.get());
         rigTier();
+    }
+    
+    /**
+     * This method allows for the tier component to be used for anyplace that needs to only track an integer value
+     * i.e. levels
+     * @param t text to set the label to
+     */
+    public void setLabelText(String t) {
+        componentLabel.setText(t);
     }
     
     private void rigTier() {

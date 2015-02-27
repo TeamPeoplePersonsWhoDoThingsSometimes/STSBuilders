@@ -14,19 +14,17 @@ public final class QuestProtobuf {
     MOVE_AREA(1, 1),
     APPROACHED_OBJECT(2, 2),
     PICKED_UP_OBJECT(3, 3),
-    ENTER_CITY_LIMITS(4, 4),
-    LEVEL_UP(5, 5),
-    EQUIP_ITEM(6, 6),
-    USE_ITEM(7, 7),
-    ATTACK(8, 8),
-    CONVERSATION_NODE_HIT(9, 9),
+    LEVEL_UP(4, 5),
+    EQUIP_ITEM(5, 6),
+    USE_ITEM(6, 7),
+    ATTACK(7, 8),
+    CONVERSATION_NODE_HIT(8, 9),
     ;
     
     public static final int KILL_VALUE = 0;
     public static final int MOVE_AREA_VALUE = 1;
     public static final int APPROACHED_OBJECT_VALUE = 2;
     public static final int PICKED_UP_OBJECT_VALUE = 3;
-    public static final int ENTER_CITY_LIMITS_VALUE = 4;
     public static final int LEVEL_UP_VALUE = 5;
     public static final int EQUIP_ITEM_VALUE = 6;
     public static final int USE_ITEM_VALUE = 7;
@@ -42,7 +40,6 @@ public final class QuestProtobuf {
         case 1: return MOVE_AREA;
         case 2: return APPROACHED_OBJECT;
         case 3: return PICKED_UP_OBJECT;
-        case 4: return ENTER_CITY_LIMITS;
         case 5: return LEVEL_UP;
         case 6: return EQUIP_ITEM;
         case 7: return USE_ITEM;
@@ -78,7 +75,7 @@ public final class QuestProtobuf {
     }
     
     private static final ActionType[] VALUES = {
-      KILL, MOVE_AREA, APPROACHED_OBJECT, PICKED_UP_OBJECT, ENTER_CITY_LIMITS, LEVEL_UP, EQUIP_ITEM, USE_ITEM, ATTACK, CONVERSATION_NODE_HIT, 
+      KILL, MOVE_AREA, APPROACHED_OBJECT, PICKED_UP_OBJECT, LEVEL_UP, EQUIP_ITEM, USE_ITEM, ATTACK, CONVERSATION_NODE_HIT, 
     };
     
     public static ActionType valueOf(
@@ -12824,17 +12821,16 @@ public final class QuestProtobuf {
       "\"T\n\nConnection\022\016\n\006nodeId\030\001 \002(\003\022\014\n\004text\030\002",
       " \002(\t\022(\n\017requirementSets\030\003 \003(\0132\017.Requirem" +
       "entSet\"@\n\016RequirementSet\022.\n\014requirements" +
-      "\030\001 \003(\0132\030.StatusCheckableProtocol*\274\001\n\nAct" +
+      "\030\001 \003(\0132\030.StatusCheckableProtocol*\245\001\n\nAct" +
       "ionType\022\010\n\004KILL\020\000\022\r\n\tMOVE_AREA\020\001\022\025\n\021APPR" +
-      "OACHED_OBJECT\020\002\022\024\n\020PICKED_UP_OBJECT\020\003\022\025\n" +
-      "\021ENTER_CITY_LIMITS\020\004\022\014\n\010LEVEL_UP\020\005\022\016\n\nEQ" +
-      "UIP_ITEM\020\006\022\014\n\010USE_ITEM\020\007\022\n\n\006ATTACK\020\010\022\031\n\025" +
-      "CONVERSATION_NODE_HIT\020\t**\n\007MapType\022\010\n\004CI" +
-      "TY\020\000\022\010\n\004PATH\020\001\022\013\n\007DUNGEON\020\002*5\n\032SpawnArea" +
-      "TypeSpecification\022\t\n\005LOCAL\020\000\022\014\n\010DISTANCE",
-      "\020\001*,\n\022LevelSpecification\022\013\n\007MINIMUM\020\001\022\t\n" +
-      "\005EXACT\020\002B!\n\037stsquestbuilder.protocolbuff" +
-      "ers"
+      "OACHED_OBJECT\020\002\022\024\n\020PICKED_UP_OBJECT\020\003\022\014\n" +
+      "\010LEVEL_UP\020\005\022\016\n\nEQUIP_ITEM\020\006\022\014\n\010USE_ITEM\020" +
+      "\007\022\n\n\006ATTACK\020\010\022\031\n\025CONVERSATION_NODE_HIT\020\t" +
+      "**\n\007MapType\022\010\n\004CITY\020\000\022\010\n\004PATH\020\001\022\013\n\007DUNGE" +
+      "ON\020\002*5\n\032SpawnAreaTypeSpecification\022\t\n\005LO" +
+      "CAL\020\000\022\014\n\010DISTANCE\020\001*,\n\022LevelSpecificatio",
+      "n\022\013\n\007MINIMUM\020\001\022\t\n\005EXACT\020\002B!\n\037stsquestbui" +
+      "lder.protocolbuffers"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
