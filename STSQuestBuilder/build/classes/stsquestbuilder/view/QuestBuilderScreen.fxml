@@ -25,6 +25,7 @@
                   <Button fx:id="ChangeQuestNameButton" layoutX="104.0" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#changeQuestNameButtonClicked" text="Change Quest Name" />
                   <TextField fx:id="NewQuestNameTextBox" layoutX="74.0" layoutY="2.0" visible="false" />
                   <Button fx:id="NewQuestNameSaveButton" layoutX="230.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#saveQuestNameButtonClicked" text="Confirm Quest Name" visible="false" />
+                  <ChoiceBox fx:id="BiomeChoiceBox" layoutX="253.0" layoutY="3.0" prefWidth="150.0" />
                </children>
             </AnchorPane>
         </items>

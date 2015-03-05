@@ -98,6 +98,78 @@ public final class QuestProtobuf {
     // @@protoc_insertion_point(enum_scope:ActionType)
   }
   
+  public enum Biome
+      implements com.google.protobuf.ProtocolMessageEnum {
+    PYTHON(0, 0),
+    C(1, 1),
+    HTML(2, 2),
+    ;
+    
+    public static final int PYTHON_VALUE = 0;
+    public static final int C_VALUE = 1;
+    public static final int HTML_VALUE = 2;
+    
+    
+    public final int getNumber() { return value; }
+    
+    public static Biome valueOf(int value) {
+      switch (value) {
+        case 0: return PYTHON;
+        case 1: return C;
+        case 2: return HTML;
+        default: return null;
+      }
+    }
+    
+    public static com.google.protobuf.Internal.EnumLiteMap<Biome>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<Biome>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<Biome>() {
+            public Biome findValueByNumber(int number) {
+              return Biome.valueOf(number);
+            }
+          };
+    
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return stsquestbuilder.protocolbuffers.QuestProtobuf.getDescriptor().getEnumTypes().get(1);
+    }
+    
+    private static final Biome[] VALUES = {
+      PYTHON, C, HTML, 
+    };
+    
+    public static Biome valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+    
+    private final int index;
+    private final int value;
+    
+    private Biome(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+    
+    // @@protoc_insertion_point(enum_scope:Biome)
+  }
+  
   public enum MapType
       implements com.google.protobuf.ProtocolMessageEnum {
     CITY(0, 0),
@@ -143,7 +215,7 @@ public final class QuestProtobuf {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return stsquestbuilder.protocolbuffers.QuestProtobuf.getDescriptor().getEnumTypes().get(1);
+      return stsquestbuilder.protocolbuffers.QuestProtobuf.getDescriptor().getEnumTypes().get(2);
     }
     
     private static final MapType[] VALUES = {
@@ -212,7 +284,7 @@ public final class QuestProtobuf {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return stsquestbuilder.protocolbuffers.QuestProtobuf.getDescriptor().getEnumTypes().get(2);
+      return stsquestbuilder.protocolbuffers.QuestProtobuf.getDescriptor().getEnumTypes().get(3);
     }
     
     private static final SpawnAreaTypeSpecification[] VALUES = {
@@ -281,7 +353,7 @@ public final class QuestProtobuf {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return stsquestbuilder.protocolbuffers.QuestProtobuf.getDescriptor().getEnumTypes().get(3);
+      return stsquestbuilder.protocolbuffers.QuestProtobuf.getDescriptor().getEnumTypes().get(4);
     }
     
     private static final LevelSpecification[] VALUES = {
@@ -2024,6 +2096,10 @@ public final class QuestProtobuf {
         getStepsOrBuilderList();
     stsquestbuilder.protocolbuffers.QuestProtobuf.StatusStepProtocolOrBuilder getStepsOrBuilder(
         int index);
+    
+    // optional .Biome biome = 4;
+    boolean hasBiome();
+    stsquestbuilder.protocolbuffers.QuestProtobuf.Biome getBiome();
   }
   public static final class QuestProtocol extends
       com.google.protobuf.GeneratedMessage
@@ -2139,10 +2215,21 @@ public final class QuestProtobuf {
       return steps_.get(index);
     }
     
+    // optional .Biome biome = 4;
+    public static final int BIOME_FIELD_NUMBER = 4;
+    private stsquestbuilder.protocolbuffers.QuestProtobuf.Biome biome_;
+    public boolean hasBiome() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public stsquestbuilder.protocolbuffers.QuestProtobuf.Biome getBiome() {
+      return biome_;
+    }
+    
     private void initFields() {
       name_ = "";
       creator_ = "";
       steps_ = java.util.Collections.emptyList();
+      biome_ = stsquestbuilder.protocolbuffers.QuestProtobuf.Biome.PYTHON;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2175,6 +2262,9 @@ public final class QuestProtobuf {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(3, getCreatorBytes());
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeEnum(4, biome_.getNumber());
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -2195,6 +2285,10 @@ public final class QuestProtobuf {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(3, getCreatorBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(4, biome_.getNumber());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2331,6 +2425,8 @@ public final class QuestProtobuf {
         } else {
           stepsBuilder_.clear();
         }
+        biome_ = stsquestbuilder.protocolbuffers.QuestProtobuf.Biome.PYTHON;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       
@@ -2386,6 +2482,10 @@ public final class QuestProtobuf {
         } else {
           result.steps_ = stepsBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.biome_ = biome_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2433,6 +2533,9 @@ public final class QuestProtobuf {
               stepsBuilder_.addAllMessages(other.steps_);
             }
           }
+        }
+        if (other.hasBiome()) {
+          setBiome(other.getBiome());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -2489,6 +2592,17 @@ public final class QuestProtobuf {
             case 26: {
               bitField0_ |= 0x00000002;
               creator_ = input.readBytes();
+              break;
+            }
+            case 32: {
+              int rawValue = input.readEnum();
+              stsquestbuilder.protocolbuffers.QuestProtobuf.Biome value = stsquestbuilder.protocolbuffers.QuestProtobuf.Biome.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(4, rawValue);
+              } else {
+                bitField0_ |= 0x00000008;
+                biome_ = value;
+              }
               break;
             }
           }
@@ -2753,6 +2867,30 @@ public final class QuestProtobuf {
           steps_ = null;
         }
         return stepsBuilder_;
+      }
+      
+      // optional .Biome biome = 4;
+      private stsquestbuilder.protocolbuffers.QuestProtobuf.Biome biome_ = stsquestbuilder.protocolbuffers.QuestProtobuf.Biome.PYTHON;
+      public boolean hasBiome() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public stsquestbuilder.protocolbuffers.QuestProtobuf.Biome getBiome() {
+        return biome_;
+      }
+      public Builder setBiome(stsquestbuilder.protocolbuffers.QuestProtobuf.Biome value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000008;
+        biome_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearBiome() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        biome_ = stsquestbuilder.protocolbuffers.QuestProtobuf.Biome.PYTHON;
+        onChanged();
+        return this;
       }
       
       // @@protoc_insertion_point(builder_scope:QuestProtocol)
@@ -12784,53 +12922,55 @@ public final class QuestProtobuf {
       "rPackage\022&\n\007enemies\030\001 \003(\0132\025.DirectObject" +
       "Protocol\022&\n\007weapons\030\002 \003(\0132\025.DirectObject" +
       "Protocol\022$\n\005hacks\030\003 \003(\0132\025.DirectObjectPr" +
-      "otocol\"R\n\rQuestProtocol\022\014\n\004name\030\001 \002(\t\022\017\n" +
+      "otocol\"i\n\rQuestProtocol\022\014\n\004name\030\001 \002(\t\022\017\n" +
       "\007creator\030\003 \001(\t\022\"\n\005steps\030\002 \003(\0132\023.StatusSt" +
-      "epProtocol\"x\n\023StatusBlockProtocol\022\014\n\004nam" +
-      "e\030\001 \002(\t\022*\n\010statuses\030\002 \003(\0132\030.StatusChecka" +
-      "bleProtocol\022\'\n\010commands\030\003 \003(\0132\025.SpawnCom",
-      "mandProtocol\"\306\001\n\024SpawnCommandProtocol\022\033\n" +
-      "\tspawnArea\030\001 \002(\0162\010.MapType\0227\n\022spawnSpeci" +
-      "fication\030\002 \002(\0162\033.SpawnAreaTypeSpecificat" +
-      "ion\022\r\n\005range\030\003 \002(\005\022#\n\004item\030\005 \001(\0132\025.Direc" +
-      "tObjectProtocol\022$\n\005enemy\030\006 \001(\0132\025.DirectO" +
-      "bjectProtocol\"\222\001\n\022StatusStepProtocol\022\014\n\004" +
-      "name\030\001 \002(\t\022\023\n\013description\030\002 \002(\t\0220\n\016statu" +
-      "sesInStep\030\003 \003(\0132\030.StatusCheckableProtoco" +
-      "l\022\'\n\010commands\030\004 \003(\0132\025.SpawnCommandProtoc" +
-      "ol\"g\n\027StatusCheckableProtocol\022\037\n\006action\030",
-      "\001 \001(\0132\017.ActionProtocol\022\033\n\004tier\030\002 \001(\0132\r.T" +
-      "ierProtocol\022\016\n\006amount\030\003 \001(\005\"\034\n\014TierProto" +
-      "col\022\014\n\004tier\030\001 \002(\005\"R\n\016ActionProtocol\022\031\n\004t" +
-      "ype\030\001 \002(\0162\013.ActionType\022%\n\006target\030\002 \001(\0132\025" +
-      ".DirectObjectProtocol\"\205\001\n\024DirectObjectPr" +
-      "otocol\022\014\n\004type\030\001 \001(\t\022\014\n\004name\030\002 \002(\t\022\031\n\003ma" +
-      "p\030\003 \001(\0132\014.MapProtocol\022\016\n\006amount\030\004 \001(\005\022&\n" +
-      "\017itemInformation\030\005 \001(\0132\r.ItemProtocol\"C\n" +
-      "\013MapProtocol\022\013\n\003uid\030\001 \002(\003\022\030\n\020generateIfN" +
-      "eeded\030\002 \002(\010\022\r\n\005range\030\003 \002(\001\"G\n\014ItemProtoc",
-      "ol\022\017\n\007version\030\001 \002(\005\022&\n\tlevelSpec\030\002 \002(\0162\023" +
-      ".LevelSpecification\";\n\023ConversationPacka" +
-      "ge\022$\n\rconversations\030\001 \003(\0132\r.Conversation" +
-      "\"R\n\014Conversation\022#\n\010allNodes\030\001 \003(\0132\021.Con" +
-      "versationNode\022\014\n\004name\030\002 \001(\t\022\017\n\007creator\030\003" +
-      " \001(\t\"\231\001\n\020ConversationNode\022\014\n\004text\030\001 \002(\t\022" +
-      "\014\n\004name\030\002 \002(\t\022\013\n\003uid\030\003 \002(\003\022\t\n\001X\030\004 \002(\005\022\t\n" +
-      "\001Y\030\005 \002(\005\022 \n\013connections\030\006 \003(\0132\013.Connecti" +
-      "on\022$\n\006blocks\030\007 \003(\0132\024.StatusBlockProtocol" +
-      "\"T\n\nConnection\022\016\n\006nodeId\030\001 \002(\003\022\014\n\004text\030\002",
-      " \002(\t\022(\n\017requirementSets\030\003 \003(\0132\017.Requirem" +
-      "entSet\"@\n\016RequirementSet\022.\n\014requirements" +
-      "\030\001 \003(\0132\030.StatusCheckableProtocol*\245\001\n\nAct" +
-      "ionType\022\010\n\004KILL\020\000\022\r\n\tMOVE_AREA\020\001\022\025\n\021APPR" +
-      "OACHED_OBJECT\020\002\022\024\n\020PICKED_UP_OBJECT\020\003\022\014\n" +
-      "\010LEVEL_UP\020\005\022\016\n\nEQUIP_ITEM\020\006\022\014\n\010USE_ITEM\020" +
-      "\007\022\n\n\006ATTACK\020\010\022\031\n\025CONVERSATION_NODE_HIT\020\t" +
-      "**\n\007MapType\022\010\n\004CITY\020\000\022\010\n\004PATH\020\001\022\013\n\007DUNGE" +
-      "ON\020\002*5\n\032SpawnAreaTypeSpecification\022\t\n\005LO" +
-      "CAL\020\000\022\014\n\010DISTANCE\020\001*,\n\022LevelSpecificatio",
-      "n\022\013\n\007MINIMUM\020\001\022\t\n\005EXACT\020\002B!\n\037stsquestbui" +
-      "lder.protocolbuffers"
+      "epProtocol\022\025\n\005biome\030\004 \001(\0162\006.Biome\"x\n\023Sta" +
+      "tusBlockProtocol\022\014\n\004name\030\001 \002(\t\022*\n\010status" +
+      "es\030\002 \003(\0132\030.StatusCheckableProtocol\022\'\n\010co",
+      "mmands\030\003 \003(\0132\025.SpawnCommandProtocol\"\306\001\n\024" +
+      "SpawnCommandProtocol\022\033\n\tspawnArea\030\001 \002(\0162" +
+      "\010.MapType\0227\n\022spawnSpecification\030\002 \002(\0162\033." +
+      "SpawnAreaTypeSpecification\022\r\n\005range\030\003 \002(" +
+      "\005\022#\n\004item\030\005 \001(\0132\025.DirectObjectProtocol\022$" +
+      "\n\005enemy\030\006 \001(\0132\025.DirectObjectProtocol\"\222\001\n" +
+      "\022StatusStepProtocol\022\014\n\004name\030\001 \002(\t\022\023\n\013des" +
+      "cription\030\002 \002(\t\0220\n\016statusesInStep\030\003 \003(\0132\030" +
+      ".StatusCheckableProtocol\022\'\n\010commands\030\004 \003" +
+      "(\0132\025.SpawnCommandProtocol\"g\n\027StatusCheck",
+      "ableProtocol\022\037\n\006action\030\001 \001(\0132\017.ActionPro" +
+      "tocol\022\033\n\004tier\030\002 \001(\0132\r.TierProtocol\022\016\n\006am" +
+      "ount\030\003 \001(\005\"\034\n\014TierProtocol\022\014\n\004tier\030\001 \002(\005" +
+      "\"R\n\016ActionProtocol\022\031\n\004type\030\001 \002(\0162\013.Actio" +
+      "nType\022%\n\006target\030\002 \001(\0132\025.DirectObjectProt" +
+      "ocol\"\205\001\n\024DirectObjectProtocol\022\014\n\004type\030\001 " +
+      "\001(\t\022\014\n\004name\030\002 \002(\t\022\031\n\003map\030\003 \001(\0132\014.MapProt" +
+      "ocol\022\016\n\006amount\030\004 \001(\005\022&\n\017itemInformation\030" +
+      "\005 \001(\0132\r.ItemProtocol\"C\n\013MapProtocol\022\013\n\003u" +
+      "id\030\001 \002(\003\022\030\n\020generateIfNeeded\030\002 \002(\010\022\r\n\005ra",
+      "nge\030\003 \002(\001\"G\n\014ItemProtocol\022\017\n\007version\030\001 \002" +
+      "(\005\022&\n\tlevelSpec\030\002 \002(\0162\023.LevelSpecificati" +
+      "on\";\n\023ConversationPackage\022$\n\rconversatio" +
+      "ns\030\001 \003(\0132\r.Conversation\"R\n\014Conversation\022" +
+      "#\n\010allNodes\030\001 \003(\0132\021.ConversationNode\022\014\n\004" +
+      "name\030\002 \001(\t\022\017\n\007creator\030\003 \001(\t\"\231\001\n\020Conversa" +
+      "tionNode\022\014\n\004text\030\001 \002(\t\022\014\n\004name\030\002 \002(\t\022\013\n\003" +
+      "uid\030\003 \002(\003\022\t\n\001X\030\004 \002(\005\022\t\n\001Y\030\005 \002(\005\022 \n\013conne" +
+      "ctions\030\006 \003(\0132\013.Connection\022$\n\006blocks\030\007 \003(" +
+      "\0132\024.StatusBlockProtocol\"T\n\nConnection\022\016\n",
+      "\006nodeId\030\001 \002(\003\022\014\n\004text\030\002 \002(\t\022(\n\017requireme" +
+      "ntSets\030\003 \003(\0132\017.RequirementSet\"@\n\016Require" +
+      "mentSet\022.\n\014requirements\030\001 \003(\0132\030.StatusCh" +
+      "eckableProtocol*\245\001\n\nActionType\022\010\n\004KILL\020\000" +
+      "\022\r\n\tMOVE_AREA\020\001\022\025\n\021APPROACHED_OBJECT\020\002\022\024" +
+      "\n\020PICKED_UP_OBJECT\020\003\022\014\n\010LEVEL_UP\020\005\022\016\n\nEQ" +
+      "UIP_ITEM\020\006\022\014\n\010USE_ITEM\020\007\022\n\n\006ATTACK\020\010\022\031\n\025" +
+      "CONVERSATION_NODE_HIT\020\t*$\n\005Biome\022\n\n\006PYTH" +
+      "ON\020\000\022\005\n\001C\020\001\022\010\n\004HTML\020\002**\n\007MapType\022\010\n\004CITY" +
+      "\020\000\022\010\n\004PATH\020\001\022\013\n\007DUNGEON\020\002*5\n\032SpawnAreaTy",
+      "peSpecification\022\t\n\005LOCAL\020\000\022\014\n\010DISTANCE\020\001" +
+      "*,\n\022LevelSpecification\022\013\n\007MINIMUM\020\001\022\t\n\005E" +
+      "XACT\020\002B!\n\037stsquestbuilder.protocolbuffer" +
+      "s"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -12858,7 +12998,7 @@ public final class QuestProtobuf {
           internal_static_QuestProtocol_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_QuestProtocol_descriptor,
-              new java.lang.String[] { "Name", "Creator", "Steps", },
+              new java.lang.String[] { "Name", "Creator", "Steps", "Biome", },
               stsquestbuilder.protocolbuffers.QuestProtobuf.QuestProtocol.class,
               stsquestbuilder.protocolbuffers.QuestProtobuf.QuestProtocol.Builder.class);
           internal_static_StatusBlockProtocol_descriptor =

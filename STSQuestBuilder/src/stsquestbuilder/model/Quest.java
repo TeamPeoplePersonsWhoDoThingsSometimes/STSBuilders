@@ -7,6 +7,8 @@ import javafx.beans.property.StringProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 import stsquestbuilder.STSQuestBuilder;
 import stsquestbuilder.protocolbuffers.QuestProtobuf;
@@ -19,6 +21,7 @@ public class Quest {
     private final StringProperty questName;
     private final IntegerProperty length;
     private final StringProperty creator;
+    private final ObjectProperty<QuestProtobuf.Biome> biome;
     
     private ArrayList<Step> steps;
     
@@ -31,6 +34,7 @@ public class Quest {
         length = new SimpleIntegerProperty(0);
         creator = new SimpleStringProperty(STSQuestBuilder.UserName);
         steps = new ArrayList<>();
+        biome = new SimpleObjectProperty<>();
     }
     
     /**
@@ -54,6 +58,13 @@ public class Quest {
         }
         
         length = new SimpleIntegerProperty(steps.size());
+        biome = new SimpleObjectProperty<>();
+        
+        if (quest.hasBiome()) {
+            biome.set(quest.getBiome());
+        } else {
+            biome.set(QuestProtobuf.Biome.C);
+        }
     }
     
     public StringProperty getNameProperty() {
@@ -93,15 +104,30 @@ public class Quest {
         return creator.get();
     }
     
+    public void setBiome(QuestProtobuf.Biome b) {
+        biome.set(b);
+    }
+    
+    public ObjectProperty<QuestProtobuf.Biome> getBiomeProperty() {
+        return biome;
+    }
+    
+    public QuestProtobuf.Biome getBiome() {
+        return biome.get();
+    }
+    
     public QuestProtobuf.QuestProtocol getQuestAsProtobuf() {
         QuestProtobuf.QuestProtocol.Builder builder = QuestProtobuf.QuestProtocol.newBuilder();
         builder.setName(this.getName());
-        if(this.getCreator() != null) {
+        
+        builder.setBiome(biome.get());
+        
+        if (this.getCreator() != null) {
             builder.setCreator(this.getCreator());
         }
         
         //create step protobufs
-        for(Step s : steps) {
+        for (Step s : steps) {
             builder.addSteps(s.getProtobufForStep());
         }
         

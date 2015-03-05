@@ -66,7 +66,7 @@ public class CommandScreenController implements Initializable {
     //Implementation Note: Spawn in dropdown will specify either a range within the
     //current area or another area altogether
     
-    private static double SUB_PANEL_Y_OFFSET = 150.0;
+    private static double SUB_PANEL_Y_OFFSET = 50.0;
     
     private SpawnCommand command;
     private Parent subRoot;
@@ -78,11 +78,11 @@ public class CommandScreenController implements Initializable {
     @FXML
     private ChoiceBox<DirectObjectFactory.ObjectType> commandTypeDropdown;
     
-    @FXML
+    /*@FXML
     private ChoiceBox<SpawnAreaTypeSpecification> spawnAreaTypeDropdown;
     
     @FXML
-    private TextField rangeField;
+    private TextField rangeField;*/
             
     /**
      * Initializes the controller class.
@@ -91,8 +91,8 @@ public class CommandScreenController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         commandTypeDropdown.setItems(FXCollections.observableArrayList(DirectObjectFactory.ObjectType.getSpawnables()));
         commandTypeDropdown.setValue(DirectObjectFactory.ObjectType.AREA);
-        spawnAreaTypeDropdown.setItems(FXCollections.observableArrayList(SpawnAreaTypeSpecification.values()));
-        spawnAreaTypeDropdown.setValue(SpawnAreaTypeSpecification.LOCAL);
+        /*spawnAreaTypeDropdown.setItems(FXCollections.observableArrayList(SpawnAreaTypeSpecification.values()));
+        spawnAreaTypeDropdown.setValue(SpawnAreaTypeSpecification.LOCAL);*/
         
         commandTypeDropdown.valueProperty().addListener(event -> {
             switchCommandType(null);
@@ -101,17 +101,17 @@ public class CommandScreenController implements Initializable {
     
     public void postSetupOp() {
         commandTypeDropdown.setValue(command.commandType());
-        spawnAreaTypeDropdown.setValue(command.getSpecification());
+        //spawnAreaTypeDropdown.setValue(command.getSpecification());
         
-        rangeField.setText("" + command.getRange());
+        //rangeField.setText("" + command.getRange());
         
-        rangeField.textProperty().addListener(event -> {
+        /*rangeField.textProperty().addListener(event -> {
             command.setRange(Integer.valueOf(rangeField.getText()));
         });
         
         spawnAreaTypeDropdown.valueProperty().addListener(event -> {
             command.setSpecification(spawnAreaTypeDropdown.getValue());
-        });
+        });*/
         
         switchCommandType(null);
     }

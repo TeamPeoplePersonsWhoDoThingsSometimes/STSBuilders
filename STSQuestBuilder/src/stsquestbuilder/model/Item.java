@@ -5,6 +5,10 @@ import stsquestbuilder.protocolbuffers.QuestProtobuf.LevelSpecification;
 
 /**
  *
+ * DirectObject format:
+ * id- type
+ * typeId- weapon name
+ * 
  * @author William
  */
 public class Item extends DirectObject {

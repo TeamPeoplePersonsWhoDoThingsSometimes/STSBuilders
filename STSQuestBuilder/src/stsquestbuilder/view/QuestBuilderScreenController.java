@@ -38,6 +38,7 @@ import javafx.scene.control.ListCell;
 import stsquestbuilder.protocolbuffers.QuestProtobuf.ActionType;
 import stsquestbuilder.STSQuestBuilder;
 import stsquestbuilder.model.*;
+import stsquestbuilder.protocolbuffers.QuestProtobuf;
 
 /**
  * FXML Controller class
@@ -98,6 +99,9 @@ public class QuestBuilderScreenController implements Initializable {
     @FXML
     private Button ChangeQuestNameButton;
     
+    @FXML
+    private ChoiceBox<QuestProtobuf.Biome> BiomeChoiceBox;
+    
     private ObservableList<ActionType> actionTypes;//an observable list version of model data
     private ObservableList<EnemyType> enemies;//an observable list version of the enemies stored in the model
     
@@ -133,6 +137,10 @@ public class QuestBuilderScreenController implements Initializable {
      */
     public void setupScreenWithQuest(Quest quest) {
         questForScreen = quest;
+        
+        BiomeChoiceBox.setValue(quest.getBiome());
+        
+        quest.getBiomeProperty().bind(BiomeChoiceBox.valueProperty());
         
         if(questForScreen.getLength() != 0) {
             for(Step s : questForScreen.getSteps()) {
@@ -306,6 +314,14 @@ public class QuestBuilderScreenController implements Initializable {
      * Populated the observable lists needed for step panes from the model
      */
     private void populateModelLists() {
+        ObservableList<QuestProtobuf.Biome> biomes = FXCollections.observableArrayList();
+        
+        for (QuestProtobuf.Biome b : QuestProtobuf.Biome.values()) {
+            biomes.add(b);
+        }
+        
+        BiomeChoiceBox.setItems(biomes);
+        
         //set up the action type list with the values from the ActionType enum
         //defined in the protocol buffer
         actionTypes = FXCollections.observableArrayList();
