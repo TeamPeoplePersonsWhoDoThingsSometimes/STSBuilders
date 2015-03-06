@@ -37,6 +37,7 @@ public class Item extends DirectObject {
     public Item(QuestProtobuf.DirectObjectProtocol DirObj) {
         super(DirObj);
         type = ItemType.parse(DirObj.getName());
+        name = DirObj.getType();
         version = DirObj.getItemInformation().getVersion();
         levelSpec = DirObj.getItemInformation().getLevelSpec();
     }

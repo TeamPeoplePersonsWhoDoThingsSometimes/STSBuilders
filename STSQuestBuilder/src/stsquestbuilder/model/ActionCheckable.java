@@ -71,7 +71,11 @@ public class ActionCheckable implements StatusCheckable {
     public StatusCheckableProtocol getStatusCheckableAsProtobuf() {
         StatusCheckableProtocol.Builder builder = StatusCheckableProtocol.newBuilder();
         builder.setAction(action.getActionAsProtobuf());
-        builder.setAmount(amount);
+        
+        if (amount > 0) {
+            builder.setAmount(amount);
+        }
+        
         return builder.build();
     }
 

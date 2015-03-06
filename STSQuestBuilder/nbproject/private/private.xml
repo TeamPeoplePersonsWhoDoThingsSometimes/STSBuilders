@@ -3,18 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/TierCheckable.java</file>
-            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/Action.java</file>
-            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/view/StatusCheckableScreenController.java</file>
-            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/view/QuestBuilderScreenController.java</file>
+            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/Item.java</file>
+            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/Enemy.java</file>
             <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/ActionCheckable.java</file>
-            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/DirectObject.java</file>
-            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/StatusCheckableFactory.java</file>
-            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/StatusReference.java</file>
-            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/view/TierComponentController.java</file>
+            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/Step.java</file>
+            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/SpawnCommand.java</file>
+            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/STSQuestBuilder.java</file>
             <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/Quest.java</file>
-            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/view/CommandScreenController.java</file>
-            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/DirectObjectFactory.java</file>
         </group>
     </open-files>
 </project-private>

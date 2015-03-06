@@ -100,23 +100,26 @@ public final class QuestProtobuf {
   
   public enum Biome
       implements com.google.protobuf.ProtocolMessageEnum {
-    PYTHON(0, 0),
-    C(1, 1),
-    HTML(2, 2),
+    NOT_ASSIGNED(0, 0),
+    PYTHON(1, 1),
+    C(2, 2),
+    HTML(3, 3),
     ;
     
-    public static final int PYTHON_VALUE = 0;
-    public static final int C_VALUE = 1;
-    public static final int HTML_VALUE = 2;
+    public static final int NOT_ASSIGNED_VALUE = 0;
+    public static final int PYTHON_VALUE = 1;
+    public static final int C_VALUE = 2;
+    public static final int HTML_VALUE = 3;
     
     
     public final int getNumber() { return value; }
     
     public static Biome valueOf(int value) {
       switch (value) {
-        case 0: return PYTHON;
-        case 1: return C;
-        case 2: return HTML;
+        case 0: return NOT_ASSIGNED;
+        case 1: return PYTHON;
+        case 2: return C;
+        case 3: return HTML;
         default: return null;
       }
     }
@@ -147,7 +150,7 @@ public final class QuestProtobuf {
     }
     
     private static final Biome[] VALUES = {
-      PYTHON, C, HTML, 
+      NOT_ASSIGNED, PYTHON, C, HTML, 
     };
     
     public static Biome valueOf(
@@ -2229,7 +2232,7 @@ public final class QuestProtobuf {
       name_ = "";
       creator_ = "";
       steps_ = java.util.Collections.emptyList();
-      biome_ = stsquestbuilder.protocolbuffers.QuestProtobuf.Biome.PYTHON;
+      biome_ = stsquestbuilder.protocolbuffers.QuestProtobuf.Biome.NOT_ASSIGNED;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2425,7 +2428,7 @@ public final class QuestProtobuf {
         } else {
           stepsBuilder_.clear();
         }
-        biome_ = stsquestbuilder.protocolbuffers.QuestProtobuf.Biome.PYTHON;
+        biome_ = stsquestbuilder.protocolbuffers.QuestProtobuf.Biome.NOT_ASSIGNED;
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
@@ -2870,7 +2873,7 @@ public final class QuestProtobuf {
       }
       
       // optional .Biome biome = 4;
-      private stsquestbuilder.protocolbuffers.QuestProtobuf.Biome biome_ = stsquestbuilder.protocolbuffers.QuestProtobuf.Biome.PYTHON;
+      private stsquestbuilder.protocolbuffers.QuestProtobuf.Biome biome_ = stsquestbuilder.protocolbuffers.QuestProtobuf.Biome.NOT_ASSIGNED;
       public boolean hasBiome() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
@@ -2888,7 +2891,7 @@ public final class QuestProtobuf {
       }
       public Builder clearBiome() {
         bitField0_ = (bitField0_ & ~0x00000008);
-        biome_ = stsquestbuilder.protocolbuffers.QuestProtobuf.Biome.PYTHON;
+        biome_ = stsquestbuilder.protocolbuffers.QuestProtobuf.Biome.NOT_ASSIGNED;
         onChanged();
         return this;
       }
@@ -12964,13 +12967,13 @@ public final class QuestProtobuf {
       "\022\r\n\tMOVE_AREA\020\001\022\025\n\021APPROACHED_OBJECT\020\002\022\024" +
       "\n\020PICKED_UP_OBJECT\020\003\022\014\n\010LEVEL_UP\020\005\022\016\n\nEQ" +
       "UIP_ITEM\020\006\022\014\n\010USE_ITEM\020\007\022\n\n\006ATTACK\020\010\022\031\n\025" +
-      "CONVERSATION_NODE_HIT\020\t*$\n\005Biome\022\n\n\006PYTH" +
-      "ON\020\000\022\005\n\001C\020\001\022\010\n\004HTML\020\002**\n\007MapType\022\010\n\004CITY" +
-      "\020\000\022\010\n\004PATH\020\001\022\013\n\007DUNGEON\020\002*5\n\032SpawnAreaTy",
-      "peSpecification\022\t\n\005LOCAL\020\000\022\014\n\010DISTANCE\020\001" +
-      "*,\n\022LevelSpecification\022\013\n\007MINIMUM\020\001\022\t\n\005E" +
-      "XACT\020\002B!\n\037stsquestbuilder.protocolbuffer" +
-      "s"
+      "CONVERSATION_NODE_HIT\020\t*6\n\005Biome\022\020\n\014NOT_" +
+      "ASSIGNED\020\000\022\n\n\006PYTHON\020\001\022\005\n\001C\020\002\022\010\n\004HTML\020\003*" +
+      "*\n\007MapType\022\010\n\004CITY\020\000\022\010\n\004PATH\020\001\022\013\n\007DUNGEO",
+      "N\020\002*5\n\032SpawnAreaTypeSpecification\022\t\n\005LOC" +
+      "AL\020\000\022\014\n\010DISTANCE\020\001*,\n\022LevelSpecification" +
+      "\022\013\n\007MINIMUM\020\001\022\t\n\005EXACT\020\002B!\n\037stsquestbuil" +
+      "der.protocolbuffers"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
