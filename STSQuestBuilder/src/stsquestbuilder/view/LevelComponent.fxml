@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="46.0" prefWidth="222.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stsquestbuilder.view.LevelComponentController">
+   <children>
+      <Label fx:id="componentLabel" layoutX="14.0" layoutY="17.0" text="Level: " />
+      <TextField fx:id="levelField" layoutX="59.0" layoutY="13.0" />
+   </children>
+</AnchorPane>

@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import stsquestbuilder.model.Action;
 import stsquestbuilder.model.ActionCheckable;
 import stsquestbuilder.model.TierCheckable;
+import stsquestbuilder.model.LevelCheckable;
 import stsquestbuilder.model.StatusCheckable;
 import stsquestbuilder.model.StatusReference;
 import stsquestbuilder.model.StatusCheckableFactory;
@@ -122,6 +123,7 @@ public class StatusCheckableScreenController implements Initializable {
             case ActionCheckable:
                 o = new Action();
                 break;
+            case LevelCheckable://cooincedantally the same as tier check
             case TierCheckable:
                 o = new SimpleIntegerProperty();
                 break;
@@ -142,6 +144,11 @@ public class StatusCheckableScreenController implements Initializable {
             ((TierCheckable)status.getStatus()).setTier((IntegerProperty)subObject);
             TierComponentController controller = TierComponentController.openComponentForAction((IntegerProperty)subObject);
             subPanelRoot = controller.getRoot();
+        } else if (type.equals(StatusCheckableFactory.StatusType.LevelCheckable)) {
+            status.setStatus(StatusCheckableFactory.getLevelStatus());
+            ((LevelCheckable)status.getStatus()).setLevel((IntegerProperty)subObject);
+            LevelComponentController controller = LevelComponentController.openComponentForAction((IntegerProperty)subObject);
+            subPanelRoot = controller.getRoot();
         }
         
         backPane.getChildren().add(subPanelRoot);
@@ -155,6 +162,9 @@ public class StatusCheckableScreenController implements Initializable {
         } else if (StatusCheckableFactory.getStatusTypeOfCheck(status.getStatus()).equals(StatusCheckableFactory.StatusType.TierCheckable)) {
             checkTypeDropdown.setValue(StatusCheckableFactory.StatusType.TierCheckable);
             changeToStatusType(StatusCheckableFactory.StatusType.TierCheckable, ((TierCheckable)status.getStatus()).getTierProperty());
+        } else if (StatusCheckableFactory.getStatusTypeOfCheck(status.getStatus()).equals(StatusCheckableFactory.StatusType.LevelCheckable)) {
+            checkTypeDropdown.setValue(StatusCheckableFactory.StatusType.LevelCheckable);
+            changeToStatusType(StatusCheckableFactory.StatusType.LevelCheckable, ((LevelCheckable)status.getStatus()).getLevelProperty());
         }
     }
     
