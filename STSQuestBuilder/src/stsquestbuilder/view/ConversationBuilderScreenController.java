@@ -134,6 +134,9 @@ public class ConversationBuilderScreenController implements Initializable {
     @FXML
     private ListView<StatusReference> alternativeSet;
     
+    @FXML
+    private TextField priorityField;
+    
     private Conversation conversation;
     
     private boolean isDraggingForConnection;
@@ -284,6 +287,14 @@ public class ConversationBuilderScreenController implements Initializable {
         */
         alternativeText.textProperty().addListener(event -> {
             activeAlternative.setText(alternativeText.getText());
+        });
+        
+        priorityField.textProperty().addListener(event -> {
+            try {
+                activeAlternative.setPriority(Integer.parseInt(priorityField.getText()));
+            } catch (NumberFormatException excep) {
+                System.err.println("User cleared priority field, last valid field value will be used");
+            }
         });
                 
         alternativeOptions.setCellFactory(list -> {
@@ -553,8 +564,7 @@ public class ConversationBuilderScreenController implements Initializable {
         
         alternativeText.setText(activeAlternative.getText());
         alternativeOptions.setItems(activeAlternative.getRequirements());
-        
-        
+        priorityField.setText("" + activeAlternative.getPriority());
         
         if(!isAlternativeEditorOpened) {
             double height = alternativePanel.getHeight();

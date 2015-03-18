@@ -30,6 +30,7 @@ public class ConversationNode extends DirectObject {
         private ConversationNode target;
         private long uid;//the target uid, needed during instantiation when target is not yet built
         ObservableList<ObservableList<StatusReference>> requirements;
+        private int priority;
         
         public Alternative(Long uid) {
             requirements = FXCollections.observableArrayList();
@@ -68,6 +69,14 @@ public class ConversationNode extends DirectObject {
         
         public void removeRequirementBlock(ObservableList<StatusReference> block) {
             requirements.remove(block);
+        }
+        
+        public int getPriority() {
+            return priority;
+        }
+        
+        public void setPriority(int p) {
+            priority = p;
         }
         
         @Override
@@ -166,6 +175,13 @@ public class ConversationNode extends DirectObject {
         for(QuestProtobuf.Connection c : proto.getConnectionsList()) {
             Alternative alt = new Alternative(c.getNodeId());
             alt.text = c.getText();
+            
+            if (c.hasPriority()) {
+                alt.setPriority(c.getPriority());
+            } else {
+                alt.setPriority(0);
+            }
+            
             alternatives.put(alt.getUID(), alt);
             ObservableList<ObservableList<StatusReference>> requirementSets = alt.getRequirements();
             for (QuestProtobuf.RequirementSet set : c.getRequirementSetsList()) {
@@ -334,6 +350,7 @@ public class ConversationNode extends DirectObject {
             QuestProtobuf.Connection.Builder cBuilder = QuestProtobuf.Connection.newBuilder();
             cBuilder.setText(a.text);
             cBuilder.setNodeId(a.target.uid);//break law of demeter due to encapsulated class
+            cBuilder.setPriority(a.getPriority());
             
             for (ObservableList<StatusReference> block : a.getRequirements()) {
                 QuestProtobuf.RequirementSet.Builder sBuilder = QuestProtobuf.RequirementSet.newBuilder();

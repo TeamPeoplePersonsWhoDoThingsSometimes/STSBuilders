@@ -12051,6 +12051,10 @@ public final class QuestProtobuf {
         getRequirementSetsOrBuilderList();
     stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSetOrBuilder getRequirementSetsOrBuilder(
         int index);
+    
+    // optional int32 priority = 4;
+    boolean hasPriority();
+    int getPriority();
   }
   public static final class Connection extends
       com.google.protobuf.GeneratedMessage
@@ -12144,10 +12148,21 @@ public final class QuestProtobuf {
       return requirementSets_.get(index);
     }
     
+    // optional int32 priority = 4;
+    public static final int PRIORITY_FIELD_NUMBER = 4;
+    private int priority_;
+    public boolean hasPriority() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public int getPriority() {
+      return priority_;
+    }
+    
     private void initFields() {
       nodeId_ = 0L;
       text_ = "";
       requirementSets_ = java.util.Collections.emptyList();
+      priority_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -12184,6 +12199,9 @@ public final class QuestProtobuf {
       for (int i = 0; i < requirementSets_.size(); i++) {
         output.writeMessage(3, requirementSets_.get(i));
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt32(4, priority_);
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -12204,6 +12222,10 @@ public final class QuestProtobuf {
       for (int i = 0; i < requirementSets_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, requirementSets_.get(i));
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, priority_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -12340,6 +12362,8 @@ public final class QuestProtobuf {
         } else {
           requirementSetsBuilder_.clear();
         }
+        priority_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       
@@ -12395,6 +12419,10 @@ public final class QuestProtobuf {
         } else {
           result.requirementSets_ = requirementSetsBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.priority_ = priority_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -12442,6 +12470,9 @@ public final class QuestProtobuf {
               requirementSetsBuilder_.addAllMessages(other.requirementSets_);
             }
           }
+        }
+        if (other.hasPriority()) {
+          setPriority(other.getPriority());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -12502,6 +12533,11 @@ public final class QuestProtobuf {
               stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.Builder subBuilder = stsquestbuilder.protocolbuffers.QuestProtobuf.RequirementSet.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addRequirementSets(subBuilder.buildPartial());
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              priority_ = input.readInt32();
               break;
             }
           }
@@ -12751,6 +12787,27 @@ public final class QuestProtobuf {
           requirementSets_ = null;
         }
         return requirementSetsBuilder_;
+      }
+      
+      // optional int32 priority = 4;
+      private int priority_ ;
+      public boolean hasPriority() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public int getPriority() {
+        return priority_;
+      }
+      public Builder setPriority(int value) {
+        bitField0_ |= 0x00000008;
+        priority_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearPriority() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        priority_ = 0;
+        onChanged();
+        return this;
       }
       
       // @@protoc_insertion_point(builder_scope:Connection)
@@ -13467,21 +13524,21 @@ public final class QuestProtobuf {
       "\030\001 \002(\t\022\014\n\004name\030\002 \002(\t\022\013\n\003uid\030\003 \002(\003\022\t\n\001X\030\004" +
       " \002(\005\022\t\n\001Y\030\005 \002(\005\022 \n\013connections\030\006 \003(\0132\013.C",
       "onnection\022$\n\006blocks\030\007 \003(\0132\024.StatusBlockP" +
-      "rotocol\"T\n\nConnection\022\016\n\006nodeId\030\001 \002(\003\022\014\n" +
+      "rotocol\"f\n\nConnection\022\016\n\006nodeId\030\001 \002(\003\022\014\n" +
       "\004text\030\002 \002(\t\022(\n\017requirementSets\030\003 \003(\0132\017.R" +
-      "equirementSet\"@\n\016RequirementSet\022.\n\014requi" +
-      "rements\030\001 \003(\0132\030.StatusCheckableProtocol*" +
-      "\245\001\n\nActionType\022\010\n\004KILL\020\000\022\r\n\tMOVE_AREA\020\001\022" +
-      "\025\n\021APPROACHED_OBJECT\020\002\022\024\n\020PICKED_UP_OBJE" +
-      "CT\020\003\022\014\n\010LEVEL_UP\020\005\022\016\n\nEQUIP_ITEM\020\006\022\014\n\010US" +
-      "E_ITEM\020\007\022\n\n\006ATTACK\020\010\022\031\n\025CONVERSATION_NOD" +
-      "E_HIT\020\t*6\n\005Biome\022\020\n\014NOT_ASSIGNED\020\000\022\n\n\006PY",
-      "THON\020\001\022\005\n\001C\020\002\022\010\n\004HTML\020\003**\n\007MapType\022\010\n\004CI" +
-      "TY\020\000\022\010\n\004PATH\020\001\022\013\n\007DUNGEON\020\002*5\n\032SpawnArea" +
-      "TypeSpecification\022\t\n\005LOCAL\020\000\022\014\n\010DISTANCE" +
-      "\020\001*,\n\022LevelSpecification\022\013\n\007MINIMUM\020\001\022\t\n" +
-      "\005EXACT\020\002B!\n\037stsquestbuilder.protocolbuff" +
-      "ers"
+      "equirementSet\022\020\n\010priority\030\004 \001(\005\"@\n\016Requi" +
+      "rementSet\022.\n\014requirements\030\001 \003(\0132\030.Status" +
+      "CheckableProtocol*\245\001\n\nActionType\022\010\n\004KILL" +
+      "\020\000\022\r\n\tMOVE_AREA\020\001\022\025\n\021APPROACHED_OBJECT\020\002" +
+      "\022\024\n\020PICKED_UP_OBJECT\020\003\022\014\n\010LEVEL_UP\020\005\022\016\n\n" +
+      "EQUIP_ITEM\020\006\022\014\n\010USE_ITEM\020\007\022\n\n\006ATTACK\020\010\022\031" +
+      "\n\025CONVERSATION_NODE_HIT\020\t*6\n\005Biome\022\020\n\014NO",
+      "T_ASSIGNED\020\000\022\n\n\006PYTHON\020\001\022\005\n\001C\020\002\022\010\n\004HTML\020" +
+      "\003**\n\007MapType\022\010\n\004CITY\020\000\022\010\n\004PATH\020\001\022\013\n\007DUNG" +
+      "EON\020\002*5\n\032SpawnAreaTypeSpecification\022\t\n\005L" +
+      "OCAL\020\000\022\014\n\010DISTANCE\020\001*,\n\022LevelSpecificati" +
+      "on\022\013\n\007MINIMUM\020\001\022\t\n\005EXACT\020\002B!\n\037stsquestbu" +
+      "ilder.protocolbuffers"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -13621,7 +13678,7 @@ public final class QuestProtobuf {
           internal_static_Connection_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Connection_descriptor,
-              new java.lang.String[] { "NodeId", "Text", "RequirementSets", },
+              new java.lang.String[] { "NodeId", "Text", "RequirementSets", "Priority", },
               stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.class,
               stsquestbuilder.protocolbuffers.QuestProtobuf.Connection.Builder.class);
           internal_static_RequirementSet_descriptor =
