@@ -5740,6 +5740,10 @@ public final class QuestProtobuf {
     boolean hasLevel();
     stsquestbuilder.protocolbuffers.QuestProtobuf.LevelProtocol getLevel();
     stsquestbuilder.protocolbuffers.QuestProtobuf.LevelProtocolOrBuilder getLevelOrBuilder();
+    
+    // optional bool not = 5;
+    boolean hasNot();
+    boolean getNot();
   }
   public static final class StatusCheckableProtocol extends
       com.google.protobuf.GeneratedMessage
@@ -5819,11 +5823,22 @@ public final class QuestProtobuf {
       return level_;
     }
     
+    // optional bool not = 5;
+    public static final int NOT_FIELD_NUMBER = 5;
+    private boolean not_;
+    public boolean hasNot() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public boolean getNot() {
+      return not_;
+    }
+    
     private void initFields() {
       action_ = stsquestbuilder.protocolbuffers.QuestProtobuf.ActionProtocol.getDefaultInstance();
       tier_ = stsquestbuilder.protocolbuffers.QuestProtobuf.TierProtocol.getDefaultInstance();
       amount_ = 0;
       level_ = stsquestbuilder.protocolbuffers.QuestProtobuf.LevelProtocol.getDefaultInstance();
+      not_ = false;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -5867,6 +5882,9 @@ public final class QuestProtobuf {
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeMessage(4, level_);
       }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeBool(5, not_);
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -5891,6 +5909,10 @@ public final class QuestProtobuf {
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, level_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(5, not_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -6039,6 +6061,8 @@ public final class QuestProtobuf {
           levelBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000008);
+        not_ = false;
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
       
@@ -6105,6 +6129,10 @@ public final class QuestProtobuf {
         } else {
           result.level_ = levelBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.not_ = not_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -6132,6 +6160,9 @@ public final class QuestProtobuf {
         }
         if (other.hasLevel()) {
           mergeLevel(other.getLevel());
+        }
+        if (other.hasNot()) {
+          setNot(other.getNot());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -6212,6 +6243,11 @@ public final class QuestProtobuf {
               }
               input.readMessage(subBuilder, extensionRegistry);
               setLevel(subBuilder.buildPartial());
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000010;
+              not_ = input.readBool();
               break;
             }
           }
@@ -6509,6 +6545,27 @@ public final class QuestProtobuf {
           level_ = null;
         }
         return levelBuilder_;
+      }
+      
+      // optional bool not = 5;
+      private boolean not_ ;
+      public boolean hasNot() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public boolean getNot() {
+        return not_;
+      }
+      public Builder setNot(boolean value) {
+        bitField0_ |= 0x00000010;
+        not_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearNot() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        not_ = false;
+        onChanged();
+        return this;
       }
       
       // @@protoc_insertion_point(builder_scope:StatusCheckableProtocol)
@@ -19367,62 +19424,62 @@ public final class QuestProtobuf {
       "\022StatusStepProtocol\022\014\n\004name\030\001 \002(\t\022\023\n\013des" +
       "cription\030\002 \002(\t\0220\n\016statusesInStep\030\003 \003(\0132\030" +
       ".StatusCheckableProtocol\022\'\n\010commands\030\004 \003" +
-      "(\0132\025.SpawnCommandProtocol\"\206\001\n\027StatusChec",
+      "(\0132\025.SpawnCommandProtocol\"\223\001\n\027StatusChec",
       "kableProtocol\022\037\n\006action\030\001 \001(\0132\017.ActionPr" +
       "otocol\022\033\n\004tier\030\002 \001(\0132\r.TierProtocol\022\016\n\006a" +
       "mount\030\003 \001(\005\022\035\n\005level\030\004 \001(\0132\016.LevelProtoc" +
-      "ol\"\034\n\014TierProtocol\022\014\n\004tier\030\001 \002(\005\"\036\n\rLeve" +
-      "lProtocol\022\r\n\005level\030\001 \002(\005\"R\n\016ActionProtoc" +
-      "ol\022\031\n\004type\030\001 \002(\0162\013.ActionType\022%\n\006target\030" +
-      "\002 \001(\0132\025.DirectObjectProtocol\"\205\001\n\024DirectO" +
-      "bjectProtocol\022\014\n\004type\030\001 \001(\t\022\014\n\004name\030\002 \002(" +
-      "\t\022\031\n\003map\030\003 \001(\0132\014.MapProtocol\022\016\n\006amount\030\004" +
-      " \001(\005\022&\n\017itemInformation\030\005 \001(\0132\r.ItemProt",
-      "ocol\"C\n\013MapProtocol\022\013\n\003uid\030\001 \002(\003\022\030\n\020gene" +
-      "rateIfNeeded\030\002 \002(\010\022\r\n\005range\030\003 \002(\001\"G\n\014Ite" +
-      "mProtocol\022\017\n\007version\030\001 \002(\005\022&\n\tlevelSpec\030" +
-      "\002 \002(\0162\023.LevelSpecification\";\n\023Conversati" +
-      "onPackage\022$\n\rconversations\030\001 \003(\0132\r.Conve" +
-      "rsation\"R\n\014Conversation\022#\n\010allNodes\030\001 \003(" +
-      "\0132\021.ConversationNode\022\014\n\004name\030\002 \001(\t\022\017\n\007cr" +
-      "eator\030\003 \001(\t\"\231\001\n\020ConversationNode\022\014\n\004text" +
-      "\030\001 \002(\t\022\014\n\004name\030\002 \002(\t\022\013\n\003uid\030\003 \002(\003\022\t\n\001X\030\004" +
-      " \002(\005\022\t\n\001Y\030\005 \002(\005\022 \n\013connections\030\006 \003(\0132\013.C",
-      "onnection\022$\n\006blocks\030\007 \003(\0132\024.StatusBlockP" +
-      "rotocol\"f\n\nConnection\022\016\n\006nodeId\030\001 \002(\003\022\014\n" +
-      "\004text\030\002 \002(\t\022(\n\017requirementSets\030\003 \003(\0132\017.R" +
-      "equirementSet\022\020\n\010priority\030\004 \001(\005\"@\n\016Requi" +
-      "rementSet\022.\n\014requirements\030\001 \003(\0132\030.Status" +
-      "CheckableProtocol\"\201\001\n\013SavePackage\022\035\n\006pla" +
-      "yer\030\001 \002(\0132\r.PlayerStatus\022\014\n\004seed\030\002 \002(\005\022\035" +
-      "\n\tquestData\030\003 \003(\0132\n.QuestSave\022&\n\016spawned" +
-      "Objects\030\004 \003(\0132\016.SpawnedObject\"N\n\016GlobalP" +
-      "osition\022\r\n\005areaX\030\002 \002(\005\022\r\n\005areaY\030\003 \002(\005\022\016\n",
-      "\006localX\030\004 \002(\005\022\016\n\006localY\030\005 \002(\005\"\"\n\nPointPr" +
-      "oto\022\t\n\001x\030\001 \002(\005\022\t\n\001y\030\002 \002(\005\"}\n\tQuestSave\022\014" +
-      "\n\004name\030\001 \002(\t\022\014\n\004step\030\002 \002(\005\022.\n\031currentSte" +
-      "pSpawnLocations\030\003 \003(\0132\013.PointProto\022$\n\017cu" +
-      "rrentStepData\030\004 \003(\0132\013.StatusSave\"/\n\nStat" +
-      "usSave\022\022\n\nalreadyMet\030\001 \002(\010\022\r\n\005count\030\002 \002(" +
-      "\005\"\210\001\n\rSpawnedObject\022\'\n\016objectPosition\030\001 " +
-      "\002(\0132\017.GlobalPosition\022)\n\nobjectData\030\002 \002(\013" +
-      "2\025.DirectObjectProtocol\022#\n\017enemyAttribut" +
-      "es\030\003 \001(\0132\n.EnemyData\"$\n\tEnemyData\022\027\n\017hea",
-      "lthRemaining\030\001 \002(\005\"k\n\014PlayerStatus\022\'\n\016pl" +
-      "ayerPosition\030\001 \002(\0132\017.GlobalPosition\022!\n\ti" +
-      "nventory\030\002 \002(\0132\016.InventoryData\022\017\n\007versio" +
-      "n\030\003 \002(\t\"6\n\rInventoryData\022%\n\006object\030\001 \003(\013" +
-      "2\025.DirectObjectProtocol*\245\001\n\nActionType\022\010" +
-      "\n\004KILL\020\000\022\r\n\tMOVE_AREA\020\001\022\025\n\021APPROACHED_OB" +
-      "JECT\020\002\022\024\n\020PICKED_UP_OBJECT\020\003\022\014\n\010LEVEL_UP" +
-      "\020\005\022\016\n\nEQUIP_ITEM\020\006\022\014\n\010USE_ITEM\020\007\022\n\n\006ATTA" +
-      "CK\020\010\022\031\n\025CONVERSATION_NODE_HIT\020\t*6\n\005Biome" +
-      "\022\020\n\014NOT_ASSIGNED\020\000\022\n\n\006PYTHON\020\001\022\005\n\001C\020\002\022\010\n",
-      "\004HTML\020\003**\n\007MapType\022\010\n\004CITY\020\000\022\010\n\004PATH\020\001\022\013" +
-      "\n\007DUNGEON\020\002*5\n\032SpawnAreaTypeSpecificatio" +
-      "n\022\t\n\005LOCAL\020\000\022\014\n\010DISTANCE\020\001*,\n\022LevelSpeci" +
-      "fication\022\013\n\007MINIMUM\020\001\022\t\n\005EXACT\020\002B!\n\037stsq" +
-      "uestbuilder.protocolbuffers"
+      "ol\022\013\n\003not\030\005 \001(\010\"\034\n\014TierProtocol\022\014\n\004tier\030" +
+      "\001 \002(\005\"\036\n\rLevelProtocol\022\r\n\005level\030\001 \002(\005\"R\n" +
+      "\016ActionProtocol\022\031\n\004type\030\001 \002(\0162\013.ActionTy" +
+      "pe\022%\n\006target\030\002 \001(\0132\025.DirectObjectProtoco" +
+      "l\"\205\001\n\024DirectObjectProtocol\022\014\n\004type\030\001 \001(\t" +
+      "\022\014\n\004name\030\002 \002(\t\022\031\n\003map\030\003 \001(\0132\014.MapProtoco" +
+      "l\022\016\n\006amount\030\004 \001(\005\022&\n\017itemInformation\030\005 \001",
+      "(\0132\r.ItemProtocol\"C\n\013MapProtocol\022\013\n\003uid\030" +
+      "\001 \002(\003\022\030\n\020generateIfNeeded\030\002 \002(\010\022\r\n\005range" +
+      "\030\003 \002(\001\"G\n\014ItemProtocol\022\017\n\007version\030\001 \002(\005\022" +
+      "&\n\tlevelSpec\030\002 \002(\0162\023.LevelSpecification\"" +
+      ";\n\023ConversationPackage\022$\n\rconversations\030" +
+      "\001 \003(\0132\r.Conversation\"R\n\014Conversation\022#\n\010" +
+      "allNodes\030\001 \003(\0132\021.ConversationNode\022\014\n\004nam" +
+      "e\030\002 \001(\t\022\017\n\007creator\030\003 \001(\t\"\231\001\n\020Conversatio" +
+      "nNode\022\014\n\004text\030\001 \002(\t\022\014\n\004name\030\002 \002(\t\022\013\n\003uid" +
+      "\030\003 \002(\003\022\t\n\001X\030\004 \002(\005\022\t\n\001Y\030\005 \002(\005\022 \n\013connecti",
+      "ons\030\006 \003(\0132\013.Connection\022$\n\006blocks\030\007 \003(\0132\024" +
+      ".StatusBlockProtocol\"f\n\nConnection\022\016\n\006no" +
+      "deId\030\001 \002(\003\022\014\n\004text\030\002 \002(\t\022(\n\017requirementS" +
+      "ets\030\003 \003(\0132\017.RequirementSet\022\020\n\010priority\030\004" +
+      " \001(\005\"@\n\016RequirementSet\022.\n\014requirements\030\001" +
+      " \003(\0132\030.StatusCheckableProtocol\"\201\001\n\013SaveP" +
+      "ackage\022\035\n\006player\030\001 \002(\0132\r.PlayerStatus\022\014\n" +
+      "\004seed\030\002 \002(\005\022\035\n\tquestData\030\003 \003(\0132\n.QuestSa" +
+      "ve\022&\n\016spawnedObjects\030\004 \003(\0132\016.SpawnedObje" +
+      "ct\"N\n\016GlobalPosition\022\r\n\005areaX\030\002 \002(\005\022\r\n\005a",
+      "reaY\030\003 \002(\005\022\016\n\006localX\030\004 \002(\005\022\016\n\006localY\030\005 \002" +
+      "(\005\"\"\n\nPointProto\022\t\n\001x\030\001 \002(\005\022\t\n\001y\030\002 \002(\005\"}" +
+      "\n\tQuestSave\022\014\n\004name\030\001 \002(\t\022\014\n\004step\030\002 \002(\005\022" +
+      ".\n\031currentStepSpawnLocations\030\003 \003(\0132\013.Poi" +
+      "ntProto\022$\n\017currentStepData\030\004 \003(\0132\013.Statu" +
+      "sSave\"/\n\nStatusSave\022\022\n\nalreadyMet\030\001 \002(\010\022" +
+      "\r\n\005count\030\002 \002(\005\"\210\001\n\rSpawnedObject\022\'\n\016obje" +
+      "ctPosition\030\001 \002(\0132\017.GlobalPosition\022)\n\nobj" +
+      "ectData\030\002 \002(\0132\025.DirectObjectProtocol\022#\n\017" +
+      "enemyAttributes\030\003 \001(\0132\n.EnemyData\"$\n\tEne",
+      "myData\022\027\n\017healthRemaining\030\001 \002(\005\"k\n\014Playe" +
+      "rStatus\022\'\n\016playerPosition\030\001 \002(\0132\017.Global" +
+      "Position\022!\n\tinventory\030\002 \002(\0132\016.InventoryD" +
+      "ata\022\017\n\007version\030\003 \002(\t\"6\n\rInventoryData\022%\n" +
+      "\006object\030\001 \003(\0132\025.DirectObjectProtocol*\245\001\n" +
+      "\nActionType\022\010\n\004KILL\020\000\022\r\n\tMOVE_AREA\020\001\022\025\n\021" +
+      "APPROACHED_OBJECT\020\002\022\024\n\020PICKED_UP_OBJECT\020" +
+      "\003\022\014\n\010LEVEL_UP\020\005\022\016\n\nEQUIP_ITEM\020\006\022\014\n\010USE_I" +
+      "TEM\020\007\022\n\n\006ATTACK\020\010\022\031\n\025CONVERSATION_NODE_H" +
+      "IT\020\t*6\n\005Biome\022\020\n\014NOT_ASSIGNED\020\000\022\n\n\006PYTHO",
+      "N\020\001\022\005\n\001C\020\002\022\010\n\004HTML\020\003**\n\007MapType\022\010\n\004CITY\020" +
+      "\000\022\010\n\004PATH\020\001\022\013\n\007DUNGEON\020\002*5\n\032SpawnAreaTyp" +
+      "eSpecification\022\t\n\005LOCAL\020\000\022\014\n\010DISTANCE\020\001*" +
+      ",\n\022LevelSpecification\022\013\n\007MINIMUM\020\001\022\t\n\005EX" +
+      "ACT\020\002B!\n\037stsquestbuilder.protocolbuffers"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -19482,7 +19539,7 @@ public final class QuestProtobuf {
           internal_static_StatusCheckableProtocol_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_StatusCheckableProtocol_descriptor,
-              new java.lang.String[] { "Action", "Tier", "Amount", "Level", },
+              new java.lang.String[] { "Action", "Tier", "Amount", "Level", "Not", },
               stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.class,
               stsquestbuilder.protocolbuffers.QuestProtobuf.StatusCheckableProtocol.Builder.class);
           internal_static_TierProtocol_descriptor =

@@ -9,6 +9,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
@@ -74,6 +75,9 @@ public class StatusCheckableScreenController implements Initializable {
     @FXML
     private ChoiceBox<StatusCheckableFactory.StatusType> checkTypeDropdown;
     
+    @FXML
+    private CheckBox notCheckBox;
+    
     /**
      * Initializes the controller class.
      */
@@ -110,6 +114,12 @@ public class StatusCheckableScreenController implements Initializable {
         //non-standard handlers
         checkTypeDropdown.valueProperty().addListener(event -> {
             changeToStatusType(checkTypeDropdown.getValue());
+        });
+        
+        notCheckBox.selectedProperty().addListener(event -> {
+            if (status.getStatus() != null) {
+                status.getStatus().setNot(notCheckBox.isSelected());
+            }
         });
     }
     
@@ -151,11 +161,15 @@ public class StatusCheckableScreenController implements Initializable {
             subPanelRoot = controller.getRoot();
         }
         
+        status.getStatus().setNot(notCheckBox.isSelected());
+        
         backPane.getChildren().add(subPanelRoot);
         subPanelRoot.setLayoutY(subComponentYOffset);
     }
     
     private void setupWithStatus() {
+        notCheckBox.setSelected(status.getStatus().isNot());
+        
         if(StatusCheckableFactory.getStatusTypeOfCheck(status.getStatus()).equals(StatusCheckableFactory.StatusType.ActionCheckable)) {
             checkTypeDropdown.setValue(StatusCheckableFactory.StatusType.ActionCheckable);
             changeToStatusType(StatusCheckableFactory.StatusType.ActionCheckable, ((ActionCheckable)status.getStatus()).getAction());

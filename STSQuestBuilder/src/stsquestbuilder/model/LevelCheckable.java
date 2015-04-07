@@ -20,12 +20,14 @@ public class LevelCheckable implements StatusCheckable {
     private StringProperty name;//used in ui
     private int amount;
     private IntegerProperty level;
+    private boolean not;
     
     private void init(int t) {
         name = new SimpleStringProperty();
         level = new SimpleIntegerProperty();
         level.set(t);
         amount = 1;
+        not = false;
         bindName();
     }
     
@@ -39,6 +41,9 @@ public class LevelCheckable implements StatusCheckable {
     
     public LevelCheckable(QuestProtobuf.StatusCheckableProtocol proto) {
         init(proto.getTier().getTier());
+        if (proto.hasNot()) {
+            not = proto.getNot();
+        }
     }
     
     public void setLevel(IntegerProperty t) {
@@ -75,6 +80,7 @@ public class LevelCheckable implements StatusCheckable {
         lBuilder.setLevel(level.get());
         builder.setLevel(lBuilder);
         builder.setAmount(1);
+        builder.setNot(not);
         return builder.build();
     }
 
@@ -85,6 +91,16 @@ public class LevelCheckable implements StatusCheckable {
     
     public int getAmount() {
         return amount;
+    }
+
+    @Override
+    public boolean isNot() {
+        return not;
+    }
+
+    @Override
+    public void setNot(boolean not) {
+        this.not = not;
     }
     
     @Override

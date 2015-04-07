@@ -15,12 +15,14 @@ public class ActionCheckable implements StatusCheckable {
     private int amount;
     private Action action;
     private boolean empty;
+    private boolean not;
     
     private void init(Action act) {
         name = new SimpleStringProperty();
         action = act;
         empty = true;
         amount = -1;
+        not = false;
         bindName();
     }
     
@@ -34,6 +36,9 @@ public class ActionCheckable implements StatusCheckable {
     
     public ActionCheckable(StatusCheckableProtocol proto) {
         init(new Action(proto.getAction()));
+        if (proto.hasNot()) {
+            not = proto.getNot();
+        }
     }
     
     public void setAction(Action act) {
@@ -71,6 +76,7 @@ public class ActionCheckable implements StatusCheckable {
     public StatusCheckableProtocol getStatusCheckableAsProtobuf() {
         StatusCheckableProtocol.Builder builder = StatusCheckableProtocol.newBuilder();
         builder.setAction(action.getActionAsProtobuf());
+        builder.setNot(not);
         
         if (amount > 0) {
             builder.setAmount(amount);
@@ -93,6 +99,16 @@ public class ActionCheckable implements StatusCheckable {
      */
     public void bindName() {
         name.bind(action.getDescriptorProperty());
+    }
+
+    @Override
+    public boolean isNot() {
+        return not;
+    }
+    
+    @Override
+    public void setNot(boolean not) {
+        this.not = not;
     }
 
     @Override

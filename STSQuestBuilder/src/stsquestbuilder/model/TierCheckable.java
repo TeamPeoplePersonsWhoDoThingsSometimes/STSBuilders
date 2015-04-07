@@ -20,12 +20,14 @@ public class TierCheckable implements StatusCheckable {
     private StringProperty name;//used in ui
     private int amount;
     private IntegerProperty tier;
+    private boolean not;
     
     private void init(int t) {
         name = new SimpleStringProperty();
         tier = new SimpleIntegerProperty();
         tier.set(t);
         amount = 1;
+        not = false;
         bindName();
     }
     
@@ -39,6 +41,9 @@ public class TierCheckable implements StatusCheckable {
     
     public TierCheckable(QuestProtobuf.StatusCheckableProtocol proto) {
         init(proto.getTier().getTier());
+        if (proto.hasNot()) {
+            not = proto.getNot();
+        }
     }
     
     public void setTier(IntegerProperty t) {
@@ -75,6 +80,7 @@ public class TierCheckable implements StatusCheckable {
         tBuilder.setTier(tier.get());
         builder.setTier(tBuilder);
         builder.setAmount(1);
+        builder.setNot(not);
         return builder.build();
     }
 
@@ -92,6 +98,16 @@ public class TierCheckable implements StatusCheckable {
         return false;
     }
 
+    @Override
+    public boolean isNot() {
+        return not;
+    }
+    
+    @Override
+    public void setNot(boolean not) {
+        this.not = not;
+    }
+    
     @Override
     public void setNotEmpty() {
     }

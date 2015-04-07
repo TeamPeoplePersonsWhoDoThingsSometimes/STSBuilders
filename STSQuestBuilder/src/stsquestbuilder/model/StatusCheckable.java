@@ -24,4 +24,8 @@ public interface StatusCheckable {
      * @param amount 
      */
     public void setAmount(int amount);
+    
+    public boolean isNot();
+
+    public void setNot(boolean not);
 }

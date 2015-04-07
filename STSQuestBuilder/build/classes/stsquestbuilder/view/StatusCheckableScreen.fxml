@@ -14,5 +14,6 @@
             <TextField layoutX="83.0" layoutY="10.0" />
          </children>
       </Pane>
+      <CheckBox fx:id="notCheckBox" layoutX="246.0" layoutY="14.0" mnemonicParsing="false" text="Not Checkable" />
    </children>
 </AnchorPane>
