@@ -4,15 +4,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="backPane" prefHeight="152.0" prefWidth="246.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stsquestbuilder.view.AreaComponentController">
+<AnchorPane id="AnchorPane" fx:id="backPane" prefHeight="74.0" prefWidth="209.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stsquestbuilder.view.AreaComponentController">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" text="Area Type: " />
-      <ChoiceBox fx:id="areaType" layoutX="79.0" layoutY="10.0" prefWidth="150.0" />
-      <Label layoutX="8.0" layoutY="106.0" text="Range: " />
-      <TextField fx:id="rangeField" layoutX="80.0" layoutY="102.0" />
-      <Label layoutX="17.0" layoutY="48.0" text="Identifier: " />
-      <TextField fx:id="nameField" layoutX="80.0" layoutY="44.0" />
-      <Label layoutX="8.0" layoutY="78.0" text="Generate If Doesn't Exist: " />
-      <CheckBox fx:id="generateCheckBox" layoutX="144.0" layoutY="78.0" mnemonicParsing="false" />
+      <Label layoutX="8.0" layoutY="43.0" text="Y: " />
+      <TextField fx:id="yCoordinate" layoutX="49.0" layoutY="39.0" />
+      <Label layoutX="8.0" layoutY="14.0" text="X: " />
+      <TextField layoutX="49.0" layoutY="10.0" fx:id="xCoordinate" />
    </children>
 </AnchorPane>

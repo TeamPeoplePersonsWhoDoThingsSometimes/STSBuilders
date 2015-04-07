@@ -17,7 +17,7 @@ import java.util.HashMap;
  */
 public class Area extends DirectObject {
     
-    public static Area getAreaById(long id) {
+    /*public static Area getAreaById(long id) {
         return areaIdMap.get(id);
     }
     
@@ -35,37 +35,42 @@ public class Area extends DirectObject {
     
     private static HashMap<String, Long> uiToIdMap = new HashMap<>();//ui id is the frontend, human friendly identifier for the designer
     private static HashMap<Long, Area> areaIdMap = new HashMap<>();
-    private static long nextUid = 0;
+    private static long nextUid = 0;*/
     
     private MapType type;
-    private long uid;
-    private String name;
-    private boolean generateIfNeeded;
-    private double range;
+    //private long uid;
+    private int x;
+    private int y;
 
     public Area() {
-        super("", "");
-        uid = getNextUID();
-        name = "";//no frontend id yet
-        generateIfNeeded = false;
+        super("Area", "");
+        //uid = getNextUID();
+        x = 0;
+        y = 0;
     }
     
     public Area(DirectObjectProtocol proto) {
         super(proto.getName(), proto.getType());
-        uid = proto.getMap().getUid();
-        name = proto.getName();
-        type = MapType.valueOf(proto.getType());
-        range = proto.getMap().getRange();
-        generateIfNeeded = proto.getMap().getGenerateIfNeeded();
+        //uid = proto.getMap().getUid();
+        //type = MapType.valueOf(proto.getType());
+        String[] p = proto.getType().split(" ");
+        
+        if (p.length == 2) {
+            x = Integer.valueOf(p[0]);
+            y = Integer.valueOf(p[1]);
+        } else {
+            x = 0;
+            y = 0;
+        }
     }
     
     /**
      * Neccesary to ensure that deleted areas ids are not kept
      */
-    public void deleteId() {
+    /*public void deleteId() {
         uiToIdMap.remove(name);
         areaIdMap.remove(uid);
-    }
+    }*/
     
     public MapType getType() {
         return type;
@@ -76,7 +81,7 @@ public class Area extends DirectObject {
         super.setTypeId(type.toString());
     }
 
-    public String getName() {
+    /*public String getName() {
         return name;
     }
 
@@ -103,19 +108,37 @@ public class Area extends DirectObject {
 
     public void setRange(double range) {
         this.range = range;
+    }*/
+    
+    public int getY() {
+        return y;
+    }
+    
+    public int getX() {
+        return x;
+    }
+    
+    public void setY(int newY) {
+        y = newY;
+        fixType();
+    }
+    
+    public void setX(int newX) {
+        x = newX;
+        fixType();
+    }
+    
+    /**
+     * updates the direct object's type with the area information
+     */
+    private void fixType() {
+        super.setTypeId("" + x + " " + y);
     }
     
     public DirectObjectProtocol getDirectObjectAsProtobuf() {
         DirectObjectProtocol.Builder builder = DirectObjectProtocol.newBuilder();
-        builder.setName(name);
-        builder.setType(type.toString());
-        
-        MapProtocol.Builder mapBuilder = MapProtocol.newBuilder();
-        mapBuilder.setGenerateIfNeeded(generateIfNeeded);
-        mapBuilder.setRange(range);
-        mapBuilder.setUid(uid);
-        
-        builder.setMap(mapBuilder.build());
+        builder.setName(super.getIdentifier());
+        builder.setType(super.getTypeIdentifier());
         
         return builder.build();
     }

@@ -82,6 +82,8 @@ public class QuestBuilderScreenController implements Initializable {
         questStage.show();
         questStage.setOnShown(event -> controller.justifyAllStepNames());
         controller.setStage(questStage);
+        
+        controller.postSetupOp();
     }
     
     private static double ACTION_OFFSET_X = 300;
@@ -162,6 +164,11 @@ public class QuestBuilderScreenController implements Initializable {
         } else {
             addStep(null);
         }
+    }
+    
+    public void postSetupOp() {
+        if (BiomeChoiceBox.getValue() == null)
+            BiomeChoiceBox.setValue(QuestProtobuf.Biome.PYTHON);
     }
     
     /**

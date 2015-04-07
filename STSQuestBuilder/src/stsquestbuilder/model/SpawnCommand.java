@@ -16,7 +16,7 @@ public class SpawnCommand {
     private MapType spawnArea;
     private QuestProtobuf.SpawnAreaTypeSpecification specification;
     private int range;
-    private int quantity;//not used on area spawns
+    private int quantity;
     
     //following fields are singularly exclusive
     //private Area areaToSpawn;

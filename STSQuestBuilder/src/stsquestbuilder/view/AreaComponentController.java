@@ -52,49 +52,27 @@ public class AreaComponentController implements Initializable {
     private Pane backPane;
     
     @FXML
-    private ChoiceBox<MapType> areaType;
+    private TextField xCoordinate;
     
     @FXML
-    private TextField nameField;
-    
-    @FXML
-    private CheckBox generateCheckBox;
-    
-    @FXML
-    private TextField rangeField;
+    private TextField yCoordinate;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        areaType.setItems(FXCollections.observableArrayList(MapType.values()));
     }
     
     public void postSetupOp() {
         
         //Wire Non-standard events
-        areaType.valueProperty().addListener(event -> {
-            area.setType(areaType.getValue());
+        xCoordinate.textProperty().addListener(event -> {
+            area.setX(Integer.parseInt(xCoordinate.getText()));
         });
         
-        nameField.textProperty().addListener(event -> {
-            if(Area.uiIdExists(nameField.getText())) {
-                nameField.setStyle("-fx-border-color:#F00");
-            } else {
-                nameField.setStyle("");
-            }
-            nameField.applyCss();
-
-            area.setName(nameField.getText());
-        });
-        
-        generateCheckBox.selectedProperty().addListener(event -> {
-            area.setGenerateIfNeeded(generateCheckBox.selectedProperty().get());
-        });
-        
-        rangeField.textProperty().addListener(event -> {
-            area.setRange(Double.valueOf(rangeField.getText()));
+        yCoordinate.textProperty().addListener(event -> {
+            area.setY(Integer.parseInt(yCoordinate.getText()));
         });
     }
     
@@ -105,10 +83,8 @@ public class AreaComponentController implements Initializable {
     private void setArea(Area are) {
         area = are;
         
-        areaType.setValue(area.getType());
-        generateCheckBox.setSelected(area.isGenerateIfNeeded());
-        rangeField.setText("" + area.getRange());
-        nameField.setText(area.getName());
+        xCoordinate.setText("" + are.getX());
+        yCoordinate.setText("" + are.getY());
     }
     
     public Pane getRoot() {

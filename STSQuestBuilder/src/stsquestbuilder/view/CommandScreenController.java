@@ -15,10 +15,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.CheckBox;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnAreaTypeSpecification;
 
 import stsquestbuilder.model.SpawnCommand;
 import stsquestbuilder.model.Area;
@@ -27,6 +27,7 @@ import stsquestbuilder.model.Enemy;
 import stsquestbuilder.model.DirectObject;
 import stsquestbuilder.STSQuestBuilder;
 import stsquestbuilder.model.DirectObjectFactory;
+import stsquestbuilder.protocolbuffers.QuestProtobuf;
 
 /**
  * FXML Controller class
@@ -78,6 +79,9 @@ public class CommandScreenController implements Initializable {
     @FXML
     private ChoiceBox<DirectObjectFactory.ObjectType> commandTypeDropdown;
     
+    @FXML
+    private CheckBox localSpawnCheck;
+    
     /*@FXML
     private ChoiceBox<SpawnAreaTypeSpecification> spawnAreaTypeDropdown;
     
@@ -97,10 +101,15 @@ public class CommandScreenController implements Initializable {
         commandTypeDropdown.valueProperty().addListener(event -> {
             switchCommandType(null);
         });
+        
+        localSpawnCheck.selectedProperty().addListener(event -> {
+            setCommandLocalSpawn();
+        });
     }    
     
     public void postSetupOp() {
         commandTypeDropdown.setValue(command.commandType());
+        localSpawnCheck.setSelected(command.getSpecification().equals(QuestProtobuf.SpawnAreaTypeSpecification.LOCAL));
         //spawnAreaTypeDropdown.setValue(command.getSpecification());
         
         //rangeField.setText("" + command.getRange());
@@ -114,6 +123,13 @@ public class CommandScreenController implements Initializable {
         });*/
         
         switchCommandType(null);
+    }
+    
+    /**
+     * Updates the model with the info from the local spawn checkbox
+     */
+    private void setCommandLocalSpawn() {
+        command.setSpecification((localSpawnCheck.isSelected() ? QuestProtobuf.SpawnAreaTypeSpecification.LOCAL: QuestProtobuf.SpawnAreaTypeSpecification.DISTANCE));
     }
     
     /**
