@@ -11,7 +11,7 @@
   </resources>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="STSQuestBuilder.jar" size="437785" download="eager" />
+    <jar href="STSQuestBuilder.jar" size="438319" download="eager" />
     <jar href="lib/protobuf.jar" size="418384" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="STSQuestBuilder" >

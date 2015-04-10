@@ -12,7 +12,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import stsquestbuilder.protocolbuffers.QuestProtobuf;
-import stsquestbuilder.protocolbuffers.QuestProtobuf;
 import stsquestbuilder.protocolbuffers.QuestProtobuf.StatusBlockProtocol;
 
 
@@ -161,6 +160,18 @@ public class ConversationNode extends DirectObject {
         strIdMap.put("", this);
     }
     
+    /**
+     * Partial initializer to map the conversation node to its id
+     * @param uid 
+     */
+    public ConversationNode(Long _uid) {
+        super("","");
+        idMap.put(_uid, this);
+        uid = _uid;
+        ID = new SimpleStringProperty();
+        text = new SimpleStringProperty();
+    }
+    
     public ConversationNode(QuestProtobuf.ConversationNode proto) {
         super("","");
         text = new SimpleStringProperty();
@@ -191,6 +202,8 @@ public class ConversationNode extends DirectObject {
                 }
                 requirementSets.add(requirements);
             }
+            
+            alt.requirements = requirementSets;
         }
         
         for(StatusBlockProtocol s : proto.getBlocksList()) {
@@ -200,6 +213,45 @@ public class ConversationNode extends DirectObject {
         super.setIdentifier("" + getID());
         super.setTypeId("" + uid);
         idMap.put(uid, this);
+        strIdMap.put("", this);
+    }
+    
+    public void initFromProto(QuestProtobuf.ConversationNode proto) {
+        text.set(proto.getText());
+        alternatives = new HashMap<>();
+        blocks = FXCollections.observableArrayList();
+        X = proto.getX();
+        Y = proto.getY();
+        
+        for(QuestProtobuf.Connection c : proto.getConnectionsList()) {
+            Alternative alt = new Alternative(c.getNodeId());
+            alt.text = c.getText();
+            
+            if (c.hasPriority()) {
+                alt.setPriority(c.getPriority());
+            } else {
+                alt.setPriority(0);
+            }
+            
+            alternatives.put(alt.getUID(), alt);
+            ObservableList<ObservableList<StatusReference>> requirementSets = alt.getRequirements();
+            for (QuestProtobuf.RequirementSet set : c.getRequirementSetsList()) {
+                ObservableList<StatusReference> requirements = FXCollections.observableArrayList();
+                for (QuestProtobuf.StatusCheckableProtocol status : set.getRequirementsList()) {
+                    requirements.add(new StatusReference(StatusCheckableFactory.getStatusFromProtobuf(status)));
+                }
+                requirementSets.add(requirements);
+            }
+            
+            alt.requirements = requirementSets;
+        }
+        
+        for(StatusBlockProtocol s : proto.getBlocksList()) {
+            blocks.add(new StatusBlock(s));
+        }
+        
+        super.setIdentifier("" + getID());
+        super.setTypeId("" + uid);
         strIdMap.put("", this);
     }
     
