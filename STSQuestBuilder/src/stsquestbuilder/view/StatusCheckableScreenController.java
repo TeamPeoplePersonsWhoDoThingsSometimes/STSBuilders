@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ChoiceBox;
@@ -23,6 +25,7 @@ import stsquestbuilder.model.Action;
 import stsquestbuilder.model.ActionCheckable;
 import stsquestbuilder.model.TierCheckable;
 import stsquestbuilder.model.LevelCheckable;
+import stsquestbuilder.model.QuestFinishedCheckable;
 import stsquestbuilder.model.StatusCheckable;
 import stsquestbuilder.model.StatusReference;
 import stsquestbuilder.model.StatusCheckableFactory;
@@ -137,6 +140,9 @@ public class StatusCheckableScreenController implements Initializable {
             case TierCheckable:
                 o = new SimpleIntegerProperty();
                 break;
+            case QuestFinishedCheckable:
+                o = new SimpleStringProperty();
+                break;
         }
         changeToStatusType(type, o);
     }
@@ -159,6 +165,11 @@ public class StatusCheckableScreenController implements Initializable {
             ((LevelCheckable)status.getStatus()).setLevel((IntegerProperty)subObject);
             LevelComponentController controller = LevelComponentController.openComponentForAction((IntegerProperty)subObject);
             subPanelRoot = controller.getRoot();
+        } else if (type.equals(StatusCheckableFactory.StatusType.QuestFinishedCheckable)) {
+            status.setStatus(StatusCheckableFactory.getQuestFinishedStatus());
+            ((QuestFinishedCheckable)status.getStatus()).setQuestProperty((StringProperty)subObject);
+            QuestFinishedComponentController controller = QuestFinishedComponentController.openComponentForQuest((StringProperty)subObject);
+            subPanelRoot = controller.getRoot();
         }
         
         status.getStatus().setNot(notCheckBox.isSelected());
@@ -179,6 +190,9 @@ public class StatusCheckableScreenController implements Initializable {
         } else if (StatusCheckableFactory.getStatusTypeOfCheck(status.getStatus()).equals(StatusCheckableFactory.StatusType.LevelCheckable)) {
             checkTypeDropdown.setValue(StatusCheckableFactory.StatusType.LevelCheckable);
             changeToStatusType(StatusCheckableFactory.StatusType.LevelCheckable, ((LevelCheckable)status.getStatus()).getLevelProperty());
+        } else if (StatusCheckableFactory.getStatusTypeOfCheck(status.getStatus()).equals(StatusCheckableFactory.StatusType.QuestFinishedCheckable)) {
+            checkTypeDropdown.setValue(StatusCheckableFactory.StatusType.QuestFinishedCheckable);
+            changeToStatusType(StatusCheckableFactory.StatusType.QuestFinishedCheckable, ((QuestFinishedCheckable)status.getStatus()).getQuestProperty());
         }
     }
     

@@ -44,6 +44,16 @@ public class STSQuestBuilder extends Application {
     private ObservableList<Quest> quests;
     private ObservableList<Conversation> conversations;
     
+    public ObservableList<String> getQuestNames() {
+        ObservableList<String> questNames = FXCollections.observableArrayList();
+        
+        for (Quest q : quests) {
+            questNames.add(q.getName());
+        }
+        
+        return questNames;
+    }
+    
     @Override
     public void start(Stage primaryStage) {
         instance = this;

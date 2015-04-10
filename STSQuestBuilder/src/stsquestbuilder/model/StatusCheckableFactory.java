@@ -15,6 +15,7 @@ public class StatusCheckableFactory {
         ActionCheckable("Action Checkable"),
         TierCheckable("Tier Checkable"),
         LevelCheckable("Level Checkable"),
+        QuestFinishedCheckable("Quest Finished Checkable"),
         EMPTY("Empty Check");
         
         private StringProperty name;
@@ -39,8 +40,10 @@ public class StatusCheckableFactory {
             return StatusType.ActionCheckable;
         } else if (status instanceof TierCheckable) {
             return StatusType.TierCheckable;
-        } if (status instanceof LevelCheckable) {
+        } else if (status instanceof LevelCheckable) {
             return StatusType.LevelCheckable;
+        } else if (status instanceof QuestFinishedCheckable) {
+            return StatusType.QuestFinishedCheckable;
         }
         
         return StatusType.ActionCheckable;
@@ -54,6 +57,8 @@ public class StatusCheckableFactory {
             status = new TierCheckable(proto);
         } else if (proto.hasLevel()) {
             status = new LevelCheckable(proto);
+        } else if (proto.hasQuest()) {
+            status = new QuestFinishedCheckable(proto);
         }
         
         if (status == null)
@@ -100,6 +105,15 @@ public class StatusCheckableFactory {
      */
     public static StatusCheckable getLevelStatus() {
         StatusCheckable check = new LevelCheckable();
+        return check;
+    }
+    
+    /**
+     * Gets a QuestFinishedCheckable
+     * @return 
+     */
+    public static StatusCheckable getQuestFinishedStatus() {
+        StatusCheckable check = new QuestFinishedCheckable();
         return check;
     }
     
