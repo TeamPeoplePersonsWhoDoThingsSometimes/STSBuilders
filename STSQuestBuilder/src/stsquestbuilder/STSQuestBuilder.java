@@ -211,6 +211,13 @@ public class STSQuestBuilder extends Application {
             return;
         }
         
+        //initialize uid map
+        for (QuestProtobuf.Conversation c : pack.getConversationsList()) {
+            for (QuestProtobuf.ConversationNode n : c.getAllNodesList()) {
+                new ConversationNode(n.getUid());
+            }
+        }
+        
         for(QuestProtobuf.Conversation c : pack.getConversationsList()) {
             conversations.add(new Conversation(c));
         }

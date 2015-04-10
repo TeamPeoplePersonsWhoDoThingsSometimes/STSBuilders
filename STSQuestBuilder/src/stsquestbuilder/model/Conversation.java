@@ -48,7 +48,8 @@ public class Conversation {
             creator.set(proto.getCreator());
         
         for(QuestProtobuf.ConversationNode c : proto.getAllNodesList()) {
-            addNode(new ConversationNode(c));
+            ConversationNode.getNodeByID(c.getUid()).initFromProto(c);
+            addNode(ConversationNode.getNodeByID(c.getUid()));
         }
     }
     
