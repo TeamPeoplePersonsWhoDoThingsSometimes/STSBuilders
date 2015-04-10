@@ -26,6 +26,7 @@ import stsquestbuilder.model.ActionCheckable;
 import stsquestbuilder.model.TierCheckable;
 import stsquestbuilder.model.LevelCheckable;
 import stsquestbuilder.model.QuestFinishedCheckable;
+import stsquestbuilder.model.NumAreasCheckable;
 import stsquestbuilder.model.StatusCheckable;
 import stsquestbuilder.model.StatusReference;
 import stsquestbuilder.model.StatusCheckableFactory;
@@ -138,6 +139,7 @@ public class StatusCheckableScreenController implements Initializable {
                 break;
             case LevelCheckable://cooincedantally the same as tier check
             case TierCheckable:
+            case NumAreasCheckable:
                 o = new SimpleIntegerProperty();
                 break;
             case QuestFinishedCheckable:
@@ -170,6 +172,12 @@ public class StatusCheckableScreenController implements Initializable {
             ((QuestFinishedCheckable)status.getStatus()).setQuestProperty((StringProperty)subObject);
             QuestFinishedComponentController controller = QuestFinishedComponentController.openComponentForQuest((StringProperty)subObject);
             subPanelRoot = controller.getRoot();
+        } else if (type.equals(StatusCheckableFactory.StatusType.NumAreasCheckable)) {
+            status.setStatus(StatusCheckableFactory.getNumAreasStatus());
+            ((NumAreasCheckable)status.getStatus()).setAreas((IntegerProperty)subObject);
+            TierComponentController controller = TierComponentController.openComponentForAction((IntegerProperty)subObject);
+            controller.setLabelText("Areas: ");
+            subPanelRoot = controller.getRoot();
         }
         
         status.getStatus().setNot(notCheckBox.isSelected());
@@ -193,6 +201,9 @@ public class StatusCheckableScreenController implements Initializable {
         } else if (StatusCheckableFactory.getStatusTypeOfCheck(status.getStatus()).equals(StatusCheckableFactory.StatusType.QuestFinishedCheckable)) {
             checkTypeDropdown.setValue(StatusCheckableFactory.StatusType.QuestFinishedCheckable);
             changeToStatusType(StatusCheckableFactory.StatusType.QuestFinishedCheckable, ((QuestFinishedCheckable)status.getStatus()).getQuestProperty());
+        } else if (StatusCheckableFactory.getStatusTypeOfCheck(status.getStatus()).equals(StatusCheckableFactory.StatusType.NumAreasCheckable)) {
+            checkTypeDropdown.setValue(StatusCheckableFactory.StatusType.NumAreasCheckable);
+            changeToStatusType(StatusCheckableFactory.StatusType.NumAreasCheckable, ((NumAreasCheckable)status.getStatus()).getAreasProperty());
         }
     }
     
