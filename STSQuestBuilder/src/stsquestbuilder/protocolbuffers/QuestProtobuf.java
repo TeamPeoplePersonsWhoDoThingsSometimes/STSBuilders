@@ -10150,6 +10150,10 @@ public final class QuestProtobuf {
     // required .LevelSpecification levelSpec = 2;
     boolean hasLevelSpec();
     stsquestbuilder.protocolbuffers.QuestProtobuf.LevelSpecification getLevelSpec();
+    
+    // optional string saveVersion = 3;
+    boolean hasSaveVersion();
+    String getSaveVersion();
   }
   public static final class ItemProtocol extends
       com.google.protobuf.GeneratedMessage
@@ -10200,9 +10204,42 @@ public final class QuestProtobuf {
       return levelSpec_;
     }
     
+    // optional string saveVersion = 3;
+    public static final int SAVEVERSION_FIELD_NUMBER = 3;
+    private java.lang.Object saveVersion_;
+    public boolean hasSaveVersion() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public String getSaveVersion() {
+      java.lang.Object ref = saveVersion_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          saveVersion_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getSaveVersionBytes() {
+      java.lang.Object ref = saveVersion_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        saveVersion_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
     private void initFields() {
       version_ = 0;
       levelSpec_ = stsquestbuilder.protocolbuffers.QuestProtobuf.LevelSpecification.MINIMUM;
+      saveVersion_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -10230,6 +10267,9 @@ public final class QuestProtobuf {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeEnum(2, levelSpec_.getNumber());
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getSaveVersionBytes());
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -10246,6 +10286,10 @@ public final class QuestProtobuf {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, levelSpec_.getNumber());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getSaveVersionBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -10375,6 +10419,8 @@ public final class QuestProtobuf {
         bitField0_ = (bitField0_ & ~0x00000001);
         levelSpec_ = stsquestbuilder.protocolbuffers.QuestProtobuf.LevelSpecification.MINIMUM;
         bitField0_ = (bitField0_ & ~0x00000002);
+        saveVersion_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -10421,6 +10467,10 @@ public final class QuestProtobuf {
           to_bitField0_ |= 0x00000002;
         }
         result.levelSpec_ = levelSpec_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.saveVersion_ = saveVersion_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -10442,6 +10492,9 @@ public final class QuestProtobuf {
         }
         if (other.hasLevelSpec()) {
           setLevelSpec(other.getLevelSpec());
+        }
+        if (other.hasSaveVersion()) {
+          setSaveVersion(other.getSaveVersion());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -10498,6 +10551,11 @@ public final class QuestProtobuf {
               }
               break;
             }
+            case 26: {
+              bitField0_ |= 0x00000004;
+              saveVersion_ = input.readBytes();
+              break;
+            }
           }
         }
       }
@@ -10547,6 +10605,42 @@ public final class QuestProtobuf {
         levelSpec_ = stsquestbuilder.protocolbuffers.QuestProtobuf.LevelSpecification.MINIMUM;
         onChanged();
         return this;
+      }
+      
+      // optional string saveVersion = 3;
+      private java.lang.Object saveVersion_ = "";
+      public boolean hasSaveVersion() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public String getSaveVersion() {
+        java.lang.Object ref = saveVersion_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          saveVersion_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setSaveVersion(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        saveVersion_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearSaveVersion() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        saveVersion_ = getDefaultInstance().getSaveVersion();
+        onChanged();
+        return this;
+      }
+      void setSaveVersion(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000004;
+        saveVersion_ = value;
+        onChanged();
       }
       
       // @@protoc_insertion_point(builder_scope:ItemProtocol)
@@ -17953,6 +18047,10 @@ public final class QuestProtobuf {
     boolean hasEnemyAttributes();
     stsquestbuilder.protocolbuffers.QuestProtobuf.EnemyData getEnemyAttributes();
     stsquestbuilder.protocolbuffers.QuestProtobuf.EnemyDataOrBuilder getEnemyAttributesOrBuilder();
+    
+    // optional string description = 4;
+    boolean hasDescription();
+    String getDescription();
   }
   public static final class SpawnedObject extends
       com.google.protobuf.GeneratedMessage
@@ -18022,10 +18120,43 @@ public final class QuestProtobuf {
       return enemyAttributes_;
     }
     
+    // optional string description = 4;
+    public static final int DESCRIPTION_FIELD_NUMBER = 4;
+    private java.lang.Object description_;
+    public boolean hasDescription() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public String getDescription() {
+      java.lang.Object ref = description_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          description_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getDescriptionBytes() {
+      java.lang.Object ref = description_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        description_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
     private void initFields() {
       objectPosition_ = stsquestbuilder.protocolbuffers.QuestProtobuf.GlobalPosition.getDefaultInstance();
       objectData_ = stsquestbuilder.protocolbuffers.QuestProtobuf.DirectObjectProtocol.getDefaultInstance();
       enemyAttributes_ = stsquestbuilder.protocolbuffers.QuestProtobuf.EnemyData.getDefaultInstance();
+      description_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -18070,6 +18201,9 @@ public final class QuestProtobuf {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeMessage(3, enemyAttributes_);
       }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBytes(4, getDescriptionBytes());
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -18090,6 +18224,10 @@ public final class QuestProtobuf {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, enemyAttributes_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, getDescriptionBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -18236,6 +18374,8 @@ public final class QuestProtobuf {
           enemyAttributesBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000004);
+        description_ = "";
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       
@@ -18298,6 +18438,10 @@ public final class QuestProtobuf {
         } else {
           result.enemyAttributes_ = enemyAttributesBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.description_ = description_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -18322,6 +18466,9 @@ public final class QuestProtobuf {
         }
         if (other.hasEnemyAttributes()) {
           mergeEnemyAttributes(other.getEnemyAttributes());
+        }
+        if (other.hasDescription()) {
+          setDescription(other.getDescription());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -18401,6 +18548,11 @@ public final class QuestProtobuf {
               }
               input.readMessage(subBuilder, extensionRegistry);
               setEnemyAttributes(subBuilder.buildPartial());
+              break;
+            }
+            case 34: {
+              bitField0_ |= 0x00000008;
+              description_ = input.readBytes();
               break;
             }
           }
@@ -18677,6 +18829,42 @@ public final class QuestProtobuf {
           enemyAttributes_ = null;
         }
         return enemyAttributesBuilder_;
+      }
+      
+      // optional string description = 4;
+      private java.lang.Object description_ = "";
+      public boolean hasDescription() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public String getDescription() {
+        java.lang.Object ref = description_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          description_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setDescription(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        description_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearDescription() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        description_ = getDefaultInstance().getDescription();
+        onChanged();
+        return this;
+      }
+      void setDescription(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000008;
+        description_ = value;
+        onChanged();
       }
       
       // @@protoc_insertion_point(builder_scope:SpawnedObject)
@@ -19057,7 +19245,11 @@ public final class QuestProtobuf {
     boolean hasRotation();
     int getRotation();
     
-    // repeated .PointProto visitedAreas = 5;
+    // required string name = 5;
+    boolean hasName();
+    String getName();
+    
+    // repeated .PointProto visitedAreas = 6;
     java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.PointProto> 
         getVisitedAreasList();
     stsquestbuilder.protocolbuffers.QuestProtobuf.PointProto getVisitedAreas(int index);
@@ -19164,8 +19356,40 @@ public final class QuestProtobuf {
       return rotation_;
     }
     
-    // repeated .PointProto visitedAreas = 5;
-    public static final int VISITEDAREAS_FIELD_NUMBER = 5;
+    // required string name = 5;
+    public static final int NAME_FIELD_NUMBER = 5;
+    private java.lang.Object name_;
+    public boolean hasName() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          name_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // repeated .PointProto visitedAreas = 6;
+    public static final int VISITEDAREAS_FIELD_NUMBER = 6;
     private java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.PointProto> visitedAreas_;
     public java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.PointProto> getVisitedAreasList() {
       return visitedAreas_;
@@ -19190,6 +19414,7 @@ public final class QuestProtobuf {
       inventory_ = stsquestbuilder.protocolbuffers.QuestProtobuf.InventoryData.getDefaultInstance();
       version_ = "";
       rotation_ = 0;
+      name_ = "";
       visitedAreas_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
@@ -19210,6 +19435,10 @@ public final class QuestProtobuf {
         return false;
       }
       if (!hasRotation()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasName()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -19246,8 +19475,11 @@ public final class QuestProtobuf {
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeInt32(4, rotation_);
       }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeBytes(5, getNameBytes());
+      }
       for (int i = 0; i < visitedAreas_.size(); i++) {
-        output.writeMessage(5, visitedAreas_.get(i));
+        output.writeMessage(6, visitedAreas_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -19274,9 +19506,13 @@ public final class QuestProtobuf {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(4, rotation_);
       }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(5, getNameBytes());
+      }
       for (int i = 0; i < visitedAreas_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, visitedAreas_.get(i));
+          .computeMessageSize(6, visitedAreas_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -19421,9 +19657,11 @@ public final class QuestProtobuf {
         bitField0_ = (bitField0_ & ~0x00000004);
         rotation_ = 0;
         bitField0_ = (bitField0_ & ~0x00000008);
+        name_ = "";
+        bitField0_ = (bitField0_ & ~0x00000010);
         if (visitedAreasBuilder_ == null) {
           visitedAreas_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000010);
+          bitField0_ = (bitField0_ & ~0x00000020);
         } else {
           visitedAreasBuilder_.clear();
         }
@@ -19489,10 +19727,14 @@ public final class QuestProtobuf {
           to_bitField0_ |= 0x00000008;
         }
         result.rotation_ = rotation_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.name_ = name_;
         if (visitedAreasBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) == 0x00000010)) {
+          if (((bitField0_ & 0x00000020) == 0x00000020)) {
             visitedAreas_ = java.util.Collections.unmodifiableList(visitedAreas_);
-            bitField0_ = (bitField0_ & ~0x00000010);
+            bitField0_ = (bitField0_ & ~0x00000020);
           }
           result.visitedAreas_ = visitedAreas_;
         } else {
@@ -19526,11 +19768,14 @@ public final class QuestProtobuf {
         if (other.hasRotation()) {
           setRotation(other.getRotation());
         }
+        if (other.hasName()) {
+          setName(other.getName());
+        }
         if (visitedAreasBuilder_ == null) {
           if (!other.visitedAreas_.isEmpty()) {
             if (visitedAreas_.isEmpty()) {
               visitedAreas_ = other.visitedAreas_;
-              bitField0_ = (bitField0_ & ~0x00000010);
+              bitField0_ = (bitField0_ & ~0x00000020);
             } else {
               ensureVisitedAreasIsMutable();
               visitedAreas_.addAll(other.visitedAreas_);
@@ -19543,7 +19788,7 @@ public final class QuestProtobuf {
               visitedAreasBuilder_.dispose();
               visitedAreasBuilder_ = null;
               visitedAreas_ = other.visitedAreas_;
-              bitField0_ = (bitField0_ & ~0x00000010);
+              bitField0_ = (bitField0_ & ~0x00000020);
               visitedAreasBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getVisitedAreasFieldBuilder() : null;
@@ -19570,6 +19815,10 @@ public final class QuestProtobuf {
           return false;
         }
         if (!hasRotation()) {
+          
+          return false;
+        }
+        if (!hasName()) {
           
           return false;
         }
@@ -19642,6 +19891,11 @@ public final class QuestProtobuf {
               break;
             }
             case 42: {
+              bitField0_ |= 0x00000010;
+              name_ = input.readBytes();
+              break;
+            }
+            case 50: {
               stsquestbuilder.protocolbuffers.QuestProtobuf.PointProto.Builder subBuilder = stsquestbuilder.protocolbuffers.QuestProtobuf.PointProto.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addVisitedAreas(subBuilder.buildPartial());
@@ -19890,13 +20144,49 @@ public final class QuestProtobuf {
         return this;
       }
       
-      // repeated .PointProto visitedAreas = 5;
+      // required string name = 5;
+      private java.lang.Object name_ = "";
+      public boolean hasName() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setName(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearName() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      void setName(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000010;
+        name_ = value;
+        onChanged();
+      }
+      
+      // repeated .PointProto visitedAreas = 6;
       private java.util.List<stsquestbuilder.protocolbuffers.QuestProtobuf.PointProto> visitedAreas_ =
         java.util.Collections.emptyList();
       private void ensureVisitedAreasIsMutable() {
-        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+        if (!((bitField0_ & 0x00000020) == 0x00000020)) {
           visitedAreas_ = new java.util.ArrayList<stsquestbuilder.protocolbuffers.QuestProtobuf.PointProto>(visitedAreas_);
-          bitField0_ |= 0x00000010;
+          bitField0_ |= 0x00000020;
          }
       }
       
@@ -20012,7 +20302,7 @@ public final class QuestProtobuf {
       public Builder clearVisitedAreas() {
         if (visitedAreasBuilder_ == null) {
           visitedAreas_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000010);
+          bitField0_ = (bitField0_ & ~0x00000020);
           onChanged();
         } else {
           visitedAreasBuilder_.clear();
@@ -20068,7 +20358,7 @@ public final class QuestProtobuf {
           visitedAreasBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               stsquestbuilder.protocolbuffers.QuestProtobuf.PointProto, stsquestbuilder.protocolbuffers.QuestProtobuf.PointProto.Builder, stsquestbuilder.protocolbuffers.QuestProtobuf.PointProtoOrBuilder>(
                   visitedAreas_,
-                  ((bitField0_ & 0x00000010) == 0x00000010),
+                  ((bitField0_ & 0x00000020) == 0x00000020),
                   getParentForChildren(),
                   isClean());
           visitedAreas_ = null;
@@ -20840,51 +21130,52 @@ public final class QuestProtobuf {
       "ount\030\004 \001(\005\022&\n\017itemInformation\030\005 \001(\0132\r.It" +
       "emProtocol\"C\n\013MapProtocol\022\013\n\003uid\030\001 \002(\003\022\030" +
       "\n\020generateIfNeeded\030\002 \002(\010\022\r\n\005range\030\003 \002(\001\"" +
-      "G\n\014ItemProtocol\022\017\n\007version\030\001 \002(\005\022&\n\tleve" +
-      "lSpec\030\002 \002(\0162\023.LevelSpecification\";\n\023Conv" +
-      "ersationPackage\022$\n\rconversations\030\001 \003(\0132\r" +
-      ".Conversation\"R\n\014Conversation\022#\n\010allNode",
-      "s\030\001 \003(\0132\021.ConversationNode\022\014\n\004name\030\002 \001(\t" +
-      "\022\017\n\007creator\030\003 \001(\t\"\231\001\n\020ConversationNode\022\014" +
-      "\n\004text\030\001 \002(\t\022\014\n\004name\030\002 \002(\t\022\013\n\003uid\030\003 \002(\003\022" +
-      "\t\n\001X\030\004 \002(\005\022\t\n\001Y\030\005 \002(\005\022 \n\013connections\030\006 \003" +
-      "(\0132\013.Connection\022$\n\006blocks\030\007 \003(\0132\024.Status" +
-      "BlockProtocol\"f\n\nConnection\022\016\n\006nodeId\030\001 " +
-      "\002(\003\022\014\n\004text\030\002 \002(\t\022(\n\017requirementSets\030\003 \003" +
-      "(\0132\017.RequirementSet\022\020\n\010priority\030\004 \001(\005\"@\n" +
-      "\016RequirementSet\022.\n\014requirements\030\001 \003(\0132\030." +
-      "StatusCheckableProtocol\"\201\001\n\013SavePackage\022",
-      "\035\n\006player\030\001 \002(\0132\r.PlayerStatus\022\014\n\004seed\030\002" +
-      " \002(\005\022\035\n\tquestData\030\003 \003(\0132\n.QuestSave\022&\n\016s" +
-      "pawnedObjects\030\004 \003(\0132\016.SpawnedObject\"N\n\016G" +
-      "lobalPosition\022\r\n\005areaX\030\002 \002(\005\022\r\n\005areaY\030\003 " +
-      "\002(\005\022\016\n\006localX\030\004 \002(\005\022\016\n\006localY\030\005 \002(\005\"\"\n\nP" +
-      "ointProto\022\t\n\001x\030\001 \002(\005\022\t\n\001y\030\002 \002(\005\"}\n\tQuest" +
-      "Save\022\014\n\004name\030\001 \002(\t\022\014\n\004step\030\002 \002(\005\022.\n\031curr" +
-      "entStepSpawnLocations\030\003 \003(\0132\013.PointProto" +
-      "\022$\n\017currentStepData\030\004 \003(\0132\013.StatusSave\"/" +
-      "\n\nStatusSave\022\022\n\nalreadyMet\030\001 \002(\010\022\r\n\005coun",
-      "t\030\002 \002(\005\"\210\001\n\rSpawnedObject\022\'\n\016objectPosit" +
-      "ion\030\001 \002(\0132\017.GlobalPosition\022)\n\nobjectData" +
-      "\030\002 \002(\0132\025.DirectObjectProtocol\022#\n\017enemyAt" +
-      "tributes\030\003 \001(\0132\n.EnemyData\"$\n\tEnemyData\022" +
-      "\027\n\017healthRemaining\030\001 \002(\005\"\240\001\n\014PlayerStatu" +
-      "s\022\'\n\016playerPosition\030\001 \002(\0132\017.GlobalPositi" +
-      "on\022!\n\tinventory\030\002 \002(\0132\016.InventoryData\022\017\n" +
-      "\007version\030\003 \002(\t\022\020\n\010rotation\030\004 \002(\005\022!\n\014visi" +
-      "tedAreas\030\005 \003(\0132\013.PointProto\"6\n\rInventory" +
-      "Data\022%\n\006object\030\001 \003(\0132\025.DirectObjectProto",
-      "col*\245\001\n\nActionType\022\010\n\004KILL\020\000\022\r\n\tMOVE_ARE" +
-      "A\020\001\022\025\n\021APPROACHED_OBJECT\020\002\022\024\n\020PICKED_UP_" +
-      "OBJECT\020\003\022\014\n\010LEVEL_UP\020\005\022\016\n\nEQUIP_ITEM\020\006\022\014" +
-      "\n\010USE_ITEM\020\007\022\n\n\006ATTACK\020\010\022\031\n\025CONVERSATION" +
-      "_NODE_HIT\020\t*6\n\005Biome\022\020\n\014NOT_ASSIGNED\020\000\022\n" +
-      "\n\006PYTHON\020\001\022\005\n\001C\020\002\022\010\n\004HTML\020\003**\n\007MapType\022\010" +
-      "\n\004CITY\020\000\022\010\n\004PATH\020\001\022\013\n\007DUNGEON\020\002*5\n\032Spawn" +
-      "AreaTypeSpecification\022\t\n\005LOCAL\020\000\022\014\n\010DIST" +
-      "ANCE\020\001*,\n\022LevelSpecification\022\013\n\007MINIMUM\020" +
-      "\001\022\t\n\005EXACT\020\002B!\n\037stsquestbuilder.protocol",
-      "buffers"
+      "\\\n\014ItemProtocol\022\017\n\007version\030\001 \002(\005\022&\n\tleve" +
+      "lSpec\030\002 \002(\0162\023.LevelSpecification\022\023\n\013save" +
+      "Version\030\003 \001(\t\";\n\023ConversationPackage\022$\n\r" +
+      "conversations\030\001 \003(\0132\r.Conversation\"R\n\014Co",
+      "nversation\022#\n\010allNodes\030\001 \003(\0132\021.Conversat" +
+      "ionNode\022\014\n\004name\030\002 \001(\t\022\017\n\007creator\030\003 \001(\t\"\231" +
+      "\001\n\020ConversationNode\022\014\n\004text\030\001 \002(\t\022\014\n\004nam" +
+      "e\030\002 \002(\t\022\013\n\003uid\030\003 \002(\003\022\t\n\001X\030\004 \002(\005\022\t\n\001Y\030\005 \002" +
+      "(\005\022 \n\013connections\030\006 \003(\0132\013.Connection\022$\n\006" +
+      "blocks\030\007 \003(\0132\024.StatusBlockProtocol\"f\n\nCo" +
+      "nnection\022\016\n\006nodeId\030\001 \002(\003\022\014\n\004text\030\002 \002(\t\022(" +
+      "\n\017requirementSets\030\003 \003(\0132\017.RequirementSet" +
+      "\022\020\n\010priority\030\004 \001(\005\"@\n\016RequirementSet\022.\n\014" +
+      "requirements\030\001 \003(\0132\030.StatusCheckableProt",
+      "ocol\"\201\001\n\013SavePackage\022\035\n\006player\030\001 \002(\0132\r.P" +
+      "layerStatus\022\014\n\004seed\030\002 \002(\005\022\035\n\tquestData\030\003" +
+      " \003(\0132\n.QuestSave\022&\n\016spawnedObjects\030\004 \003(\013" +
+      "2\016.SpawnedObject\"N\n\016GlobalPosition\022\r\n\005ar" +
+      "eaX\030\002 \002(\005\022\r\n\005areaY\030\003 \002(\005\022\016\n\006localX\030\004 \002(\005" +
+      "\022\016\n\006localY\030\005 \002(\005\"\"\n\nPointProto\022\t\n\001x\030\001 \002(" +
+      "\005\022\t\n\001y\030\002 \002(\005\"}\n\tQuestSave\022\014\n\004name\030\001 \002(\t\022" +
+      "\014\n\004step\030\002 \002(\005\022.\n\031currentStepSpawnLocatio" +
+      "ns\030\003 \003(\0132\013.PointProto\022$\n\017currentStepData" +
+      "\030\004 \003(\0132\013.StatusSave\"/\n\nStatusSave\022\022\n\nalr",
+      "eadyMet\030\001 \002(\010\022\r\n\005count\030\002 \002(\005\"\235\001\n\rSpawned" +
+      "Object\022\'\n\016objectPosition\030\001 \002(\0132\017.GlobalP" +
+      "osition\022)\n\nobjectData\030\002 \002(\0132\025.DirectObje" +
+      "ctProtocol\022#\n\017enemyAttributes\030\003 \001(\0132\n.En" +
+      "emyData\022\023\n\013description\030\004 \001(\t\"$\n\tEnemyDat" +
+      "a\022\027\n\017healthRemaining\030\001 \002(\005\"\256\001\n\014PlayerSta" +
+      "tus\022\'\n\016playerPosition\030\001 \002(\0132\017.GlobalPosi" +
+      "tion\022!\n\tinventory\030\002 \002(\0132\016.InventoryData\022" +
+      "\017\n\007version\030\003 \002(\t\022\020\n\010rotation\030\004 \002(\005\022\014\n\004na" +
+      "me\030\005 \002(\t\022!\n\014visitedAreas\030\006 \003(\0132\013.PointPr",
+      "oto\"6\n\rInventoryData\022%\n\006object\030\001 \003(\0132\025.D" +
+      "irectObjectProtocol*\245\001\n\nActionType\022\010\n\004KI" +
+      "LL\020\000\022\r\n\tMOVE_AREA\020\001\022\025\n\021APPROACHED_OBJECT" +
+      "\020\002\022\024\n\020PICKED_UP_OBJECT\020\003\022\014\n\010LEVEL_UP\020\005\022\016" +
+      "\n\nEQUIP_ITEM\020\006\022\014\n\010USE_ITEM\020\007\022\n\n\006ATTACK\020\010" +
+      "\022\031\n\025CONVERSATION_NODE_HIT\020\t*6\n\005Biome\022\020\n\014" +
+      "NOT_ASSIGNED\020\000\022\n\n\006PYTHON\020\001\022\005\n\001C\020\002\022\010\n\004HTM" +
+      "L\020\003**\n\007MapType\022\010\n\004CITY\020\000\022\010\n\004PATH\020\001\022\013\n\007DU" +
+      "NGEON\020\002*5\n\032SpawnAreaTypeSpecification\022\t\n" +
+      "\005LOCAL\020\000\022\014\n\010DISTANCE\020\001*,\n\022LevelSpecifica",
+      "tion\022\013\n\007MINIMUM\020\001\022\t\n\005EXACT\020\002B!\n\037stsquest" +
+      "builder.protocolbuffers"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -21008,7 +21299,7 @@ public final class QuestProtobuf {
           internal_static_ItemProtocol_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ItemProtocol_descriptor,
-              new java.lang.String[] { "Version", "LevelSpec", },
+              new java.lang.String[] { "Version", "LevelSpec", "SaveVersion", },
               stsquestbuilder.protocolbuffers.QuestProtobuf.ItemProtocol.class,
               stsquestbuilder.protocolbuffers.QuestProtobuf.ItemProtocol.Builder.class);
           internal_static_ConversationPackage_descriptor =
@@ -21096,7 +21387,7 @@ public final class QuestProtobuf {
           internal_static_SpawnedObject_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_SpawnedObject_descriptor,
-              new java.lang.String[] { "ObjectPosition", "ObjectData", "EnemyAttributes", },
+              new java.lang.String[] { "ObjectPosition", "ObjectData", "EnemyAttributes", "Description", },
               stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnedObject.class,
               stsquestbuilder.protocolbuffers.QuestProtobuf.SpawnedObject.Builder.class);
           internal_static_EnemyData_descriptor =
@@ -21112,7 +21403,7 @@ public final class QuestProtobuf {
           internal_static_PlayerStatus_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PlayerStatus_descriptor,
-              new java.lang.String[] { "PlayerPosition", "Inventory", "Version", "Rotation", "VisitedAreas", },
+              new java.lang.String[] { "PlayerPosition", "Inventory", "Version", "Rotation", "Name", "VisitedAreas", },
               stsquestbuilder.protocolbuffers.QuestProtobuf.PlayerStatus.class,
               stsquestbuilder.protocolbuffers.QuestProtobuf.PlayerStatus.Builder.class);
           internal_static_InventoryData_descriptor =
