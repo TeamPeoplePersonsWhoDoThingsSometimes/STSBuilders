@@ -3,13 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/Item.java</file>
-            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/Enemy.java</file>
-            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/ActionCheckable.java</file>
-            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/Step.java</file>
-            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/SpawnCommand.java</file>
-            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/STSQuestBuilder.java</file>
-            <file>file:/D:/Information/Georgia%20Tech/VgDev/ProcGenRPG/Builders/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/Quest.java</file>
+            <file>file:/Users/KartikKini/Desktop/College/VGDev/Games/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/ConversationNode.java</file>
+            <file>file:/Users/KartikKini/Desktop/College/VGDev/Games/STSBuilders/STSQuestBuilder/src/stsquestbuilder/view/ConversationNodeHitComponentController.java</file>
+            <file>file:/Users/KartikKini/Desktop/College/VGDev/Games/STSBuilders/STSQuestBuilder/src/stsquestbuilder/STSQuestBuilder.java</file>
+            <file>file:/Users/KartikKini/Desktop/College/VGDev/Games/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/Conversation.java</file>
+            <file>file:/Users/KartikKini/Desktop/College/VGDev/Games/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/StatusReference.java</file>
+            <file>file:/Users/KartikKini/Desktop/College/VGDev/Games/STSBuilders/STSQuestBuilder/src/stsquestbuilder/view/PrimaryScreenController.java</file>
+            <file>file:/Users/KartikKini/Desktop/College/VGDev/Games/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/StatusCheckable.java</file>
+            <file>file:/Users/KartikKini/Desktop/College/VGDev/Games/STSBuilders/STSQuestBuilder/src/stsquestbuilder/view/ConversationBuilderScreenController.java</file>
+            <file>file:/Users/KartikKini/Desktop/College/VGDev/Games/STSBuilders/STSQuestBuilder/src/stsquestbuilder/protocolbuffers/QuestProtobuf.java</file>
+            <file>file:/Users/KartikKini/Desktop/College/VGDev/Games/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/ActionCheckable.java</file>
+            <file>file:/Users/KartikKini/Desktop/College/VGDev/Games/STSBuilders/STSQuestBuilder/src/stsquestbuilder/model/DirectObject.java</file>
+            <file>file:/Users/KartikKini/Desktop/College/VGDev/Games/STSBuilders/STSQuestBuilder/src/stsquestbuilder/view/EnemyComponentController.java</file>
+            <file>file:/Users/KartikKini/Desktop/College/VGDev/Games/STSBuilders/STSQuestBuilder/src/stsquestbuilder/view/CommandScreenController.java</file>
         </group>
     </open-files>
 </project-private>
