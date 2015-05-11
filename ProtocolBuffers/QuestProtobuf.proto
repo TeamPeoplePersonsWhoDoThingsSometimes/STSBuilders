@@ -235,6 +235,15 @@ message PlayerStatus {
 	required int32 rotation = 4;
 	required string name = 5;
 	repeated PointProto visitedAreas = 6;
+	optional int32 strength = 7;
+	optional int32 defence = 8;
+	optional int32 efficiency = 9;
+	optional int32 encryption = 10;
+	optional int32 security = 11;
+	optional int32 algorithmPoints = 12;
+	optional int32 deaths = 13;
+	optional float integrity = 14;
+	optional float rma = 15;
 }
 
 message InventoryData {
