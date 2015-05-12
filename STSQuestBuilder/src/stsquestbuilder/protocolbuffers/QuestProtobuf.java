@@ -22357,6 +22357,18 @@ public final class QuestProtobuf {
     // optional float rma = 15;
     boolean hasRma();
     float getRma();
+    
+    // optional int32 xpBytes = 16;
+    boolean hasXpBytes();
+    int getXpBytes();
+    
+    // optional int32 bytes = 17;
+    boolean hasBytes();
+    int getBytes();
+    
+    // optional int32 bytesRemaining = 18;
+    boolean hasBytesRemaining();
+    int getBytesRemaining();
   }
   public static final class PlayerStatus extends
       com.google.protobuf.GeneratedMessage
@@ -22598,6 +22610,36 @@ public final class QuestProtobuf {
       return rma_;
     }
     
+    // optional int32 xpBytes = 16;
+    public static final int XPBYTES_FIELD_NUMBER = 16;
+    private int xpBytes_;
+    public boolean hasXpBytes() {
+      return ((bitField0_ & 0x00004000) == 0x00004000);
+    }
+    public int getXpBytes() {
+      return xpBytes_;
+    }
+    
+    // optional int32 bytes = 17;
+    public static final int BYTES_FIELD_NUMBER = 17;
+    private int bytes_;
+    public boolean hasBytes() {
+      return ((bitField0_ & 0x00008000) == 0x00008000);
+    }
+    public int getBytes() {
+      return bytes_;
+    }
+    
+    // optional int32 bytesRemaining = 18;
+    public static final int BYTESREMAINING_FIELD_NUMBER = 18;
+    private int bytesRemaining_;
+    public boolean hasBytesRemaining() {
+      return ((bitField0_ & 0x00010000) == 0x00010000);
+    }
+    public int getBytesRemaining() {
+      return bytesRemaining_;
+    }
+    
     private void initFields() {
       playerPosition_ = stsquestbuilder.protocolbuffers.QuestProtobuf.GlobalPosition.getDefaultInstance();
       inventory_ = stsquestbuilder.protocolbuffers.QuestProtobuf.InventoryData.getDefaultInstance();
@@ -22614,6 +22656,9 @@ public final class QuestProtobuf {
       deaths_ = 0;
       integrity_ = 0F;
       rma_ = 0F;
+      xpBytes_ = 0;
+      bytes_ = 0;
+      bytesRemaining_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -22706,6 +22751,15 @@ public final class QuestProtobuf {
       if (((bitField0_ & 0x00002000) == 0x00002000)) {
         output.writeFloat(15, rma_);
       }
+      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+        output.writeInt32(16, xpBytes_);
+      }
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
+        output.writeInt32(17, bytes_);
+      }
+      if (((bitField0_ & 0x00010000) == 0x00010000)) {
+        output.writeInt32(18, bytesRemaining_);
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -22774,6 +22828,18 @@ public final class QuestProtobuf {
       if (((bitField0_ & 0x00002000) == 0x00002000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(15, rma_);
+      }
+      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(16, xpBytes_);
+      }
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(17, bytes_);
+      }
+      if (((bitField0_ & 0x00010000) == 0x00010000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(18, bytesRemaining_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -22944,6 +23010,12 @@ public final class QuestProtobuf {
         bitField0_ = (bitField0_ & ~0x00002000);
         rma_ = 0F;
         bitField0_ = (bitField0_ & ~0x00004000);
+        xpBytes_ = 0;
+        bitField0_ = (bitField0_ & ~0x00008000);
+        bytes_ = 0;
+        bitField0_ = (bitField0_ & ~0x00010000);
+        bytesRemaining_ = 0;
+        bitField0_ = (bitField0_ & ~0x00020000);
         return this;
       }
       
@@ -23055,6 +23127,18 @@ public final class QuestProtobuf {
           to_bitField0_ |= 0x00002000;
         }
         result.rma_ = rma_;
+        if (((from_bitField0_ & 0x00008000) == 0x00008000)) {
+          to_bitField0_ |= 0x00004000;
+        }
+        result.xpBytes_ = xpBytes_;
+        if (((from_bitField0_ & 0x00010000) == 0x00010000)) {
+          to_bitField0_ |= 0x00008000;
+        }
+        result.bytes_ = bytes_;
+        if (((from_bitField0_ & 0x00020000) == 0x00020000)) {
+          to_bitField0_ |= 0x00010000;
+        }
+        result.bytesRemaining_ = bytesRemaining_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -23138,6 +23222,15 @@ public final class QuestProtobuf {
         }
         if (other.hasRma()) {
           setRma(other.getRma());
+        }
+        if (other.hasXpBytes()) {
+          setXpBytes(other.getXpBytes());
+        }
+        if (other.hasBytes()) {
+          setBytes(other.getBytes());
+        }
+        if (other.hasBytesRemaining()) {
+          setBytesRemaining(other.getBytesRemaining());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -23286,6 +23379,21 @@ public final class QuestProtobuf {
             case 125: {
               bitField0_ |= 0x00004000;
               rma_ = input.readFloat();
+              break;
+            }
+            case 128: {
+              bitField0_ |= 0x00008000;
+              xpBytes_ = input.readInt32();
+              break;
+            }
+            case 136: {
+              bitField0_ |= 0x00010000;
+              bytes_ = input.readInt32();
+              break;
+            }
+            case 144: {
+              bitField0_ |= 0x00020000;
+              bytesRemaining_ = input.readInt32();
               break;
             }
           }
@@ -23938,6 +24046,69 @@ public final class QuestProtobuf {
       public Builder clearRma() {
         bitField0_ = (bitField0_ & ~0x00004000);
         rma_ = 0F;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 xpBytes = 16;
+      private int xpBytes_ ;
+      public boolean hasXpBytes() {
+        return ((bitField0_ & 0x00008000) == 0x00008000);
+      }
+      public int getXpBytes() {
+        return xpBytes_;
+      }
+      public Builder setXpBytes(int value) {
+        bitField0_ |= 0x00008000;
+        xpBytes_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearXpBytes() {
+        bitField0_ = (bitField0_ & ~0x00008000);
+        xpBytes_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 bytes = 17;
+      private int bytes_ ;
+      public boolean hasBytes() {
+        return ((bitField0_ & 0x00010000) == 0x00010000);
+      }
+      public int getBytes() {
+        return bytes_;
+      }
+      public Builder setBytes(int value) {
+        bitField0_ |= 0x00010000;
+        bytes_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearBytes() {
+        bitField0_ = (bitField0_ & ~0x00010000);
+        bytes_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 bytesRemaining = 18;
+      private int bytesRemaining_ ;
+      public boolean hasBytesRemaining() {
+        return ((bitField0_ & 0x00020000) == 0x00020000);
+      }
+      public int getBytesRemaining() {
+        return bytesRemaining_;
+      }
+      public Builder setBytesRemaining(int value) {
+        bitField0_ |= 0x00020000;
+        bytesRemaining_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearBytesRemaining() {
+        bitField0_ = (bitField0_ & ~0x00020000);
+        bytesRemaining_ = 0;
         onChanged();
         return this;
       }
@@ -24763,8 +24934,8 @@ public final class QuestProtobuf {
       "(\0132\017.GlobalPosition\022)\n\nobjectData\030\002 \002(\0132" +
       "\025.DirectObjectProtocol\022#\n\017enemyAttribute" +
       "s\030\003 \001(\0132\n.EnemyData\022\023\n\013description\030\004 \001(\t" +
-      "\"$\n\tEnemyData\022\027\n\017healthRemaining\030\001 \002(\005\"\324" +
-      "\002\n\014PlayerStatus\022\'\n\016playerPosition\030\001 \002(\0132" +
+      "\"$\n\tEnemyData\022\027\n\017healthRemaining\030\001 \002(\005\"\214" +
+      "\003\n\014PlayerStatus\022\'\n\016playerPosition\030\001 \002(\0132" +
       "\017.GlobalPosition\022!\n\tinventory\030\002 \002(\0132\016.In" +
       "ventoryData\022\017\n\007version\030\003 \002(\t\022\020\n\010rotation" +
       "\030\004 \002(\005\022\014\n\004name\030\005 \002(\t\022!\n\014visitedAreas\030\006 \003" +
@@ -24772,19 +24943,20 @@ public final class QuestProtobuf {
       "ence\030\010 \001(\005\022\022\n\nefficiency\030\t \001(\005\022\022\n\nencryp",
       "tion\030\n \001(\005\022\020\n\010security\030\013 \001(\005\022\027\n\017algorith" +
       "mPoints\030\014 \001(\005\022\016\n\006deaths\030\r \001(\005\022\021\n\tintegri" +
-      "ty\030\016 \001(\002\022\013\n\003rma\030\017 \001(\002\"6\n\rInventoryData\022%" +
-      "\n\006object\030\001 \003(\0132\025.DirectObjectProtocol*\245\001" +
-      "\n\nActionType\022\010\n\004KILL\020\000\022\r\n\tMOVE_AREA\020\001\022\025\n" +
-      "\021APPROACHED_OBJECT\020\002\022\024\n\020PICKED_UP_OBJECT" +
-      "\020\003\022\014\n\010LEVEL_UP\020\005\022\016\n\nEQUIP_ITEM\020\006\022\014\n\010USE_" +
-      "ITEM\020\007\022\n\n\006ATTACK\020\010\022\031\n\025CONVERSATION_NODE_" +
-      "HIT\020\t*6\n\005Biome\022\020\n\014NOT_ASSIGNED\020\000\022\n\n\006PYTH" +
-      "ON\020\001\022\005\n\001C\020\002\022\010\n\004HTML\020\003**\n\007MapType\022\010\n\004CITY",
-      "\020\000\022\010\n\004PATH\020\001\022\013\n\007DUNGEON\020\002*5\n\032SpawnAreaTy" +
-      "peSpecification\022\t\n\005LOCAL\020\000\022\014\n\010DISTANCE\020\001" +
-      "*,\n\022LevelSpecification\022\013\n\007MINIMUM\020\001\022\t\n\005E" +
-      "XACT\020\002B!\n\037stsquestbuilder.protocolbuffer" +
-      "s"
+      "ty\030\016 \001(\002\022\013\n\003rma\030\017 \001(\002\022\017\n\007xpBytes\030\020 \001(\005\022\r" +
+      "\n\005bytes\030\021 \001(\005\022\026\n\016bytesRemaining\030\022 \001(\005\"6\n" +
+      "\rInventoryData\022%\n\006object\030\001 \003(\0132\025.DirectO" +
+      "bjectProtocol*\245\001\n\nActionType\022\010\n\004KILL\020\000\022\r" +
+      "\n\tMOVE_AREA\020\001\022\025\n\021APPROACHED_OBJECT\020\002\022\024\n\020" +
+      "PICKED_UP_OBJECT\020\003\022\014\n\010LEVEL_UP\020\005\022\016\n\nEQUI" +
+      "P_ITEM\020\006\022\014\n\010USE_ITEM\020\007\022\n\n\006ATTACK\020\010\022\031\n\025CO" +
+      "NVERSATION_NODE_HIT\020\t*6\n\005Biome\022\020\n\014NOT_AS",
+      "SIGNED\020\000\022\n\n\006PYTHON\020\001\022\005\n\001C\020\002\022\010\n\004HTML\020\003**\n" +
+      "\007MapType\022\010\n\004CITY\020\000\022\010\n\004PATH\020\001\022\013\n\007DUNGEON\020" +
+      "\002*5\n\032SpawnAreaTypeSpecification\022\t\n\005LOCAL" +
+      "\020\000\022\014\n\010DISTANCE\020\001*,\n\022LevelSpecification\022\013" +
+      "\n\007MINIMUM\020\001\022\t\n\005EXACT\020\002B!\n\037stsquestbuilde" +
+      "r.protocolbuffers"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -25044,7 +25216,7 @@ public final class QuestProtobuf {
           internal_static_PlayerStatus_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PlayerStatus_descriptor,
-              new java.lang.String[] { "PlayerPosition", "Inventory", "Version", "Rotation", "Name", "VisitedAreas", "Strength", "Defence", "Efficiency", "Encryption", "Security", "AlgorithmPoints", "Deaths", "Integrity", "Rma", },
+              new java.lang.String[] { "PlayerPosition", "Inventory", "Version", "Rotation", "Name", "VisitedAreas", "Strength", "Defence", "Efficiency", "Encryption", "Security", "AlgorithmPoints", "Deaths", "Integrity", "Rma", "XpBytes", "Bytes", "BytesRemaining", },
               stsquestbuilder.protocolbuffers.QuestProtobuf.PlayerStatus.class,
               stsquestbuilder.protocolbuffers.QuestProtobuf.PlayerStatus.Builder.class);
           internal_static_InventoryData_descriptor =

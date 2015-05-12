@@ -244,6 +244,9 @@ message PlayerStatus {
 	optional int32 deaths = 13;
 	optional float integrity = 14;
 	optional float rma = 15;
+	optional int32 xpBytes = 16;
+	optional int32 bytes = 17;
+	optional int32 bytesRemaining = 18;
 }
 
 message InventoryData {
